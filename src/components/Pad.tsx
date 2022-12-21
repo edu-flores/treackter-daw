@@ -14,11 +14,11 @@ function Pad({ name, audio, background }: PadProps) {
 
   return (
     <div 
-      className="border-solid border-2 border-white rounded-lg w-24 h-24 py-8 text-center"
+      className="border-solid border-2 border-white rounded-lg w-24 h-24 py-8 text-center shadow-lg"
       style={{backgroundColor: `${background}`}}
       onClick={playAudio}
     >
-      {name}
+      <span className="drop-shadow-lg">{name}</span>
     </div>
   );
 }
