@@ -1,4 +1,6 @@
 import About from './About';
+import Daw from './Daw';
+import './Treackter.css';
 
 function Treackter() {
   return (
@@ -9,6 +11,7 @@ function Treackter() {
       </div>
       {/* DAW */}
       <div className="w-full">
+        <Daw />
       </div>
       {/* About Section */}
       <div className="w-16">
