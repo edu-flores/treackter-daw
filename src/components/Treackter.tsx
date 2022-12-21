@@ -1,6 +1,5 @@
 import About from './About';
 import Daw from './Daw';
-import './Treackter.css';
 
 function Treackter() {
   return (
