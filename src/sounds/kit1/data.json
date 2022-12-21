@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "sound": "sound.wav",
+    "color": "#003049",
+    "name": "Kick 1"
+  },
+  {
+    "id": "2",
+    "sound": "sound.wav",
+    "color": "#0d1821",
+    "name": "Snare 1"
+  },
+  {
+    "id": "3",
+    "sound": "sound.wav",
+    "color": "#177e89",
+    "name": "Closed 1"
+  },
+  {
+    "id": "4",
+    "sound": "sound.wav",
+    "color": "#d8973c",
+    "name": "Open 1"
+  },
+  {
+    "id": "5",
+    "sound": "sound.wav",
+    "color": "#a63446",
+    "name": "Synth 1"
+  },
+  {
+    "id": "6",
+    "sound": "sound.wav",
+    "color": "#a60067",
+    "name": "Guitar 1"
+  },
+  {
+    "id": "7",
+    "sound": "sound.wav",
+    "color": "#dcab6b",
+    "name": "Bass 1"
+  },
+  {
+    "id": "8",
+    "sound": "sound.wav",
+    "color": "#dcab6b",
+    "name": "Tom 1"
+  },
+  {
+    "id": "9",
+    "sound": "sound.wav",
+    "color": "#2e282a",
+    "name": "Clap 1"
+  },
+  {
+    "id": "10",
+    "sound": "sound.wav",
+    "color": "#7e7f83",
+    "name": "Adlib 1"
+  }
+]
