@@ -1,5 +1,6 @@
 import Controls from './Controls';
 import Soundboard from './Soundboard';
+import Timeline from './Timeline';
 
 function Daw() {
   return (
@@ -9,6 +10,7 @@ function Daw() {
       {/* Sound Effects */}
       <Soundboard />
       {/* Timeline */}
+      <Timeline />
     </div>
   );
 }
