@@ -19,7 +19,7 @@ function Pad({ name, audio, background }: PadProps) {
 
   return (
     <div 
-      className="border-solid border-2 border-white rounded-lg w-24 h-24 py-8 text-center shadow-lg"
+      className="border-solid border-2 border-white rounded-lg w-24 h-24 py-8 text-center shadow-lg hover:cursor-pointer"
       style={{backgroundColor: `${background}`}}
       onClick={playAudio}
     >

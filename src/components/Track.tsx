@@ -1,11 +1,18 @@
 import TimelinePad from "./TimelinePad";
 
-function Track() {
+type TrackProps = {
+  name: string,
+  pads: { "armed": boolean, "active": boolean }[]
+  solo: boolean,
+  muted: boolean,
+};
+
+function Track({ name, pads, solo, muted }: TrackProps) {
   return (
     <div className="py-3">
       <div className="flex">
         <div className="w-[10%] opacity-50 text-center text-lg">
-          <span>Kick</span>
+          <span>{name}</span>
         </div>
         <div className="w-[90%] opacity-50 flex gap-10 text-sm text-center">
           {/* First Bar */}
@@ -24,7 +31,7 @@ function Track() {
           </div>
           {/* Third Bar */}
           <div className="w-[20%] flex justify-center gap-6">
-           <TimelinePad />
+            <TimelinePad />
             <TimelinePad />
             <TimelinePad />
             <TimelinePad />
