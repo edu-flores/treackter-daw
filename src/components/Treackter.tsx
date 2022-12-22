@@ -5,7 +5,7 @@ function Treackter() {
   return (
     <div className="flex h-screen items-center">
       {/* Header */}
-      <div className="w-16">
+      <div className="w-[10%]">
         <h1 className="text-2xl text-primary font-bold tracking-widest -rotate-90 drop-shadow-lg">Treackter</h1>
       </div>
       {/* DAW */}
@@ -13,7 +13,7 @@ function Treackter() {
         <Daw />
       </div>
       {/* About Section */}
-      <div className="w-16">
+      <div className="w-[10%]">
         <About />
       </div>
     </div>
