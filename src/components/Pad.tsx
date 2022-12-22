@@ -3,7 +3,7 @@ type PadProps = {
   name: string,
   audio: string,
   background: string,
-};
+}
 
 function Pad({ name, audio, background }: PadProps) {
 
@@ -11,8 +11,8 @@ function Pad({ name, audio, background }: PadProps) {
   const n = name.slice(-1);
 
   // Reproduce media
+  const effect = new Audio(require(`../sounds/kit${n}/${audio}`));
   function playAudio() {
-    const effect = new Audio(require(`../sounds/kit${n}/${audio}`));
     effect.volume = 0.5;
     effect.play();
   }
