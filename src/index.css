@@ -23,6 +23,15 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+/* Hide scrollbar */
+.overflow-y-auto::-webkit-scrollbar {
+  display: none;
+}
+.overflow-y-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Prevent user highlight */
 * {
   -webkit-user-select: none;
