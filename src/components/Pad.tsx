@@ -1,11 +1,14 @@
+import { useEffect } from "react";
+
 // Props definer
 type PadProps = {
   name: string,
   audio: string,
   background: string,
+  pressed: string,
 }
 
-function Pad({ name, audio, background }: PadProps) {
+function Pad({ name, audio, background, pressed }: PadProps) {
 
   // Kit number
   const n = name.slice(-1);
@@ -16,6 +19,15 @@ function Pad({ name, audio, background }: PadProps) {
   function playAudio() {
     effect.play();
   }
+
+  useEffect(() => {
+    
+    console.log('a');
+    if (pressed === name) {
+      effect.play();
+    }
+  
+  }, [pressed, name])
 
   return (
     <div 

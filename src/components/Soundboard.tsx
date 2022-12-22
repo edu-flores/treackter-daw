@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Pad from './Pad';
 import kit1 from '../sounds/kit1/_data.json';
 import kit2 from '../sounds/kit2/_data.json';
@@ -14,31 +14,39 @@ type Sound = {
 
 function Soundboard() {
 
-  // Pad creator function
-  const createRow = (sound: Sound) => {
-    return (
-      <Pad
-        key={sound.id}
-        name={sound.name}
-        audio={sound.sound}
-        background={sound.color}
-      />
-    );
-  }
-
-  // Create pads for each kit
-  const firstRow = kit1.map(createRow);
-  const secondRow = kit2.map(createRow);
-  const thirdRow = kit3.map(createRow);
-
-  // Map keys to sounds
-  const keyToSound = {
-    "KeyQ": "Kick 1",
-  }
+  const [pressed, setPressed] = useState("");
 
   // Event handler
+  const keyToSound = new Map();
+  keyToSound.set("KeyQ", "Kick 1");
+  keyToSound.set("KeyA", "Kick 2");
+  keyToSound.set("KeyZ", "Kick 3");
+  keyToSound.set("KeyW", "Snare 1");
+  keyToSound.set("KeyS", "Snare 2");
+  keyToSound.set("KeyX", "Snare 3");
+  keyToSound.set("KeyE", "Closed 1");
+  keyToSound.set("KeyD", "Closed 2");
+  keyToSound.set("KeyC", "Closed 3");
+  keyToSound.set("KeyR", "Open 1");
+  keyToSound.set("KeyF", "Open 2");
+  keyToSound.set("KeyV", "Open 3");
+  keyToSound.set("KeyT", "Key 1");
+  keyToSound.set("KeyG", "Key 2");
+  keyToSound.set("KeyB", "Key 3");
+  keyToSound.set("KeyY", "Guitar 1");
+  keyToSound.set("KeyH", "Guitar 2");
+  keyToSound.set("KeyN", "Guitar 3");
+  keyToSound.set("KeyU", "Bass 1");
+  keyToSound.set("KeyJ", "Bass 2");
+  keyToSound.set("KeyM", "Bass 3");
+  keyToSound.set("KeyI", "Tom 1");
+  keyToSound.set("KeyK", "Tom 2");
+  keyToSound.set("Comma", "Tom 3");
+  keyToSound.set("KeyP", "Adlib 1");
+  keyToSound.set("Semicolon", "Adlib 2");
+  keyToSound.set("Slash", "Adlib 3");
   const handleKeyDown = (event: KeyboardEvent) => {
-    console.log(event.code);
+    setPressed(keyToSound.get(event.code));
   }
   
   // Listen for keypress
@@ -49,6 +57,24 @@ function Soundboard() {
       window.removeEventListener('keydown', handleKeyDown);
     }
   }, []);
+
+  // Pad creator function
+  const createRow = (sound: Sound) => {
+    return (
+      <Pad
+        key={sound.id}
+        name={sound.name}
+        audio={sound.sound}
+        background={sound.color}
+        pressed={pressed}
+      />
+    );
+  }
+
+  // Create pads for each kit
+  const firstRow = kit1.map(createRow);
+  const secondRow = kit2.map(createRow);
+  const thirdRow = kit3.map(createRow);
 
   return (
     <div className="flex items-center h-96 bg-secondary">
