@@ -4,16 +4,16 @@ import Track from './Track';
 
 function Timeline() {
   return (
-    <div className="bg-primary rounded-br-3xl rounded-bl-3xl px-8 py-3 h-64 overflow-y-auto relative shadow-lg">
+    <div className="bg-primary rounded-br-3xl rounded-bl-3xl px-8 pb-3 h-64 overflow-y-auto relative shadow-lg">
       {/* Top */}
-      <div className="flex">
+      <div className="flex sticky top-0 bg-primary z-[1] py-2">
         <div className="w-[10%]">
           <div className="flex gap-5 justify-center">
             <Play />
             <Stop />
           </div>
         </div>
-        <div className="w-[90%] opacity-50 flex gap-10 text-sm text-center">
+        <div className="w-[90%] opacity-50 flex items-center gap-10 text-sm text-center">
           {/* First Bar */}
           <div className="w-[20%] flex justify-center gap-6">
             <span className="w-[25%]">1</span>

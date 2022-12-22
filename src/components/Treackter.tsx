@@ -6,7 +6,7 @@ function Treackter() {
     <div className="flex h-screen items-center">
       {/* Header */}
       <div className="w-16">
-        <h1 className="text-2xl text-secondary font-bold tracking-widest -rotate-90 drop-shadow-lg">Treackter</h1>
+        <h1 className="text-2xl text-primary font-bold tracking-widest -rotate-90 drop-shadow-lg">Treackter</h1>
       </div>
       {/* DAW */}
       <div className="w-full">

@@ -1,4 +1,4 @@
-import Controls from './Controls';
+import TopControls from './TopControls';
 import Soundboard from './Soundboard';
 import Timeline from './Timeline';
 
@@ -6,7 +6,7 @@ function Daw() {
   return (
     <div>
       {/* Upper Bar Controls */}
-      <Controls />
+      <TopControls />
       {/* Sound Effects */}
       <Soundboard />
       {/* Timeline */}
