@@ -1,7 +1,7 @@
 import Pad from './Pad';
-import kit1 from '../sounds/kit1/data.json';
-import kit2 from '../sounds/kit2/data.json';
-import kit3 from '../sounds/kit3/data.json';
+import kit1 from '../sounds/kit1/_data.json';
+import kit2 from '../sounds/kit2/_data.json';
+import kit3 from '../sounds/kit3/_data.json';
 
 // Sound pad definer
 type Sound = {

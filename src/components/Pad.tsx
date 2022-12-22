@@ -7,8 +7,13 @@ type PadProps = {
 
 function Pad({ name, audio, background }: PadProps) {
 
+  // Kit number
+  const n = name.slice(-1);
+
+  // Reproduce media
   function playAudio() {
-    const effect = new Audio(require(`../sounds/kit1/${audio}.wav`));
+    const effect = new Audio(require(`../sounds/kit${n}/${audio}`));
+    effect.volume = 0.5;
     effect.play();
   }
 
