@@ -1,11 +1,12 @@
 import TimelinePad from "./TimelinePad";
 
+// Props definer
 type TrackProps = {
   name: string,
   pads: { "armed": boolean, "active": boolean }[]
   solo: boolean,
   muted: boolean,
-};
+}
 
 function Track({ name, pads, solo, muted }: TrackProps) {
   return (

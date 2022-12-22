@@ -12,8 +12,8 @@ function Pad({ name, audio, background }: PadProps) {
 
   // Reproduce media
   const effect = new Audio(require(`../sounds/kit${n}/${audio}`));
+  effect.volume = 0.5;
   function playAudio() {
-    effect.volume = 0.5;
     effect.play();
   }
 

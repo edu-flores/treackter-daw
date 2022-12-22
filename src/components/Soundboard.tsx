@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
 import Pad from './Pad';
 import kit1 from '../sounds/kit1/_data.json';
 import kit2 from '../sounds/kit2/_data.json';
 import kit3 from '../sounds/kit3/_data.json';
 
-// Sound pad definer
+// Props definer
 type Sound = {
   "id": string,
   "sound": string,
@@ -29,6 +30,25 @@ function Soundboard() {
   const firstRow = kit1.map(createRow);
   const secondRow = kit2.map(createRow);
   const thirdRow = kit3.map(createRow);
+
+  // Map keys to sounds
+  const keyToSound = {
+    "KeyQ": "Kick 1",
+  }
+
+  // Event handler
+  const handleKeyDown = (event: KeyboardEvent) => {
+    console.log(event.code);
+  }
+  
+  // Listen for keypress
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, []);
 
   return (
     <div className="flex items-center h-96 bg-secondary">
