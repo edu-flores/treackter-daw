@@ -199,43 +199,43 @@ function Timeline() {
   ];
 
   return (
-    <div className="bg-primary rounded-br-3xl rounded-bl-3xl px-8 pb-3 h-64 overflow-y-auto relative shadow-lg">
+    <div className="bg-primary rounded-br-3xl rounded-bl-3xl pb-3 h-60 overflow-y-auto relative shadow-lg">
       {/* Top */}
-      <div className="flex sticky top-0 bg-primary z-[1] py-2">
+      <div className="flex sticky top-0 bg-primary z-10 px-8 py-3 text-light-gray font-semibold shadow-lg">
         <div className="w-[10%]">
           <div className="flex gap-5 justify-center">
             <Play />
             <Stop />
           </div>
         </div>
-        <div className="w-[90%] opacity-50 flex items-center gap-10 text-sm text-center">
+        <div className="w-[90%] flex items-center gap-8 text-sm text-center">
           {/* First Bar */}
-          <div className="w-[20%] flex justify-center gap-6">
-            <span className="w-[25%]">1</span>
-            <span className="w-[25%]">1.2</span>
-            <span className="w-[25%]">1.3</span>
-            <span className="w-[25%]">1.4</span>
+          <div className="w-[20%] flex justify-center gap-4">
+            <span className="w-7">1</span>
+            <span className="w-7">1.2</span>
+            <span className="w-7">1.3</span>
+            <span className="w-7">1.4</span>
           </div>
           {/* Second Bar */}
-          <div className="w-[20%] flex justify-center gap-6">
-            <span className="w-[25%]">2</span>
-            <span className="w-[25%]">2.2</span>
-            <span className="w-[25%]">2.3</span>
-            <span className="w-[25%]">2.4</span>
+          <div className="w-[20%] flex justify-center gap-4">
+            <span className="w-7">2</span>
+            <span className="w-7">2.2</span>
+            <span className="w-7">2.3</span>
+            <span className="w-7">2.4</span>
           </div>
           {/* Third Bar */}
-          <div className="w-[20%] flex justify-center gap-6">
-            <span className="w-[25%]">3</span>
-            <span className="w-[25%]">3.2</span>
-            <span className="w-[25%]">3.3</span>
-            <span className="w-[25%]">3.4</span>
+          <div className="w-[20%] flex justify-center gap-4">
+            <span className="w-7">3</span>
+            <span className="w-7">3.2</span>
+            <span className="w-7">3.3</span>
+            <span className="w-7">3.4</span>
           </div>
           {/* Fourth Bar */}
-          <div className="w-[20%] flex justify-center gap-6">
-            <span className="w-[25%]">4</span>
-            <span className="w-[25%]">4.2</span>
-            <span className="w-[25%]">4.3</span>
-            <span className="w-[25%]">4.4</span>
+          <div className="w-[20%] flex justify-center gap-4">
+            <span className="w-7">4</span>
+            <span className="w-7">4.2</span>
+            <span className="w-7">4.3</span>
+            <span className="w-7">4.4</span>
           </div>
           {/* Audio Manipulation */}
           <div className="w-[20%] flex gap-5 justify-end">
@@ -249,15 +249,17 @@ function Timeline() {
         </div>
       </div>
       {/* Tracks */}
-      {tracks.map(track => 
-        <Track 
-          key={track.name}
-          name={track.name}
-          pads={track.pads}
-          solo={track.solo}
-          muted={track.muted}
-        />
-      )}
+      <div className="px-8 pt-3">
+        {tracks.map(track => 
+          <Track 
+            key={track.name}
+            name={track.name}
+            pads={track.pads}
+            solo={track.solo}
+            muted={track.muted}
+          />
+        )}
+      </div>
     </div>
   );
 }

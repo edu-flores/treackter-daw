@@ -2,8 +2,8 @@ import Knob from './Knob';
 
 function MasterVolume() {
   return (
-    <div>
-      <span className="text-sm opacity-50">MASTER VOL</span>
+    <div className="flex gap-3 items-center">
+      <span className="text-sm text-light-gray font-semibold">MASTER VOL</span>
       <Knob />
     </div>
   );

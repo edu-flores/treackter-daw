@@ -4,7 +4,7 @@ import Timeline from './Timeline';
 
 function Daw() {
   return (
-    <div>
+    <div className="max-w-6xl m-auto">
       {/* Upper Bar Controls */}
       <TopControls />
       {/* Sound Effects */}
