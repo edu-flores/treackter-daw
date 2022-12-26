@@ -1,7 +1,9 @@
+import TempKnob from '../TempKnob.png';
+
 function Knob() {
   return (
-    <div className="w-[10px] bg-black rounded-full">
-      
+    <div>
+      <img className="w-[30px]" src={TempKnob} alt="Knob" />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import TimelinePad from "./TimelinePad";
+import Knob from "./Knob";
 
 // Props definer
 type TrackProps = {
@@ -45,11 +46,11 @@ function Track({ name, pads, solo, muted }: TrackProps) {
             <TimelinePad />
           </div>
           {/* Audio Manipulation */}
-          <div className="w-[20%] flex gap-5 justify-end">
+          <div className="w-[20%] flex gap-5 justify-end items-center">
             <span><b>S</b></span>
             <span><b>M</b></span>
-            <span>VOL</span>
-            <span>PAN</span>
+            <Knob />
+            <Knob />
           </div>
         </div>
       </div>

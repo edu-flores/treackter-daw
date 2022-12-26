@@ -1,8 +1,8 @@
 function BPM() {
   return (
-    <div>
+    <div className="flex gap-3">
       <input className="w-9 text-xl text-right bg-inherit outline-none font-bold drop-shadow-lg" style={{caretColor: "transparent"}} type="number" min="60" max="260" />
-      <span className="text-sm opacity-50 ml-2">BPM</span>
+      <span className="self-end pb-[3px] text-sm opacity-50">BPM</span>
     </div>
   );
 }
