@@ -9,7 +9,7 @@ function Treackter() {
         <h1 className="text-2xl text-primary font-bold tracking-widest -rotate-90 drop-shadow-lg">Treackter</h1>
       </div>
       {/* DAW */}
-      <div className="w-full">
+      <div className="w-[90%]">
         <Daw />
       </div>
       {/* About Section */}
