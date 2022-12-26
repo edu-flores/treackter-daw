@@ -85,14 +85,18 @@ function Soundboard() {
         </svg>
       </div>
       {/* Effects */}
-      <div className="flex flex-col gap-1 w-full py-5">
-        <div className="flex justify-start gap-1">
+      <div className="flex flex-col gap-1 w-full py-5 overflow-x-auto">
+        <div className="flex gap-1">
           {firstRow}
+          <div className="w-4"></div>
         </div>
-        <div className="flex justify-center gap-1">
+        <div className="flex gap-1">
+          <div className="w-2"></div>
           {secondRow}
+          <div className="w-2"></div>
         </div>
-        <div className="flex justify-end gap-1">
+        <div className="flex gap-1">
+          <div className="w-4"></div>
           {thirdRow}
         </div>
       </div>

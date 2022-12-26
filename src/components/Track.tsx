@@ -16,7 +16,7 @@ function Track({ name, pads, solo, muted }: TrackProps) {
         <div className="w-[10%] text-center text-lg text-light-gray">
           <span><b>{name}</b></span>
         </div>
-        <div className="w-[90%] flex gap-10 text-sm text-center">
+        <div className="w-[90%] flex gap-8 text-sm text-center">
           {/* First Bar */}
           <div className="w-[20%] flex justify-center gap-4">
             <TimelinePad />
