@@ -11,12 +11,12 @@ type TrackProps = {
 
 function Track({ name, pads, solo, muted }: TrackProps) {
   return (
-    <div className="py-3">
+    <div className="py-2">
       <div className="flex">
-        <div className="w-[10%] opacity-50 text-center text-lg">
-          <span>{name}</span>
+        <div className="w-[10%] text-center text-lg text-light-gray">
+          <span><b>{name}</b></span>
         </div>
-        <div className="w-[90%] opacity-50 flex gap-10 text-sm text-center">
+        <div className="w-[90%] flex gap-10 text-sm text-center">
           {/* First Bar */}
           <div className="w-[20%] flex justify-center gap-4">
             <TimelinePad />

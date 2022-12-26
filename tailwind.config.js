@@ -13,6 +13,7 @@ module.exports = {
         "secondary": "#555358",
         "light-green": "#84cc4c",
         "light-red": "#e5523c",
+        "light-gray": "#afafb0",
       },
     },
   },
