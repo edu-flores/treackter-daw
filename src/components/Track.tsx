@@ -47,8 +47,8 @@ function Track({ name, pads, solo, muted }: TrackProps) {
           </div>
           {/* Audio Manipulation */}
           <div className="w-[20%] flex gap-5 justify-end items-center">
-            <span><b>S</b></span>
-            <span><b>M</b></span>
+            <span className="cursor-pointer"><b>S</b></span>
+            <span className="cursor-pointer"><b>M</b></span>
             <Knob />
             <Knob />
           </div>
