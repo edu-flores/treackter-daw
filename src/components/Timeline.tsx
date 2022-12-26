@@ -201,7 +201,7 @@ function Timeline() {
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl px-8 pb-3 h-64 overflow-y-auto relative shadow-lg">
       {/* Top */}
-      <div className="flex sticky top-0 bg-primary z-[1] py-2">
+      <div className="flex sticky top-0 bg-primary z-[1] py-3">
         <div className="w-[10%]">
           <div className="flex gap-5 justify-center">
             <Play />

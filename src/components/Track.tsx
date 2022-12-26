@@ -17,28 +17,28 @@ function Track({ name, pads, solo, muted }: TrackProps) {
         </div>
         <div className="w-[90%] opacity-50 flex gap-10 text-sm text-center">
           {/* First Bar */}
-          <div className="w-[20%] flex justify-center gap-6">
+          <div className="w-[20%] flex justify-center gap-4">
             <TimelinePad />
             <TimelinePad />
             <TimelinePad />
             <TimelinePad />
           </div>
           {/* Second Bar */}
-          <div className="w-[20%] flex justify-center gap-6">
+          <div className="w-[20%] flex justify-center gap-4">
             <TimelinePad />
             <TimelinePad />
             <TimelinePad />
             <TimelinePad />
           </div>
           {/* Third Bar */}
-          <div className="w-[20%] flex justify-center gap-6">
+          <div className="w-[20%] flex justify-center gap-4">
             <TimelinePad />
             <TimelinePad />
             <TimelinePad />
             <TimelinePad />
           </div>
           {/* Fourth Bar */}
-          <div className="w-[20%] flex justify-center gap-6">
+          <div className="w-[20%] flex justify-center gap-4">
             <TimelinePad />
             <TimelinePad />
             <TimelinePad />
@@ -46,18 +46,10 @@ function Track({ name, pads, solo, muted }: TrackProps) {
           </div>
           {/* Audio Manipulation */}
           <div className="w-[20%] flex gap-5 justify-end">
-            <div>
-              <span>S</span>
-            </div>
-            <div>
-              <span>M</span>
-            </div>
-            <div>
-              <span>VOL</span>
-            </div>
-            <div>
-              <span>PAN</span>
-            </div>
+            <span><b>S</b></span>
+            <span><b>M</b></span>
+            <span>VOL</span>
+            <span>PAN</span>
           </div>
         </div>
       </div>
