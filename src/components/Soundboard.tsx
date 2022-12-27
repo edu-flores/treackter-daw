@@ -1,4 +1,5 @@
-import Pad from './Pad';
+import { useEffect } from 'react';
+import SoundboardPad from './SoundboardPad';
 import kit1 from '../sounds/kit1/_data.json';
 import kit2 from '../sounds/kit2/_data.json';
 import kit3 from '../sounds/kit3/_data.json';
@@ -11,16 +12,81 @@ type Sound = {
   "name": string
 }
 
-function Soundboard() {
+// Hashmap for key presses
+const keyToSound = new Map();
+keyToSound.set('KeyQ', [1, 'kick1.wav']);
+keyToSound.set('KeyA', [2, 'kick2.wav']);
+keyToSound.set('KeyZ', [3, 'kick3.wav']);
+keyToSound.set('KeyW', [1, 'snare1.wav']);
+keyToSound.set('KeyS', [2, 'snare2.wav']);
+keyToSound.set('KeyX', [3, 'snare3.wav']);
+keyToSound.set('KeyE', [1, 'closed1.wav']);
+keyToSound.set('KeyD', [2, 'closed2.wav']);
+keyToSound.set('KeyC', [3, 'closed3.wav']);
+keyToSound.set('KeyR', [1, 'open1.wav']);
+keyToSound.set('KeyF', [2, 'open2.wav']);
+keyToSound.set('KeyV', [3, 'open3.wav']);
+keyToSound.set('KeyT', [1, 'key1.wav']);
+keyToSound.set('KeyG', [2, 'key2.wav']);
+keyToSound.set('KeyB', [3, 'key3.wav']);
+keyToSound.set('KeyY', [1, 'guitar1.wav']);
+keyToSound.set('KeyH', [2, 'guitar2.wav']);
+keyToSound.set('KeyN', [3, 'guitar3.wav']);
+keyToSound.set('KeyU', [1, 'bass1.wav']);
+keyToSound.set('KeyJ', [2, 'bass2.wav']);
+keyToSound.set('KeyM', [3, 'bass3.wav']);
+keyToSound.set('KeyI', [1, 'tom1.wav']);
+keyToSound.set('KeyK', [2, 'tom2.wav']);
+keyToSound.set('Comma',[3, 'tom3.wav']);
+keyToSound.set('KeyO', [1, 'clap1.wav']);
+keyToSound.set('KeyL', [2, 'clap2.wav']);
+keyToSound.set('Period', [3, 'clap3.wav']);
+keyToSound.set('KeyP', [1, 'adlib1.wav']);
+keyToSound.set('Semicolon', [2, 'adlib2.wav']);
+keyToSound.set('Slash', [3, 'adlib3.wav']);
 
-  // Pad creator function
+const Soundboard = () => {
+
+  // Reproduce media after clicking a soundboard pad or pressing a key
+  function playAudio(n: number, audio: string) {
+
+    // Web Audio API specs
+    const audioContext = new AudioContext();
+    const audioSource = new Audio(require(`../sounds/kit${n}/${audio}`));
+    const audioEffect = audioContext.createMediaElementSource(audioSource);
+
+    // Controlling audio (gain and panning)
+    const vol = audioContext.createGain();
+    vol.gain.value = 0.5;
+    const pan = new StereoPannerNode(audioContext, { pan: 0 });
+    audioEffect.connect(vol).connect(pan).connect(audioContext.destination);
+    audioSource.play();
+  }
+
+  // Event handler function
+  function handleKeyPress(event: KeyboardEvent) {
+    const [n, audio] = keyToSound.get(event.code);
+    playAudio(n, audio);
+  }
+
+  // Listen for key presses
+  useEffect(() => {
+    window.addEventListener('keypress', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keypress', handleKeyPress);
+    }
+  }, [])
+
+  // SoundboardPad creator function
   const createRow = (sound: Sound) => {
     return (
-      <Pad
+      <SoundboardPad
         key={sound.id}
         name={sound.name}
         audio={sound.sound}
         background={sound.color}
+        playAudio={playAudio}
       />
     );
   }
