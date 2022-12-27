@@ -2,7 +2,7 @@ import Play from './Play';
 import Stop from './Stop';
 import Track from './Track';
 
-function Timeline() {
+const Timeline = () => {
 
   // Ten tracks for each instrument
   const tracks = [

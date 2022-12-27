@@ -1,7 +1,7 @@
 import About from './About';
 import Daw from './Daw';
 
-function Treackter() {
+const Treackter = () => {
   return (
     <div className="flex h-screen items-center">
       {/* Header */}

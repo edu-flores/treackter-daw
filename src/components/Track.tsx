@@ -1,15 +1,14 @@
 import TimelinePad from "./TimelinePad";
 import Knob from "./Knob";
 
-// Props definer
-type TrackProps = {
+type Props = {
   name: string,
   pads: { "armed": boolean, "active": boolean }[]
   solo: boolean,
-  muted: boolean,
+  muted: boolean
 }
 
-function Track({ name, pads, solo, muted }: TrackProps) {
+const Track = ({ name, pads, solo, muted }: Props) => {
   return (
     <div className="py-2">
       <div className="flex">

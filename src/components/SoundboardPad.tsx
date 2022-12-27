@@ -1,4 +1,3 @@
-// Props definer
 type Props = {
   name: string,
   audio: string,

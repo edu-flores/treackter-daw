@@ -1,13 +1,12 @@
-// Props definer
-type BPMProps = {
+type Props = {
   bpm: number,
   setBpm: Function
 }
 
-function BPM({bpm, setBpm}: BPMProps) {
+const BPM = ({ bpm, setBpm }: Props) => {
 
   // Modify BPM on the DAW
-  function changeBPM(val: number) {
+  const changeBPM = (val: number) => {
     val = (val < 60) ? 60 : val;
     val = (val > 120) ? 120 : val;
     setBpm(val);

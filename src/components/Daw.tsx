@@ -3,7 +3,7 @@ import TopControls from './TopControls';
 import Soundboard from './Soundboard';
 import Timeline from './Timeline';
 
-function Daw() {
+const Daw = () => {
 
   // BPM
   const [bpm, setBpm] = useState(120);

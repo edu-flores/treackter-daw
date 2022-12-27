@@ -1,4 +1,4 @@
-function Stop() {
+const Stop = () => {
   return (
     <svg 
       className="fill-light-red w-[22px] drop-shadow-lg hover:cursor-pointer" 

@@ -1,4 +1,4 @@
-function About() {
+const About = () => {
   return (
     <section className="w-[30px] h-[70px] px-2 py-5 ml-auto bg-primary rounded-tl-lg rounded-bl-lg shadow-lg absolute right-0 hover:cursor-pointer">
       <svg className="fill-white w-[18px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
