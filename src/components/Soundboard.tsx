@@ -73,7 +73,7 @@ const Soundboard = () => {
 
     return () => {
       window.removeEventListener('keypress', handleKeyDown);
-      window.addEventListener('keyup', handleKeyUp);
+      window.removeEventListener('keyup', handleKeyUp);
     }
   }, [handleKeyDown, handleKeyUp]);
 
