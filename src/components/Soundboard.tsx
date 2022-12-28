@@ -103,12 +103,12 @@ const Soundboard = () => {
         </svg>
       </div>
       {/* Effects */}
-      <div className="flex flex-col gap-1 w-full py-5 overflow-x-auto">
-        <div className="flex gap-1">
+      <div className="m-auto overflow-x-auto">
+        <div className="flex gap-1 mb-1">
           {firstRow}
           <div className="w-4"></div>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-1 mb-1">
           <div className="w-2"></div>
           {secondRow}
           <div className="w-2"></div>

@@ -33,6 +33,13 @@ input[type=number] {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+.overflow-x-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 /* Prevent user highlight */
 * {
@@ -41,4 +48,9 @@ input[type=number] {
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
+}
+
+/* Remove blue highlight on mobile taps */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
