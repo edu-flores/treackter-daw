@@ -54,7 +54,7 @@ const Soundboard = () => {
     if (keyToSound.has(event.code) && !event.repeat) {
       const name = keyToSound.get(event.code);
       const pad = document.getElementById(name);
-      pad?.click();
+      pad?.dispatchEvent(new Event('mousedown'));
       pad?.classList.add('scale-95');
     }
   }, []);

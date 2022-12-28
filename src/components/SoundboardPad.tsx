@@ -32,7 +32,7 @@ const SoundboardPad = ({ name, audio, background }: Props) => {
       hover:cursor-pointer active:scale-95 focus:outline-none"
       style={{backgroundColor: `${background}`}}
       type="button"
-      onClick={() => playAudio(n, audio)}
+      onMouseDownCapture={() => playAudio(n, audio)}
     >
       <span className="drop-shadow-lg">{name}</span>
     </button>
