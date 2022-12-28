@@ -41,31 +41,41 @@ keyToSound.set('Period', 'Clap 3');
 keyToSound.set('Slash', 'Adlib 3');
 
 type Sound = {
-  "id": string,
-  "sound": string,
-  "color": string,
-  "name": string
+  id: string,
+  sound: string,
+  color: string,
+  name: string
 }
 
 const Soundboard = () => {
 
-  // Event handler function
-  const handleKeyPress = useCallback((event: KeyboardEvent) => {
+  // Event handler functions
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (keyToSound.has(event.code) && !event.repeat) {
+      const name = keyToSound.get(event.code);
+      const pad = document.getElementById(name);
+      pad?.click();
+      pad?.classList.add('scale-95');
+    }
+  }, []);
+  const handleKeyUp = useCallback((event: KeyboardEvent) => {
     if (keyToSound.has(event.code)) {
       const name = keyToSound.get(event.code);
-      document.getElementById(name)?.click();
-      document.getElementById(name)?.focus();
+      const pad = document.getElementById(name);
+      pad?.classList.remove('scale-95');
     }
   }, []);
 
   // Listen for key presses
   useEffect(() => {
-    window.addEventListener('keypress', handleKeyPress);
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
 
     return () => {
-      window.removeEventListener('keypress', handleKeyPress);
+      window.removeEventListener('keypress', handleKeyDown);
+      window.addEventListener('keyup', handleKeyUp);
     }
-  }, [handleKeyPress]);
+  }, [handleKeyDown, handleKeyUp]);
 
   // SoundboardPad creator function
   const createRow = (sound: Sound) => {
