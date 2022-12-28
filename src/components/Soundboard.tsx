@@ -4,6 +4,42 @@ import kit1 from '../sounds/kit1/_data.json';
 import kit2 from '../sounds/kit2/_data.json';
 import kit3 from '../sounds/kit3/_data.json';
 
+// Hashmap for key presses
+const keyToSound = new Map();
+// Kit1
+keyToSound.set('KeyQ', 'Kick 1');
+keyToSound.set('KeyW', 'Snare 1');
+keyToSound.set('KeyE', 'Closed 1');
+keyToSound.set('KeyR', 'Open 1');
+keyToSound.set('KeyT', 'Key 1');
+keyToSound.set('KeyY', 'Guitar 1');
+keyToSound.set('KeyU', 'Bass 1');
+keyToSound.set('KeyI', 'Tom 1');
+keyToSound.set('KeyO', 'Clap 1');
+keyToSound.set('KeyP', 'Adlib 1');
+// Kit2
+keyToSound.set('KeyA', 'Kick 2');
+keyToSound.set('KeyS', 'Snare 2');
+keyToSound.set('KeyD', 'Closed 2');
+keyToSound.set('KeyF', 'Open 2');
+keyToSound.set('KeyG', 'Key 2');
+keyToSound.set('KeyH', 'Guitar 2');
+keyToSound.set('KeyJ', 'Bass 2');
+keyToSound.set('KeyK', 'Tom 2');
+keyToSound.set('KeyL', 'Clap 2');
+keyToSound.set('Semicolon', 'Adlib 2');
+// Kit3
+keyToSound.set('KeyZ', 'Kick 3');
+keyToSound.set('KeyX', 'Snare 3');
+keyToSound.set('KeyC', 'Closed 3');
+keyToSound.set('KeyV', 'Open 3');
+keyToSound.set('KeyB', 'Key 3');
+keyToSound.set('KeyN', 'Guitar 3');
+keyToSound.set('KeyM', 'Bass 3');
+keyToSound.set('KeyK', 'Tom 2');
+keyToSound.set('Period', 'Clap 3');
+keyToSound.set('Slash', 'Adlib 3');
+
 type Sound = {
   "id": string,
   "sound": string,
@@ -11,65 +47,14 @@ type Sound = {
   "name": string
 }
 
-// Hashmap for key presses
-const keyToSound = new Map();
-// Kit1
-keyToSound.set('KeyQ', [1, 'kick1.wav']);
-keyToSound.set('KeyW', [1, 'snare1.wav']);
-keyToSound.set('KeyE', [1, 'closed1.wav']);
-keyToSound.set('KeyR', [1, 'open1.wav']);
-keyToSound.set('KeyT', [1, 'key1.wav']);
-keyToSound.set('KeyY', [1, 'guitar1.wav']);
-keyToSound.set('KeyU', [1, 'bass1.wav']);
-keyToSound.set('KeyI', [1, 'tom1.wav']);
-keyToSound.set('KeyO', [1, 'clap1.wav']);
-keyToSound.set('KeyP', [1, 'adlib1.wav']);
-// Kit2
-keyToSound.set('KeyA', [2, 'kick2.wav']);
-keyToSound.set('KeyS', [2, 'snare2.wav']);
-keyToSound.set('KeyD', [2, 'closed2.wav']);
-keyToSound.set('KeyF', [2, 'open2.wav']);
-keyToSound.set('KeyG', [2, 'key2.wav']);
-keyToSound.set('KeyH', [2, 'guitar2.wav']);
-keyToSound.set('KeyJ', [2, 'bass2.wav']);
-keyToSound.set('KeyL', [2, 'clap2.wav']);
-keyToSound.set('Semicolon', [2, 'adlib2.wav']);
-// Kit3
-keyToSound.set('KeyZ', [3, 'kick3.wav']);
-keyToSound.set('KeyX', [3, 'snare3.wav']);
-keyToSound.set('KeyC', [3, 'closed3.wav']);
-keyToSound.set('KeyV', [3, 'open3.wav']);
-keyToSound.set('KeyB', [3, 'key3.wav']);
-keyToSound.set('KeyN', [3, 'guitar3.wav']);
-keyToSound.set('KeyM', [3, 'bass3.wav']);
-keyToSound.set('KeyK', [2, 'tom2.wav']);
-keyToSound.set('Comma',[3, 'tom3.wav']);
-keyToSound.set('Period', [3, 'clap3.wav']);
-keyToSound.set('Slash', [3, 'adlib3.wav']);
-
 const Soundboard = () => {
-
-  // Reproduce media after clicking a soundboard pad or pressing a key
-  function playAudio(n: number, audio: string) {
-
-    // Web Audio API specs
-    const audioContext = new AudioContext();
-    const audioSource = new Audio(require(`../sounds/kit${n}/${audio}`));
-    const audioEffect = audioContext.createMediaElementSource(audioSource);
-
-    // Controlling audio (gain and panning)
-    const vol = audioContext.createGain();
-    vol.gain.value = 0.5;
-    const pan = new StereoPannerNode(audioContext, { pan: 0 });
-    audioEffect.connect(vol).connect(pan).connect(audioContext.destination);
-    audioSource.play();
-  }
 
   // Event handler function
   const handleKeyPress = useCallback((event: KeyboardEvent) => {
     if (keyToSound.has(event.code)) {
-      const [n, audio] = keyToSound.get(event.code);
-      playAudio(n, audio);
+      const name = keyToSound.get(event.code);
+      document.getElementById(name)?.click();
+      document.getElementById(name)?.focus();
     }
   }, []);
 
@@ -90,7 +75,6 @@ const Soundboard = () => {
         name={sound.name}
         audio={sound.sound}
         background={sound.color}
-        playAudio={playAudio}
       />
     );
   }
