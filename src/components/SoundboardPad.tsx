@@ -10,7 +10,7 @@ const SoundboardPad = ({ name, audio, background }: Props) => {
   const n = Number(name.slice(-1));
 
   // Reproduce media after clicking a soundboard pad or pressing a key
-  function playAudio(n: number, audio: string) {
+  const playAudio = (n: number, audio: string) => {
 
     // Web Audio API specs
     const audioContext = new AudioContext();
@@ -28,8 +28,8 @@ const SoundboardPad = ({ name, audio, background }: Props) => {
   return (
     <button
       id={name}
-      className="border-solid border-2 border-white rounded-lg w-24 h-24 py-8 text-center shadow-lg 
-      hover:cursor-pointer active:scale-95 focus:outline-none"
+      className="border-solid border-2 border-white rounded-lg w-24 h-24 py-8 text-center shadow-lg
+      transition-all duration-75 hover:cursor-pointer active:scale-95 focus:outline-none"
       style={{backgroundColor: `${background}`}}
       type="button"
       onMouseDownCapture={() => playAudio(n, audio)}
