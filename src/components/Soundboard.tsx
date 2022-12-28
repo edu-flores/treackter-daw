@@ -1,8 +1,8 @@
 import { useEffect, useCallback } from 'react';
 import SoundboardPad from './SoundboardPad';
-import kit1 from '../sounds/kit1/_data.json';
-import kit2 from '../sounds/kit2/_data.json';
-import kit3 from '../sounds/kit3/_data.json';
+import kit1 from '../json/kit1.json';
+import kit2 from '../json/kit2.json';
+import kit3 from '../json/kit3.json';
 
 // Hashmap for key presses
 const keyToSound = new Map();

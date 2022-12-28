@@ -14,7 +14,7 @@ const SoundboardPad = ({ name, audio, background }: Props) => {
 
     // Web Audio API specs
     const audioContext = new AudioContext();
-    const audioSource = new Audio(require(`../sounds/kit${n}/${audio}`));
+    const audioSource = new Audio(`./sounds/kit${n}/${audio}`);
     const audioEffect = audioContext.createMediaElementSource(audioSource);
 
     // Controlling audio (gain and panning)

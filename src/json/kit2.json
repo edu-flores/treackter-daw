@@ -1,0 +1,62 @@
+[
+  {
+    "id": "11",
+    "sound": "kick2.wav",
+    "color": "#d62828",
+    "name": "Kick 2"
+  },
+  {
+    "id": "12",
+    "sound": "snare2.wav",
+    "color": "#344966",
+    "name": "Snare 2"
+  },
+  {
+    "id": "13",
+    "sound": "closed2.wav",
+    "color": "#084c61",
+    "name": "Closed 2"
+  },
+  {
+    "id": "14",
+    "sound": "open2.wav",
+    "color": "#218380",
+    "name": "Open 2"
+  },
+  {
+    "id": "15",
+    "sound": "key2.wav",
+    "color": "#5b2a86",
+    "name": "Key 2"
+  },
+  {
+    "id": "16",
+    "sound": "guitar2.wav",
+    "color": "#6153cc",
+    "name": "Guitar 2"
+  },
+  {
+    "id": "17",
+    "sound": "bass2.wav",
+    "color": "#ffa552",
+    "name": "Bass 2"
+  },
+  {
+    "id": "18",
+    "sound": "tom2.wav",
+    "color": "#191923",
+    "name": "Tom 2"
+  },
+  {
+    "id": "19",
+    "sound": "clap2.wav",
+    "color": "#17bebb",
+    "name": "Clap 2"
+  },
+  {
+    "id": "20",
+    "sound": "adlib2.wav",
+    "color": "#34312d",
+    "name": "Adlib 2"
+  }
+]
