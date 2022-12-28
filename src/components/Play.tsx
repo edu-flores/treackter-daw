@@ -1,4 +1,4 @@
-function Play() {
+const Play = () => {
   return (
     <svg 
       className="fill-light-green w-[18px] drop-shadow-lg hover:cursor-pointer" 

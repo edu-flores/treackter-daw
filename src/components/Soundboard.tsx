@@ -1,72 +1,90 @@
-import { useState, useEffect } from 'react';
-import Pad from './Pad';
+import { useEffect, useCallback } from 'react';
+import SoundboardPad from './SoundboardPad';
 import kit1 from '../sounds/kit1/_data.json';
 import kit2 from '../sounds/kit2/_data.json';
 import kit3 from '../sounds/kit3/_data.json';
 
-// Props definer
+// Hashmap for key presses
+const keyToSound = new Map();
+// Kit1
+keyToSound.set('KeyQ', 'Kick 1');
+keyToSound.set('KeyW', 'Snare 1');
+keyToSound.set('KeyE', 'Closed 1');
+keyToSound.set('KeyR', 'Open 1');
+keyToSound.set('KeyT', 'Key 1');
+keyToSound.set('KeyY', 'Guitar 1');
+keyToSound.set('KeyU', 'Bass 1');
+keyToSound.set('KeyI', 'Tom 1');
+keyToSound.set('KeyO', 'Clap 1');
+keyToSound.set('KeyP', 'Adlib 1');
+// Kit2
+keyToSound.set('KeyA', 'Kick 2');
+keyToSound.set('KeyS', 'Snare 2');
+keyToSound.set('KeyD', 'Closed 2');
+keyToSound.set('KeyF', 'Open 2');
+keyToSound.set('KeyG', 'Key 2');
+keyToSound.set('KeyH', 'Guitar 2');
+keyToSound.set('KeyJ', 'Bass 2');
+keyToSound.set('KeyK', 'Tom 2');
+keyToSound.set('KeyL', 'Clap 2');
+keyToSound.set('Semicolon', 'Adlib 2');
+// Kit3
+keyToSound.set('KeyZ', 'Kick 3');
+keyToSound.set('KeyX', 'Snare 3');
+keyToSound.set('KeyC', 'Closed 3');
+keyToSound.set('KeyV', 'Open 3');
+keyToSound.set('KeyB', 'Key 3');
+keyToSound.set('KeyN', 'Guitar 3');
+keyToSound.set('KeyM', 'Bass 3');
+keyToSound.set('KeyK', 'Tom 2');
+keyToSound.set('Period', 'Clap 3');
+keyToSound.set('Slash', 'Adlib 3');
+
 type Sound = {
-  "id": string,
-  "sound": string,
-  "color": string,
-  "name": string
+  id: string,
+  sound: string,
+  color: string,
+  name: string
 }
 
-function Soundboard() {
+const Soundboard = () => {
 
-  const [pressed, setPressed] = useState("");
-
-  // Event handler
-  const keyToSound = new Map();
-  keyToSound.set("KeyQ", "Kick 1");
-  keyToSound.set("KeyA", "Kick 2");
-  keyToSound.set("KeyZ", "Kick 3");
-  keyToSound.set("KeyW", "Snare 1");
-  keyToSound.set("KeyS", "Snare 2");
-  keyToSound.set("KeyX", "Snare 3");
-  keyToSound.set("KeyE", "Closed 1");
-  keyToSound.set("KeyD", "Closed 2");
-  keyToSound.set("KeyC", "Closed 3");
-  keyToSound.set("KeyR", "Open 1");
-  keyToSound.set("KeyF", "Open 2");
-  keyToSound.set("KeyV", "Open 3");
-  keyToSound.set("KeyT", "Key 1");
-  keyToSound.set("KeyG", "Key 2");
-  keyToSound.set("KeyB", "Key 3");
-  keyToSound.set("KeyY", "Guitar 1");
-  keyToSound.set("KeyH", "Guitar 2");
-  keyToSound.set("KeyN", "Guitar 3");
-  keyToSound.set("KeyU", "Bass 1");
-  keyToSound.set("KeyJ", "Bass 2");
-  keyToSound.set("KeyM", "Bass 3");
-  keyToSound.set("KeyI", "Tom 1");
-  keyToSound.set("KeyK", "Tom 2");
-  keyToSound.set("Comma", "Tom 3");
-  keyToSound.set("KeyP", "Adlib 1");
-  keyToSound.set("Semicolon", "Adlib 2");
-  keyToSound.set("Slash", "Adlib 3");
-  const handleKeyDown = (event: KeyboardEvent) => {
-    setPressed(keyToSound.get(event.code));
-  }
-  
-  // Listen for keypress
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+  // Event handler functions
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (keyToSound.has(event.code) && !event.repeat) {
+      const name = keyToSound.get(event.code);
+      const pad = document.getElementById(name);
+      pad?.click();
+      pad?.classList.add('scale-95');
+    }
+  }, []);
+  const handleKeyUp = useCallback((event: KeyboardEvent) => {
+    if (keyToSound.has(event.code)) {
+      const name = keyToSound.get(event.code);
+      const pad = document.getElementById(name);
+      pad?.classList.remove('scale-95');
     }
   }, []);
 
-  // Pad creator function
+  // Listen for key presses
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    return () => {
+      window.removeEventListener('keypress', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    }
+  }, [handleKeyDown, handleKeyUp]);
+
+  // SoundboardPad creator function
   const createRow = (sound: Sound) => {
     return (
-      <Pad
+      <SoundboardPad
         key={sound.id}
         name={sound.name}
         audio={sound.sound}
         background={sound.color}
-        pressed={pressed}
       />
     );
   }
