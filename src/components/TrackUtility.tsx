@@ -1,23 +1,27 @@
 type Props = {
-  name: string,
   symbol: string,
   activeColor: string,
-  role: Function
+  role: Function,
+  property: boolean,
+  canBeIgnored: boolean,
+  ignored: boolean
 }
 
-const TrackUtility = ({ name, symbol, activeColor, role }: Props) => {
+const TrackUtility = ({ symbol, activeColor, role, property, canBeIgnored, ignored }: Props) => {
 
-  // Set active state
-  const switchColor = () => {
-    const utility = document.getElementById(`${name}-${symbol}-utility`.toLowerCase())!;
-    utility.style.color = (utility.style.color) ? '' : activeColor;
+  // Pick utility color
+  const defineColor = () => {
+    if (!canBeIgnored || !ignored)
+      return property ? activeColor : '';
+    else
+      return property ? 'lightslategray' : 'darkslategray';
   }
 
   return (
     <div
-      id={`${name}-${symbol}-utility`.toLowerCase()}
       className="cursor-pointer font-bold text-secondary"
-      onClick={() => { role(); switchColor(); }}
+      style={{color: defineColor()}}
+      onClick={() => role()}
     >
       <span>{symbol}</span>
     </div>

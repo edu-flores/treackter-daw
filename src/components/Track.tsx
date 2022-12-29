@@ -4,15 +4,69 @@ import Knob from "./Knob";
 
 type Props = {
   name: string,
-  pads: { "armed": boolean, "active": boolean }[]
+  setTracks: Function,
   solo: boolean,
-  muted: boolean
+  muted: boolean,
+  ignored: boolean
 }
 
-const Track = ({ name, pads, solo, muted }: Props) => {
+type Tracks = {
+  name: string,
+  pads: { armed: boolean, active: boolean, kit: number | null }[],
+  solo: boolean,
+  muted: boolean,
+  ignored: boolean
+}[]
 
-  const soloTrack = () => solo = !solo;
-  const muteTrack = () => muted = !muted;
+const Track = ({ name, solo, muted, ignored, setTracks }: Props) => {
+
+  // Solo selected track, mute all others
+  const soloTrack = () => {
+    setTracks((tracks: Tracks) => {
+      const data = [...tracks];
+
+      // Remove solo from all other tracks, and ignore them
+      data.forEach(track => {
+        if (track.name !== name) {
+          track.solo = false;
+        }
+        track.ignored = true;
+      });
+
+      // Solo self track
+      const index = data.findIndex(track => track.name === name);
+      data[index] = {
+        ...data[index],
+        solo: !data[index].solo
+      }
+
+      // No soloed tracks, remove ignored state
+      const soloCount = data.filter(track => track.solo === true).length;
+      if (soloCount === 0) {
+        data.forEach(track => {
+          track.ignored = false;
+        });
+      }
+
+      return data;
+    });
+  };
+
+  // Don't play any media from selected track
+  const muteTrack = () => {
+    setTracks((tracks: Tracks) => {
+      const data = [...tracks];
+
+      // Mute self track
+      const index = data.findIndex(track => track.name === name);
+      data[index] = {
+        ...data[index],
+        muted: !data[index].muted
+      }
+
+      return data;
+    });
+  };
 
   return (
     <div className="py-2">
@@ -53,17 +107,21 @@ const Track = ({ name, pads, solo, muted }: Props) => {
           <div className="w-[20%] flex gap-5 justify-end items-center">
             {/* Solo */}
             <TrackUtility
-              name={name}
               symbol={'S'}
               activeColor={'#66c187'}
               role={soloTrack}
+              property={solo}
+              canBeIgnored={false}
+              ignored={ignored}
             />
             {/* Mute */}
             <TrackUtility
-              name={name}
               symbol={'M'}
               activeColor={'#f08937'}
               role={muteTrack}
+              property={muted}
+              canBeIgnored={true}
+              ignored={ignored}
             />
             <Knob />
             <Knob />
