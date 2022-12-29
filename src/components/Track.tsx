@@ -1,4 +1,5 @@
 import TimelinePad from "./TimelinePad";
+import TrackUtility from "./TrackUtility";
 import Knob from "./Knob";
 
 type Props = {
@@ -9,6 +10,10 @@ type Props = {
 }
 
 const Track = ({ name, pads, solo, muted }: Props) => {
+
+  const soloTrack = () => solo = !solo;
+  const muteTrack = () => muted = !muted;
+
   return (
     <div className="py-2">
       <div className="flex">
@@ -45,9 +50,21 @@ const Track = ({ name, pads, solo, muted }: Props) => {
             <TimelinePad />
           </div>
           {/* Audio Manipulation */}
-          <div className="w-[20%] flex gap-5 justify-end items-center text-secondary">
-            <span className="cursor-pointer"><b>S</b></span>
-            <span className="cursor-pointer"><b>M</b></span>
+          <div className="w-[20%] flex gap-5 justify-end items-center">
+            {/* Solo */}
+            <TrackUtility
+              name={name}
+              symbol={'S'}
+              activeColor={'light-green'}
+              role={soloTrack}
+            />
+            {/* Mute */}
+            <TrackUtility
+              name={name}
+              symbol={'M'}
+              activeColor={'light-red'}
+              role={muteTrack}
+            />
             <Knob />
             <Knob />
           </div>

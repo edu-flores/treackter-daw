@@ -1,5 +1,4 @@
-import Play from './Play';
-import Stop from './Stop';
+import MediaButton from './MediaButton';
 import Track from './Track';
 
 const Timeline = () => {
@@ -209,6 +208,12 @@ const Timeline = () => {
     }
   }
 
+  // Media Buttons SVG and functions
+  const playTimeline = () => console.log('Test.');
+  const stopTimeline = () => console.log('Test.');
+  const playPath = <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />;
+  const stopPath = <path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />;
+
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
       <div id="timeline" className="h-64 overflow-y-auto" onScroll={() => handleScroll()}>
@@ -216,8 +221,18 @@ const Timeline = () => {
         <div className="flex sticky top-0 bg-primary z-10 px-8 py-3 text-light-gray font-semibold shadow-lg">
           <div className="w-[10%]">
             <div className="flex gap-5 justify-center">
-              <Play />
-              <Stop />
+              {/* Play */}
+              <MediaButton
+                svgPath={playPath}
+                color={'light-green'}
+                role={playTimeline}
+              />
+              {/* Stop */}
+              <MediaButton
+                svgPath={stopPath}
+                color={'light-red'}
+                role={stopTimeline}
+              />
             </div>
           </div>
           <div className="w-[90%] flex items-center gap-8 text-sm text-center">
@@ -262,8 +277,8 @@ const Timeline = () => {
         </div>
         {/* Tracks */}
         <div className="px-8 pt-3">
-          {tracks.map(track => 
-            <Track 
+          {tracks.map(track =>
+            <Track
               key={track.name}
               name={track.name}
               pads={track.pads}
