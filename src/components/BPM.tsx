@@ -31,8 +31,8 @@ const BPM = ({ bpm, setBpm }: Props) => {
           max="240"
         />
       </div>
-      <div className="flex gap-3">
-        <span className="w-8 text-end self-center text-md text-white font-bold">{bpm}</span>
+      <div className="flex gap-2">
+        <span className="w-8 text-end self-center text-md text-secondary font-bold">{bpm}</span>
         <span className="self-center text-sm text-light-gray font-semibold">BPM</span>
       </div>
     </div>

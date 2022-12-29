@@ -45,7 +45,7 @@ const Track = ({ name, pads, solo, muted }: Props) => {
             <TimelinePad />
           </div>
           {/* Audio Manipulation */}
-          <div className="w-[20%] flex gap-5 justify-end items-center">
+          <div className="w-[20%] flex gap-5 justify-end items-center text-secondary">
             <span className="cursor-pointer"><b>S</b></span>
             <span className="cursor-pointer"><b>M</b></span>
             <Knob />
