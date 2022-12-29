@@ -1,5 +1,6 @@
-import { useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import SoundboardPad from './SoundboardPad';
+
 import kit1 from '../json/kit1.json';
 import kit2 from '../json/kit2.json';
 import kit3 from '../json/kit3.json';
@@ -40,13 +41,6 @@ keyToSound.set('KeyK', 'Tom 2');
 keyToSound.set('Period', 'Clap 3');
 keyToSound.set('Slash', 'Adlib 3');
 
-type Sound = {
-  id: string,
-  sound: string,
-  color: string,
-  name: string
-}
-
 const Soundboard = () => {
 
   // Event handler functions
@@ -66,8 +60,8 @@ const Soundboard = () => {
     }
   }, []);
 
-  // Listen for key presses
   useEffect(() => {
+    // Listen for key presses
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
 
@@ -77,22 +71,68 @@ const Soundboard = () => {
     }
   }, [handleKeyDown, handleKeyUp]);
 
-  // SoundboardPad creator function
-  const createRow = (sound: Sound) => {
-    return (
-      <SoundboardPad
-        key={sound.id}
-        name={sound.name}
-        audio={sound.sound}
-        background={sound.color}
-      />
-    );
+  // Web Audio API setup
+  const audioContext = new AudioContext();
+
+  // Get sample from public folder
+  const getSample = async (path: string) => {
+    const response = await fetch(path);
+    const arrayBuffer = await response.arrayBuffer();
+    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    return audioBuffer;
   }
 
-  // Create pads for each kit
-  const firstRow = kit1.map(createRow);
-  const secondRow = kit2.map(createRow);
-  const thirdRow = kit3.map(createRow);
+  // Set them up on audio buffers
+  const loadSounds = async (paths: string[]) => {
+    const audioBuffers = [];
+
+    for (const path of paths) {
+      const sample = await getSample(path);
+      audioBuffers.push(sample);
+    }
+
+    return audioBuffers;
+  }
+
+  // Render pads only after loading
+  let loads = 0;
+  const [loading, setLoading] = useState(true);
+
+  // Create each row after each kit
+  const [firstRow, setFirstRow] = useState<JSX.Element[]>();
+  const [secondRow, setSecondRow] = useState<JSX.Element[]>();
+  const [thirdRow, setThirdRow] = useState<JSX.Element[]>();
+
+  // Load all kits
+  const kits = [kit1, kit2, kit3];
+  const setters = [setFirstRow, setSecondRow, setThirdRow];
+  useEffect(() => {
+    kits.forEach((kit, kitIndex) => {
+      const paths = kit.map(sound => sound.path);
+      loadSounds(paths).then(response => {
+  
+        // Fill row with pads
+        const setter = setters[kitIndex];
+        setter(response.map((sound: AudioBuffer, soundIndex) => {
+          return (
+            <SoundboardPad
+              key={kit[soundIndex].id}
+              name={kit[soundIndex].name}
+              background={kit[soundIndex].color}
+              context={audioContext}
+              audio={sound}
+            />
+          )
+        }));
+  
+        // Increment loads until all kits are loaded
+        loads++;
+        if (loads === kits.length)
+          setLoading(false);
+      });
+    });
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  }, []);
 
   return (
     <div className="flex items-center h-96 bg-secondary">
@@ -104,19 +144,25 @@ const Soundboard = () => {
       </div>
       {/* Effects */}
       <div className="m-auto overflow-x-auto">
-        <div className="flex gap-1 mb-1">
-          {firstRow}
-          <div className="w-4"></div>
+      {!loading ? (
+        <div>
+          <div className="flex gap-1 mb-1">
+            {firstRow}
+            <div className="w-4"></div>
+          </div>
+          <div className="flex gap-1 mb-1">
+            <div className="w-2"></div>
+            {secondRow}
+            <div className="w-2"></div>
+          </div>
+          <div className="flex gap-1">
+            <div className="w-4"></div>
+            {thirdRow}
+          </div>
         </div>
-        <div className="flex gap-1 mb-1">
-          <div className="w-2"></div>
-          {secondRow}
-          <div className="w-2"></div>
-        </div>
-        <div className="flex gap-1">
-          <div className="w-4"></div>
-          {thirdRow}
-        </div>
+      ) : (
+        <span className="text-lg">Loading ...</span>
+      )}
       </div>
       {/* Mouse Icon */}
       <div className="w-[5%] flex justify-center pr-3">
