@@ -9,8 +9,8 @@ const TrackUtility = ({ name, symbol, activeColor, role }: Props) => {
 
   // Set active state
   const switchColor = () => {
-    const utility = document.getElementById(`${name}-${symbol}-utility`.toLowerCase());
-    utility?.classList.toggle(`!text-${activeColor}`);
+    const utility = document.getElementById(`${name}-${symbol}-utility`.toLowerCase())!;
+    utility.style.color = (utility.style.color) ? '' : activeColor;
   }
 
   return (

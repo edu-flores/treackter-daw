@@ -55,14 +55,14 @@ const Track = ({ name, pads, solo, muted }: Props) => {
             <TrackUtility
               name={name}
               symbol={'S'}
-              activeColor={'light-green'}
+              activeColor={'#66c187'}
               role={soloTrack}
             />
             {/* Mute */}
             <TrackUtility
               name={name}
               symbol={'M'}
-              activeColor={'light-red'}
+              activeColor={'#f08937'}
               role={muteTrack}
             />
             <Knob />

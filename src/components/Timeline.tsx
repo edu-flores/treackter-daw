@@ -224,13 +224,13 @@ const Timeline = () => {
               {/* Play */}
               <MediaButton
                 svgPath={playPath}
-                color={'light-green'}
+                color={'#66c187'}
                 role={playTimeline}
               />
               {/* Stop */}
               <MediaButton
                 svgPath={stopPath}
-                color={'light-red'}
+                color={'#f08937'}
                 role={stopTimeline}
               />
             </div>
