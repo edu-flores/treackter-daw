@@ -1,14 +1,6 @@
-import TimelinePad from "./TimelinePad";
+import TimelinePad  from "./TimelinePad";
 import TrackUtility from "./TrackUtility";
 import Knob from "./Knob";
-
-type Props = {
-  name: string,
-  setTracks: Function,
-  solo: boolean,
-  muted: boolean,
-  ignored: boolean
-}
 
 type Tracks = {
   name: string,
@@ -18,7 +10,20 @@ type Tracks = {
   ignored: boolean
 }[]
 
-const Track = ({ name, solo, muted, ignored, setTracks }: Props) => {
+type Props = {
+  name: string,
+  solo: boolean,
+  muted: boolean,
+  ignored: boolean,
+  soundboardData: { id: number, type: string, path: string, color: string, name: string }[],
+  tracks: Tracks,
+  setTracks: Function
+}
+
+const Track = ({ name, solo, muted, ignored, soundboardData, tracks, setTracks }: Props) => {
+
+  // Properties of all 16 pads on the corresponding track
+  const pads = tracks.find(track => track.name === name)!.pads;
 
   // Solo selected track, mute all others
   const soloTrack = () => {
@@ -77,31 +82,31 @@ const Track = ({ name, solo, muted, ignored, setTracks }: Props) => {
         <div className="w-[90%] flex gap-8 text-sm text-center">
           {/* First Bar */}
           <div className="w-[20%] flex justify-center gap-4">
-            <TimelinePad />
-            <TimelinePad />
-            <TimelinePad />
-            <TimelinePad />
+            <TimelinePad padProperties={pads[0]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[1]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[2]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[3]} soundboardData={soundboardData} />
           </div>
           {/* Second Bar */}
           <div className="w-[20%] flex justify-center gap-4">
-            <TimelinePad />
-            <TimelinePad />
-            <TimelinePad />
-            <TimelinePad />
+            <TimelinePad padProperties={pads[4]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[5]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[6]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[7]} soundboardData={soundboardData} />
           </div>
           {/* Third Bar */}
           <div className="w-[20%] flex justify-center gap-4">
-            <TimelinePad />
-            <TimelinePad />
-            <TimelinePad />
-            <TimelinePad />
+            <TimelinePad padProperties={pads[8]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[9]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[10]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[11]} soundboardData={soundboardData} />
           </div>
           {/* Fourth Bar */}
           <div className="w-[20%] flex justify-center gap-4">
-            <TimelinePad />
-            <TimelinePad />
-            <TimelinePad />
-            <TimelinePad />
+            <TimelinePad padProperties={pads[12]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[13]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[14]} soundboardData={soundboardData} />
+            <TimelinePad padProperties={pads[15]} soundboardData={soundboardData} />
           </div>
           {/* Audio Manipulation */}
           <div className="w-[20%] flex gap-5 justify-end items-center">
