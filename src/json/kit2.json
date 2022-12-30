@@ -1,60 +1,70 @@
 [
   {
-    "id": "11",
+    "id": 11,
+    "type": "Kick",
     "path": "./sounds/kit2/kick2.wav",
     "color": "#d62828",
     "name": "Kick 2"
   },
   {
-    "id": "12",
+    "id": 12,
+    "type": "Snare",
     "path": "./sounds/kit2/snare2.wav",
     "color": "#344966",
     "name": "Snare 2"
   },
   {
-    "id": "13",
+    "id": 13,
+    "type": "Closed",
     "path": "./sounds/kit2/closed2.wav",
     "color": "#084c61",
     "name": "Closed 2"
   },
   {
-    "id": "14",
+    "id": 14,
+    "type": "Open",
     "path": "./sounds/kit2/open2.wav",
     "color": "#218380",
     "name": "Open 2"
   },
   {
-    "id": "15",
+    "id": 15,
+    "type": "Key",
     "path": "./sounds/kit2/key2.wav",
     "color": "#5b2a86",
     "name": "Key 2"
   },
   {
-    "id": "16",
+    "id": 16,
+    "type": "Guitar",
     "path": "./sounds/kit2/guitar2.wav",
     "color": "#6153cc",
     "name": "Guitar 2"
   },
   {
-    "id": "17",
+    "id": 17,
+    "type": "Bass",
     "path": "./sounds/kit2/bass2.wav",
     "color": "#de0d92",
     "name": "Bass 2"
   },
   {
-    "id": "18",
+    "id": 18,
+    "type": "Tom",
     "path": "./sounds/kit2/tom2.wav",
     "color": "#191923",
     "name": "Tom 2"
   },
   {
-    "id": "19",
+    "id": 19,
+    "type": "Clap",
     "path": "./sounds/kit2/clap2.wav",
     "color": "#17bebb",
     "name": "Clap 2"
   },
   {
-    "id": "20",
+    "id": 20,
+    "type": "Adlib",
     "path": "./sounds/kit2/adlib2.wav",
     "color": "#34312d",
     "name": "Adlib 2"
