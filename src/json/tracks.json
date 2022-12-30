@@ -13,6 +13,10 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
     "solo": false,
@@ -22,6 +26,10 @@
   {
     "name": "Snare",
     "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
@@ -53,6 +61,10 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
     "solo": false,
@@ -62,6 +74,10 @@
   {
     "name": "Open",
     "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
@@ -93,6 +109,10 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
     "solo": false,
@@ -102,6 +122,10 @@
   {
     "name": "Guitar",
     "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
@@ -133,6 +157,10 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
     "solo": false,
@@ -142,6 +170,10 @@
   {
     "name": "Tom",
     "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
@@ -173,6 +205,10 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
     "solo": false,
@@ -182,6 +218,10 @@
   {
     "name": "Adlib",
     "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null },
