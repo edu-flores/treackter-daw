@@ -10,7 +10,7 @@
     "id": 22,
     "type": "Snare",
     "path": "./sounds/kit3/snare3.wav",
-    "color": "#d81159",
+    "color": "#b33f62",
     "name": "Snare 3"
   },
   {
@@ -52,21 +52,21 @@
     "id": 28,
     "type": "Tom",
     "path": "./sounds/kit3/tom3.wav",
-    "color": "#0e79b2",
+    "color": "#03312e",
     "name": "Tom 3"
   },
   {
     "id": 29,
     "type": "Clap",
     "path": "./sounds/kit3/clap3.wav",
-    "color": "#ef3e36",
+    "color": "#43281c",
     "name": "Clap 3"
   },
   {
     "id": 30,
     "type": "Adlib",
     "path": "./sounds/kit3/adlib3.wav",
-    "color": "#14110f",
+    "color": "#a60067",
     "name": "Adlib 3"
   }
 ]
