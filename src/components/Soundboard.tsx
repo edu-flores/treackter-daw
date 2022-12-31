@@ -41,7 +41,11 @@ keyToSound.set('Comma', 'Tom 3');
 keyToSound.set('Period', 'Clap 3');
 keyToSound.set('Slash', 'Adlib 3');
 
-const Soundboard = () => {
+type Props = {
+  volume: number
+}
+
+const Soundboard = ({ volume }: Props) => {
 
   // Event handler functions
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
@@ -121,6 +125,7 @@ const Soundboard = () => {
               background={kit[soundIndex].color}
               context={audioContext}
               audio={sound}
+              volume={volume}
             />
           )
         }));

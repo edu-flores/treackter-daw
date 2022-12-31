@@ -8,17 +8,27 @@ const Daw = () => {
   // BPM
   const [bpm, setBpm] = useState(120);
 
+  // Volume
+  const [volume, setVolume] = useState(0.5);
+
   return (
     <div className="max-w-6xl m-auto">
       {/* Upper Bar Controls */}
       <TopControls
         bpm={bpm}
         setBpm={setBpm}
+        volume={volume}
+        setVolume={setVolume}
       />
       {/* Sound Effects */}
-      <Soundboard />
+      <Soundboard
+        volume={volume}
+      />
       {/* Timeline */}
-      <Timeline />
+      <Timeline
+        bpm={bpm}
+        volume={volume}
+      />
     </div>
   );
 }

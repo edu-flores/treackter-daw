@@ -19,9 +19,15 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
-    "solo": false,
-    "muted": false,
-    "ignored": false
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
   },
   {
     "name": "Snare",
@@ -43,9 +49,15 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
-    "solo": false,
-    "muted": false,
-    "ignored": false
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
   },
   {
     "name": "Closed",
@@ -67,9 +79,15 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
-    "solo": false,
-    "muted": false,
-    "ignored": false
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
   },
   {
     "name": "Open",
@@ -91,9 +109,15 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
-    "solo": false,
-    "muted": false,
-    "ignored": false
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
   },
   {
     "name": "Key",
@@ -115,9 +139,15 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
-    "solo": false,
-    "muted": false,
-    "ignored": false
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
   },
   {
     "name": "Guitar",
@@ -139,9 +169,15 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
-    "solo": false,
-    "muted": false,
-    "ignored": false
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
   },
   {
     "name": "Bass",
@@ -163,9 +199,15 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
-    "solo": false,
-    "muted": false,
-    "ignored": false
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
   },
   {
     "name": "Tom",
@@ -187,9 +229,15 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
-    "solo": false,
-    "muted": false,
-    "ignored": false
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
   },
   {
     "name": "Clap",
@@ -211,9 +259,15 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
-    "solo": false,
-    "muted": false,
-    "ignored": false
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
   },
   {
     "name": "Adlib",
@@ -235,8 +289,14 @@
       { "armed": false, "active": false, "kit": null },
       { "armed": false, "active": false, "kit": null }
     ],
-    "solo": false,
-    "muted": false,
-    "ignored": false
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
   }
 ]

@@ -7,7 +7,12 @@ import kit1 from '../json/kit1.json';
 import kit2 from '../json/kit2.json';
 import kit3 from '../json/kit3.json';
 
-const Timeline = () => {
+type Props = {
+  bpm: number,
+  volume: number
+}
+
+const Timeline = ({ bpm, volume }: Props) => {
 
   // Ten tracks, one for each instrument
   const [tracks, setTracks] = useState(tracksData);
@@ -99,9 +104,9 @@ const Timeline = () => {
             <Track
               key={track.name}
               name={track.name}
-              solo={track.solo}
-              muted={track.muted}
-              ignored={track.ignored}
+              solo={track.state.solo}
+              muted={track.state.muted}
+              ignored={track.state.ignored}
               soundboardData={soundboardData.filter(sound => sound.type === track.name)}
               tracks={tracks}
               setTracks={setTracks}

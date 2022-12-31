@@ -5,9 +5,8 @@ import Knob from "./Knob";
 type Tracks = {
   name: string,
   pads: { armed: boolean, active: boolean, kit: number | null }[],
-  solo: boolean,
-  muted: boolean,
-  ignored: boolean
+  state: { solo: boolean, muted: boolean, ignored: boolean },
+  audio: { volume: number, panning: number }
 }[]
 
 type Props = {
@@ -27,50 +26,40 @@ const Track = ({ name, solo, muted, ignored, soundboardData, tracks, setTracks }
 
   // Solo selected track, mute all others
   const soloTrack = () => {
-    setTracks((tracks: Tracks) => {
-      const data = [...tracks];
+    const newTracks = [...tracks];
 
-      // Remove solo from all other tracks, and ignore them
-      data.forEach(track => {
-        if (track.name !== name) {
-          track.solo = false;
-        }
-        track.ignored = true;
-      });
-
-      // Solo self track
-      const index = data.findIndex(track => track.name === name);
-      data[index] = {
-        ...data[index],
-        solo: !data[index].solo
+    // Remove solo from all other tracks, and ignore them
+    newTracks.forEach(track => {
+      if (track.name !== name) {
+        track.state.solo = false;
       }
-
-      // No soloed tracks, remove ignored state
-      const soloCount = data.filter(track => track.solo === true).length;
-      if (soloCount === 0) {
-        data.forEach(track => {
-          track.ignored = false;
-        });
-      }
-
-      return data;
+      track.state.ignored = true;
     });
+
+    // Solo self track
+    const index = newTracks.findIndex(track => track.name === name);
+    newTracks[index].state.solo = !newTracks[index].state.solo;
+
+    // No soloed tracks, remove ignored state
+    const soloCount = newTracks.filter(track => track.state.solo === true).length;
+    if (soloCount === 0) {
+      newTracks.forEach(track => {
+        track.state.ignored = false;
+      });
+    }
+
+    setTracks(newTracks);
   };
 
   // Don't play any media from selected track
   const muteTrack = () => {
-    setTracks((tracks: Tracks) => {
-      const data = [...tracks];
+    const newTracks = [...tracks];
 
-      // Mute self track
-      const index = data.findIndex(track => track.name === name);
-      data[index] = {
-        ...data[index],
-        muted: !data[index].muted
-      }
-
-      return data;
-    });
+    // Mute self track
+    const index = newTracks.findIndex(track => track.name === name);
+    newTracks[index].state.muted = !newTracks[index].state.muted;
+    
+    setTracks(newTracks);
   };
 
   return (
