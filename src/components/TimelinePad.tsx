@@ -34,7 +34,7 @@ const TimelinePad = ({ padProperties, soundboardData }: Props) => {
 
   return (
     <div 
-      className="relative border-solid border-2 border-white rounded-lg bg-primary w-7 h-7 cursor-pointer shadow-lg"
+      className="relative border-solid border-2 border-white rounded-lg bg-primary w-7 h-7 cursor-pointer shadow-lg active:scale-90"
       style={{
         backgroundColor: bgColor,
         borderColor: padProperties.active ? '#87b3e0' : '',

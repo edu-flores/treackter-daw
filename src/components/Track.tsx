@@ -2,27 +2,24 @@ import TimelinePad  from "./TimelinePad";
 import TrackUtility from "./TrackUtility";
 import Knob from "./Knob";
 
-type Tracks = {
+type AudioTrack = {
   name: string,
   pads: { armed: boolean, active: boolean, kit: number | null }[],
   state: { solo: boolean, muted: boolean, ignored: boolean },
   audio: { volume: number, panning: number }
-}[]
+}
 
 type Props = {
-  name: string,
-  solo: boolean,
-  muted: boolean,
-  ignored: boolean,
+  self: AudioTrack,
   soundboardData: { id: number, type: string, path: string, color: string, name: string }[],
-  tracks: Tracks,
+  tracks: AudioTrack[],
   setTracks: Function
 }
 
-const Track = ({ name, solo, muted, ignored, soundboardData, tracks, setTracks }: Props) => {
+const Track = ({ self, soundboardData, tracks, setTracks }: Props) => {
 
   // Properties of all 16 pads on the corresponding track
-  const pads = tracks.find(track => track.name === name)!.pads;
+  const pads = tracks.find(track => track.name === self.name)!.pads;
 
   // Solo selected track, mute all others
   const soloTrack = () => {
@@ -30,14 +27,14 @@ const Track = ({ name, solo, muted, ignored, soundboardData, tracks, setTracks }
 
     // Remove solo from all other tracks, and ignore them
     newTracks.forEach(track => {
-      if (track.name !== name) {
+      if (track.name !== self.name) {
         track.state.solo = false;
       }
       track.state.ignored = true;
     });
 
     // Solo self track
-    const index = newTracks.findIndex(track => track.name === name);
+    const index = newTracks.findIndex(track => track.name === self.name);
     newTracks[index].state.solo = !newTracks[index].state.solo;
 
     // No soloed tracks, remove ignored state
@@ -56,7 +53,7 @@ const Track = ({ name, solo, muted, ignored, soundboardData, tracks, setTracks }
     const newTracks = [...tracks];
 
     // Mute self track
-    const index = newTracks.findIndex(track => track.name === name);
+    const index = newTracks.findIndex(track => track.name === self.name);
     newTracks[index].state.muted = !newTracks[index].state.muted;
     
     setTracks(newTracks);
@@ -66,7 +63,7 @@ const Track = ({ name, solo, muted, ignored, soundboardData, tracks, setTracks }
     <div className="py-2">
       <div className="flex">
         <div className="w-[10%] text-center text-lg text-light-gray">
-          <span><b>{name}</b></span>
+          <span><b>{self.name}</b></span>
         </div>
         <div className="w-[90%] flex gap-8 text-sm text-center">
           {/* First Bar */}
@@ -104,21 +101,43 @@ const Track = ({ name, solo, muted, ignored, soundboardData, tracks, setTracks }
               symbol={'S'}
               activeColor={'#66c187'}
               role={soloTrack}
-              property={solo}
+              property={self.state.solo}
               canBeIgnored={false}
-              ignored={ignored}
+              ignored={self.state.ignored}
             />
             {/* Mute */}
             <TrackUtility
               symbol={'M'}
               activeColor={'#f08937'}
               role={muteTrack}
-              property={muted}
+              property={self.state.muted}
               canBeIgnored={true}
-              ignored={ignored}
+              ignored={self.state.ignored}
             />
-            <Knob />
-            <Knob />
+            <Knob
+              value={self.audio.volume}
+              setter={(value: number) => {
+                const newTracks = [...tracks];
+                newTracks.find(track => track.name === self.name)!.audio.volume = value;
+                setTracks(newTracks);
+              }}
+              initial={0.5}
+              min={0}
+              max={1}
+              step={0.005}
+            />
+            <Knob
+              value={self.audio.panning}
+              setter={(value: number) => {
+                const newTracks = [...tracks];
+                newTracks.find(track => track.name === self.name)!.audio.panning = value;
+                setTracks(newTracks);
+              }}
+              initial={0}
+              min={-1}
+              max={1}
+              step={0.01}
+            />
           </div>
         </div>
       </div>

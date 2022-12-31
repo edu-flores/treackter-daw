@@ -103,10 +103,7 @@ const Timeline = ({ bpm, volume }: Props) => {
           {tracks.map(track =>
             <Track
               key={track.name}
-              name={track.name}
-              solo={track.state.solo}
-              muted={track.state.muted}
-              ignored={track.state.ignored}
+              self={track}
               soundboardData={soundboardData.filter(sound => sound.type === track.name)}
               tracks={tracks}
               setTracks={setTracks}
