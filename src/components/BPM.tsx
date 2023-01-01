@@ -6,10 +6,7 @@ type Props = {
 const BPM = ({ bpm, setBpm }: Props) => {
 
   // Modify BPM on the DAW
-  const changeBPM = (val: number, modifier=0) => {
-    // Arrow keys on screen
-    val += modifier;
-
+  const changeBPM = (val: number) => {
     // Valid range
     val = (val < 60) ? 60 : val;
     val = (val > 240) ? 240 : val;
@@ -21,12 +18,10 @@ const BPM = ({ bpm, setBpm }: Props) => {
       <div className="flex">
         <input
           value={bpm}
-          onChange={(val) => {
-            changeBPM(Number(val.target.value));
-          }}
+          onChange={event => changeBPM(Number(event.target.value))}
           className="w-24 text-xl text-center accent-white outline-none font-bold drop-shadow-lg"
           type="range"
-          step="10"
+          step="20"
           min="60"
           max="240"
         />

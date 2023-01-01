@@ -1,202 +1,27 @@
-import Play from './Play';
-import Stop from './Stop';
+import { useState, useEffect } from 'react';
+import MediaButton from './MediaButton';
+import tracksData from '../json/tracks.json';
 import Track from './Track';
 
-const Timeline = () => {
+import kit1 from '../json/kit1.json';
+import kit2 from '../json/kit2.json';
+import kit3 from '../json/kit3.json';
 
-  // Ten tracks for each instrument
-  const tracks = [
-    {
-      "name": "Kick",
-      "pads": [
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-      ],
-      "solo": false,
-      "muted": false,
-    },
-    {
-      "name": "Snare",
-      "pads": [
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-      ],
-      "solo": false,
-      "muted": false,
-    },
-    {
-      "name": "Closed",
-      "pads": [
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-      ],
-      "solo": false,
-      "muted": false,
-    },
-    {
-      "name": "Open",
-      "pads": [
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-      ],
-      "solo": false,
-      "muted": false,
-    },
-    {
-      "name": "Key",
-      "pads": [
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-      ],
-      "solo": false,
-      "muted": false,
-    },
-    {
-      "name": "Guitar",
-      "pads": [
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-      ],
-      "solo": false,
-      "muted": false,
-    },
-    {
-      "name": "Bass",
-      "pads": [
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-      ],
-      "solo": false,
-      "muted": false,
-    },
-    {
-      "name": "Tom",
-      "pads": [
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-      ],
-      "solo": false,
-      "muted": false,
-    },
-    {
-      "name": "Clap",
-      "pads": [
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-      ],
-      "solo": false,
-      "muted": false,
-    },
-    {
-      "name": "Adlib",
-      "pads": [
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-        { "armed": false, "active": false },
-      ],
-      "solo": false,
-      "muted": false,
-    },
-  ];
+type Props = {
+  bpm: number,
+  volume: number
+}
+
+const Timeline = ({ bpm, volume }: Props) => {
+
+  // Timeline sequence on/off
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Ten tracks, one for each instrument
+  const [tracks, setTracks] = useState(tracksData);
+
+  // Soundboard data
+  const soundboardData = kit1.concat(kit2, kit3);
 
   // Display or hide down arrow
   const handleScroll = () => {
@@ -209,6 +34,64 @@ const Timeline = () => {
     }
   }
 
+  // Play all armed timeline pads on a column
+  const playColumn = async (column: number) => {
+    const tracksCopy = [...tracks];
+    tracksCopy.forEach(track => {
+      const prevColumn = (column - 1 < 0) ? (tracksCopy[0].pads.length - 1) : (column - 1);
+      const prevPad = track.pads[prevColumn];
+      prevPad.active = false;
+      const currPad = track.pads[column];
+      currPad.active = true;
+      if (currPad.armed  && (track.state.solo || (!track.state.ignored && !track.state.muted))) {  // Play sound
+        const soundboardPad = document.getElementById(`${track.name} ${currPad.kit}`);
+        soundboardPad?.dispatchEvent(new Event('mousedown'));
+        soundboardPad?.classList.add('scale-95');
+        setTimeout(() => {
+          soundboardPad?.classList.remove('scale-95');
+        }, 100);
+      }
+    })
+    setTracks(tracksCopy);
+    await new Promise(r => setTimeout(r, 60_000 / bpm));
+  }
+
+  // Media Buttons SVGs and functions
+  const playPath = <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />;
+  const startTimeline = () => setIsPlaying(true);
+  const stopPath = <path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />;
+  const stopTimeline = () => setIsPlaying(false);
+
+  // Timeline manager (starting & stopping)
+  useEffect(() => {
+    // Activate columns one by one
+    let valid: boolean;
+    if (isPlaying) {
+      valid = true;
+      const play = async () => {
+        await new Promise(r => setTimeout(r, 100));  // Slight delay
+        while (valid)
+          for (let column = 0; column < tracks[0].pads.length && valid; column++)
+            await playColumn(column);
+      }
+      play();
+    }
+
+    // Cleanup
+    return () => {
+      valid = false;
+      const newTracks = [...tracks];
+      newTracks.forEach(track => {
+        track.pads.forEach(pad => {
+          pad.active = false;
+        });
+      });
+      setTracks(newTracks);
+    }
+
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  }, [isPlaying, bpm]);
+
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
       <div id="timeline" className="h-64 overflow-y-auto" onScroll={() => handleScroll()}>
@@ -216,8 +99,20 @@ const Timeline = () => {
         <div className="flex sticky top-0 bg-primary z-10 px-8 py-3 text-light-gray font-semibold shadow-lg">
           <div className="w-[10%]">
             <div className="flex gap-5 justify-center">
-              <Play />
-              <Stop />
+              {/* Play */}
+              <MediaButton
+                svgPath={playPath}
+                color={'#66c187'}
+                role={startTimeline}
+                disabled={isPlaying}
+              />
+              {/* Stop */}
+              <MediaButton
+                svgPath={stopPath}
+                color={'#f08937'}
+                role={stopTimeline}
+                disabled={!isPlaying}
+              />
             </div>
           </div>
           <div className="w-[90%] flex items-center gap-8 text-sm text-center">
@@ -262,13 +157,13 @@ const Timeline = () => {
         </div>
         {/* Tracks */}
         <div className="px-8 pt-3">
-          {tracks.map(track => 
-            <Track 
+          {tracks.map(track =>
+            <Track
               key={track.name}
-              name={track.name}
-              pads={track.pads}
-              solo={track.solo}
-              muted={track.muted}
+              self={track}
+              soundboardData={soundboardData.filter(sound => sound.type === track.name)}
+              tracks={tracks}
+              setTracks={setTracks}
             />
           )}
         </div>

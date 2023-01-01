@@ -1,0 +1,302 @@
+[
+  {
+    "name": "Kick",
+    "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null }
+    ],
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
+  },
+  {
+    "name": "Snare",
+    "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null }
+    ],
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
+  },
+  {
+    "name": "Closed",
+    "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null }
+    ],
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
+  },
+  {
+    "name": "Open",
+    "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null }
+    ],
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
+  },
+  {
+    "name": "Key",
+    "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null }
+    ],
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
+  },
+  {
+    "name": "Guitar",
+    "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null }
+    ],
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
+  },
+  {
+    "name": "Bass",
+    "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null }
+    ],
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
+  },
+  {
+    "name": "Tom",
+    "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null }
+    ],
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
+  },
+  {
+    "name": "Clap",
+    "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null }
+    ],
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
+  },
+  {
+    "name": "Adlib",
+    "pads": [
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null },
+      { "armed": false, "active": false, "kit": null }
+    ],
+    "state": {
+      "solo": false,
+      "muted": false,
+      "ignored": false
+    },
+    "audio": {
+      "volume": 0.5,
+      "panning": 0
+    }
+  }
+]

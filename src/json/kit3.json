@@ -1,62 +1,72 @@
 [
   {
-    "id": "21",
+    "id": 21,
+    "type": "Kick",
     "path": "./sounds/kit3/kick3.wav",
     "color": "#f77f00",
     "name": "Kick 3"
   },
   {
-    "id": "22",
+    "id": 22,
+    "type": "Snare",
     "path": "./sounds/kit3/snare3.wav",
-    "color": "#d81159",
+    "color": "#b33f62",
     "name": "Snare 3"
   },
   {
-    "id": "23",
+    "id": 23,
+    "type": "Closed",
     "path": "./sounds/kit3/closed3.wav",
     "color": "#db3a34",
     "name": "Closed 3"
   },
   {
-    "id": "24",
+    "id": 24,
+    "type": "Open",
     "path": "./sounds/kit3/open3.wav",
     "color": "#a4243b",
     "name": "Open 3"
   },
   {
-    "id": "25",
+    "id": 25,
+    "type": "Key",
     "path": "./sounds/kit3/key3.wav",
     "color": "#0c6291",
     "name": "Key 3"
   },
   {
-    "id": "26",
+    "id": 26,
+    "type": "Guitar",
     "path": "./sounds/kit3/guitar3.wav",
     "color": "#80a1c1",
     "name": "Guitar 3"
   },
   {
-    "id": "27",
+    "id": 27,
+    "type": "Bass",
     "path": "./sounds/kit3/bass3.wav",
     "color": "#ba5624",
     "name": "Bass 3"
   },
   {
-    "id": "28",
+    "id": 28,
+    "type": "Tom",
     "path": "./sounds/kit3/tom3.wav",
-    "color": "#0e79b2",
+    "color": "#03312e",
     "name": "Tom 3"
   },
   {
-    "id": "29",
+    "id": 29,
+    "type": "Clap",
     "path": "./sounds/kit3/clap3.wav",
-    "color": "#ef3e36",
+    "color": "#43281c",
     "name": "Clap 3"
   },
   {
-    "id": "30",
+    "id": 30,
+    "type": "Adlib",
     "path": "./sounds/kit3/adlib3.wav",
-    "color": "#14110f",
+    "color": "#a60067",
     "name": "Adlib 3"
   }
 ]

@@ -3,10 +3,12 @@ import MasterVolume from './MasterVolume';
 
 type Props = {
   bpm: number,
-  setBpm: Function
+  setBpm: Function,
+  volume: number,
+  setVolume: Function
 }
 
-const TopControls = ({ bpm, setBpm }: Props) => {
+const TopControls = ({ bpm, setBpm, volume, setVolume }: Props) => {
   return (
     <div className="flex justify-between bg-primary rounded-tr-3xl rounded-tl-3xl px-8 py-3 relative shadow-lg">
       {/* BPM */}
@@ -15,7 +17,10 @@ const TopControls = ({ bpm, setBpm }: Props) => {
         setBpm={setBpm}
       />
       {/* Master Volume */}
-      <MasterVolume />
+      <MasterVolume
+        volume={volume}
+        setVolume={setVolume}
+      />
     </div>
   );
 }

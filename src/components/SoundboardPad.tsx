@@ -2,10 +2,11 @@ type Props = {
   name: string,
   background: string,
   context: AudioContext,
-  audio: AudioBuffer
+  audio: AudioBuffer,
+  volume: number
 }
 
-const SoundboardPad = ({ name, background, context, audio }: Props) => {
+const SoundboardPad = ({ name, background, context, audio, volume }: Props) => {
 
   // Start a sound
   const playSound = (audioBuffer: AudioBuffer, delay: number) => {
@@ -14,7 +15,7 @@ const SoundboardPad = ({ name, background, context, audio }: Props) => {
 
     // Volume & Panning
     const vol = context.createGain();
-    vol.gain.value = 0.5;
+    vol.gain.value = volume;
     const pan = new StereoPannerNode(context, { pan: 0 });
     source.connect(vol).connect(pan).connect(context.destination);
 
