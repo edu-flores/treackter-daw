@@ -64,9 +64,12 @@ const Timeline = ({ bpm, volume }: Props) => {
 
   // Timeline manager (starting & stopping)
   useEffect(() => {
-    let valid = true;
+    // Activate columns one by one
+    let valid: boolean;
     if (isPlaying) {
+      valid = true;
       const play = async () => {
+        await new Promise(r => setTimeout(r, 100));  // Slight delay
         while (valid)
           for (let column = 0; column < tracks[0].pads.length && valid; column++)
             await playColumn(column);
@@ -87,7 +90,7 @@ const Timeline = ({ bpm, volume }: Props) => {
     }
 
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [isPlaying]);
+  }, [isPlaying, bpm]);
 
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">

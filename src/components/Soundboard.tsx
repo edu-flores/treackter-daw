@@ -128,7 +128,7 @@ const Soundboard = ({ volume }: Props) => {
               audio={sound}
               volume={volume}
             />
-          )
+          );
         }));
   
         // Increment loads until all kits are loaded
