@@ -6,40 +6,41 @@ import kit2 from '../json/kit2.json';
 import kit3 from '../json/kit3.json';
 
 // Hashmap for key presses
-const keyToSound = new Map();
-// Kit1
-keyToSound.set('KeyQ', 'Kick 1');
-keyToSound.set('KeyW', 'Snare 1');
-keyToSound.set('KeyE', 'Closed 1');
-keyToSound.set('KeyR', 'Open 1');
-keyToSound.set('KeyT', 'Key 1');
-keyToSound.set('KeyY', 'Guitar 1');
-keyToSound.set('KeyU', 'Bass 1');
-keyToSound.set('KeyI', 'Tom 1');
-keyToSound.set('KeyO', 'Clap 1');
-keyToSound.set('KeyP', 'Adlib 1');
-// Kit2
-keyToSound.set('KeyA', 'Kick 2');
-keyToSound.set('KeyS', 'Snare 2');
-keyToSound.set('KeyD', 'Closed 2');
-keyToSound.set('KeyF', 'Open 2');
-keyToSound.set('KeyG', 'Key 2');
-keyToSound.set('KeyH', 'Guitar 2');
-keyToSound.set('KeyJ', 'Bass 2');
-keyToSound.set('KeyK', 'Tom 2');
-keyToSound.set('KeyL', 'Clap 2');
-keyToSound.set('Semicolon', 'Adlib 2');
-// Kit3
-keyToSound.set('KeyZ', 'Kick 3');
-keyToSound.set('KeyX', 'Snare 3');
-keyToSound.set('KeyC', 'Closed 3');
-keyToSound.set('KeyV', 'Open 3');
-keyToSound.set('KeyB', 'Key 3');
-keyToSound.set('KeyN', 'Guitar 3');
-keyToSound.set('KeyM', 'Bass 3');
-keyToSound.set('Comma', 'Tom 3');
-keyToSound.set('Period', 'Clap 3');
-keyToSound.set('Slash', 'Adlib 3');
+const keyToSound = new Map([
+  // Kit1
+  ['KeyQ', 'Kick 1'],
+  ['KeyW', 'Snare 1'],
+  ['KeyE', 'Closed 1'],
+  ['KeyR', 'Open 1'],
+  ['KeyT', 'Key 1'],
+  ['KeyY', 'Guitar 1'],
+  ['KeyU', 'Bass 1'],
+  ['KeyI', 'Tom 1'],
+  ['KeyO', 'Clap 1'],
+  ['KeyP', 'Adlib 1'],
+  // Kit2
+  ['KeyA', 'Kick 2'],
+  ['KeyS', 'Snare 2'],
+  ['KeyD', 'Closed 2'],
+  ['KeyF', 'Open 2'],
+  ['KeyG', 'Key 2'],
+  ['KeyH', 'Guitar 2'],
+  ['KeyJ', 'Bass 2'],
+  ['KeyK', 'Tom 2'],
+  ['KeyL', 'Clap 2'],
+  ['Semicolon', 'Adlib 2'],
+  // Kit3
+  ['KeyZ', 'Kick 3'],
+  ['KeyX', 'Snare 3'],
+  ['KeyC', 'Closed 3'],
+  ['KeyV', 'Open 3'],
+  ['KeyB', 'Key 3'],
+  ['KeyN', 'Guitar 3'],
+  ['KeyM', 'Bass 3'],
+  ['Comma', 'Tom 3'],
+  ['Period', 'Clap 3'],
+  ['Slash', 'Adlib 3']
+]);
 
 type Props = {
   volume: number
@@ -50,7 +51,7 @@ const Soundboard = ({ volume }: Props) => {
   // Event handler functions
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
     if (keyToSound.has(event.code) && !event.repeat) {
-      const name = keyToSound.get(event.code);
+      const name = keyToSound.get(event.code)!;
       const pad = document.getElementById(name);
       pad?.dispatchEvent(new Event('mousedown'));
       pad?.classList.add('scale-95');
@@ -58,7 +59,7 @@ const Soundboard = ({ volume }: Props) => {
   }, []);
   const handleKeyUp = useCallback((event: KeyboardEvent) => {
     if (keyToSound.has(event.code)) {
-      const name = keyToSound.get(event.code);
+      const name = keyToSound.get(event.code)!;
       const pad = document.getElementById(name);
       pad?.classList.remove('scale-95');
     }
