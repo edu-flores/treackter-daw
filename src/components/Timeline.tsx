@@ -56,32 +56,35 @@ const Timeline = ({ bpm, volume }: Props) => {
     await new Promise(r => setTimeout(r, 60_000 / bpm));
   }
 
-  // Media Buttons SVG and functions
+  // Media Buttons SVGs and functions
   const playPath = <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />;
-  const startTimeline = async () => {
-    setIsPlaying(true);
-    while (isPlaying) {
-      for (let column = 0; column < tracks[0].pads.length; column++) {
-        await playColumn(column);
-      }
-    }
-  };
+  const startTimeline = () => setIsPlaying(true);
   const stopPath = <path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />;
-  const stopTimeline = () => {
-    setIsPlaying(false);
-    const newTracks = [...tracks];
-    newTracks.forEach(track => {
-      track.pads.forEach(pad => {
-        pad.active = false;
-      });
-    });
-    setTracks(newTracks);
-  };
+  const stopTimeline = () => setIsPlaying(false);
 
-  // Resume playing
+  // Timeline manager (starting & stopping)
   useEffect(() => {
-    if (isPlaying)
-      startTimeline();
+    let valid = true;
+    if (isPlaying) {
+      const play = async () => {
+        while (valid)
+          for (let column = 0; column < tracks[0].pads.length && valid; column++)
+            await playColumn(column);
+      }
+      play();
+    }
+
+    // Cleanup
+    return () => {
+      valid = false;
+      const newTracks = [...tracks];
+      newTracks.forEach(track => {
+        track.pads.forEach(pad => {
+          pad.active = false;
+        });
+      });
+      setTracks(newTracks);
+    }
 
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [isPlaying]);
