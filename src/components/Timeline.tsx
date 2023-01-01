@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MediaButton from './MediaButton';
 import tracksData from '../json/tracks.json';
 import Track from './Track';
@@ -13,6 +13,9 @@ type Props = {
 }
 
 const Timeline = ({ bpm, volume }: Props) => {
+
+  // Timeline sequence on/off
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Ten tracks, one for each instrument
   const [tracks, setTracks] = useState(tracksData);
@@ -31,11 +34,59 @@ const Timeline = ({ bpm, volume }: Props) => {
     }
   }
 
+  // Play all armed timeline pads on a column
+  const playColumn = async (column: number) => {
+    const tracksCopy = [...tracks];
+    tracksCopy.forEach(track => {
+      const prevColumn = (column - 1 < 0) ? (tracksCopy[0].pads.length - 1) : (column - 1);
+      const prevPad = track.pads[prevColumn];
+      prevPad.active = false;
+      const currPad = track.pads[column];
+      currPad.active = true;
+      if (currPad.armed && !track.state.muted && (!track.state.ignored || track.state.solo)) {  // Play sound
+        const soundboardPad = document.getElementById(`${track.name} ${currPad.kit}`);
+        soundboardPad?.dispatchEvent(new Event('mousedown'));
+        soundboardPad?.classList.add('scale-95');
+        setTimeout(() => {
+          soundboardPad?.classList.remove('scale-95');
+        }, 100);
+      }
+    })
+    setTracks(tracksCopy);
+    await new Promise(r => setTimeout(r, 60_000 / bpm));
+  }
+
+  console.log(isPlaying);
+
   // Media Buttons SVG and functions
-  const playTimeline = () => console.log(tracks);
-  const stopTimeline = () => console.log('Stop.');
   const playPath = <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />;
+  const startTimeline = async () => {
+    setIsPlaying(true);
+    while (isPlaying) {
+      for (let column = 0; column < tracks[0].pads.length; column++) {
+        await playColumn(column);
+      }
+    }
+  };
   const stopPath = <path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />;
+  const stopTimeline = () => {
+    setIsPlaying(false);
+    const newTracks = [...tracks];
+    newTracks.forEach(track => {
+      track.pads.forEach(pad => {
+        pad.active = false;
+      });
+    });
+    setTracks(newTracks);
+  };
+
+  // Resume playing
+  useEffect(() => {
+    if (isPlaying)
+      startTimeline();
+
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  }, [isPlaying]);
 
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
@@ -48,13 +99,15 @@ const Timeline = ({ bpm, volume }: Props) => {
               <MediaButton
                 svgPath={playPath}
                 color={'#66c187'}
-                role={playTimeline}
+                role={startTimeline}
+                disabled={isPlaying}
               />
               {/* Stop */}
               <MediaButton
                 svgPath={stopPath}
                 color={'#f08937'}
                 role={stopTimeline}
+                disabled={!isPlaying}
               />
             </div>
           </div>
