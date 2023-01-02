@@ -19,7 +19,7 @@ type Pad = {
 type Kit = Pad[];
 
 type Props = {
-  audioContext: any
+  audioContext: AudioContext
 }
 
 const Daw = ({ audioContext }: Props) => {
@@ -52,6 +52,7 @@ const Daw = ({ audioContext }: Props) => {
 
   // Start a sound
   const playSound = (audioBuffer: AudioBuffer, volume=masterVolume, panning=0) => {
+
     const source = audioContext.createBufferSource();
     source.buffer = audioBuffer;
 
@@ -95,12 +96,13 @@ const Daw = ({ audioContext }: Props) => {
       />
       {/* Sound Effects */}
       <Soundboard
-        kits={[kit1, kit2, kit3]}
+        kits={kits}
         playSound={playSound}
-        masterVolume={masterVolume}
       />
       {/* Timeline */}
       <Timeline
+        kits={kits}
+        playSound={playSound}
         BPM={BPM}
         masterVolume={masterVolume}
       />

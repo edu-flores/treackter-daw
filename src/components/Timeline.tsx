@@ -3,25 +3,31 @@ import MediaButton from './MediaButton';
 import tracksData from '../json/tracks.json';
 import Track from './Track';
 
-import kit1 from '../json/kit1.json';
-import kit2 from '../json/kit2.json';
-import kit3 from '../json/kit3.json';
+type Pad = {
+  id: number,
+  type: string,
+  path: string,
+  color: string,
+  name: string,
+  audio: AudioBuffer | null
+}
+
+type Kit = Pad[];
 
 type Props = {
+  kits: Kit[],
+  playSound: Function,
   BPM: number,
   masterVolume: number
 }
 
-const Timeline = ({ BPM, masterVolume }: Props) => {
+const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
 
   // Timeline sequence on/off
   const [active, setActive] = useState(false);
 
   // Ten tracks, one for each instrument
   const [tracks, setTracks] = useState(tracksData);
-
-  // Soundboard data
-  const soundboardData = kit1.concat(kit2, kit3);
 
   // Display or hide down arrow
   const handleScroll = () => {
@@ -51,7 +57,7 @@ const Timeline = ({ BPM, masterVolume }: Props) => {
           soundboardPad?.classList.remove('scale-90');
         }, 100);
       }
-    })
+    });
     setTracks(tracksCopy);
     await new Promise(r => setTimeout(r, 60_000 / BPM));
   }
@@ -91,6 +97,17 @@ const Timeline = ({ BPM, masterVolume }: Props) => {
 
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [active, BPM]);
+
+  // Get all three sounds from each kit for its corresponding track
+  const getSounds = (name: string) => {
+    let sounds: any = [];
+    kits.forEach(kit => {
+      kit.forEach(sound => {
+        if (sound.type === name) sounds.push(sound);
+      })
+    })
+    return sounds;
+  }
 
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
@@ -161,7 +178,8 @@ const Timeline = ({ BPM, masterVolume }: Props) => {
             <Track
               key={track.name}
               self={track}
-              soundboardData={soundboardData.filter(sound => sound.type === track.name)}
+              soundsData={getSounds(track.name)}
+              playSound={playSound}
               tracks={tracks}
               setTracks={setTracks}
             />

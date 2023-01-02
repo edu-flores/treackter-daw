@@ -51,11 +51,10 @@ type Kit = Pad[];
 
 type Props = {
   kits: Kit[],
-  playSound: Function,
-  masterVolume: number
+  playSound: Function
 }
 
-const Soundboard = ({ kits, playSound, masterVolume }: Props) => {
+const Soundboard = ({ kits, playSound }: Props) => {
 
   // Event handler functions
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
@@ -108,42 +107,39 @@ const Soundboard = ({ kits, playSound, masterVolume }: Props) => {
         <div>
           {/* First Row */}
           <div className="flex gap-1 mb-1">
-            {kits[0]?.map((sound: any) =>
+            {kits[0]?.map((sound: Pad) =>
               <SoundboardPad
                 key={sound.id}
                 name={sound.name}
                 background={sound.color}
-                audio={sound.audio}
+                audio={sound.audio!}
                 playSound={playSound}
-                masterVolume={masterVolume}
               />
             )}
             <div className="w-4"></div>
           </div>
           <div className="flex gap-1 mb-1">
             <div className="w-2"></div>
-            {kits[1]?.map((sound: any) =>
+            {kits[1]?.map((sound: Pad) =>
               <SoundboardPad
                 key={sound.id}
                 name={sound.name}
                 background={sound.color}
-                audio={sound.audio}
+                audio={sound.audio!}
                 playSound={playSound}
-                masterVolume={masterVolume}
               />
             )}
             <div className="w-2"></div>
           </div>
           <div className="flex gap-1">
             <div className="w-4"></div>
-            {kits[2]?.map((sound: any) =>
+            {kits[2]?.map((sound: Pad) =>
               <SoundboardPad
                 key={sound.id}
                 name={sound.name}
                 background={sound.color}
-                audio={sound.audio}
+                audio={sound.audio!}
                 playSound={playSound}
-                masterVolume={masterVolume}
               />
             )}
           </div>
