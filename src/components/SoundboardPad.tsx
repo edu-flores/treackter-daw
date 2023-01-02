@@ -1,3 +1,5 @@
+import { forwardRef } from "react";
+
 type Props = {
   name: string,
   background: string,
@@ -5,10 +7,11 @@ type Props = {
   playSound: Function
 }
 
-const SoundboardPad = ({ name, background, audio, playSound }: Props) => {
+const SoundboardPad = forwardRef<HTMLButtonElement, Props>(({ name, background, audio, playSound }: Props, ref) => {
   return (
     <button
       id={name}
+      ref={ref}
       className="border-solid border-2 border-white rounded-lg w-24 h-24 py-8 text-center shadow-lg
       transition-all duration-75 hover:cursor-pointer active:scale-90 focus:outline-none"
       style={{backgroundColor: `${background}`}}
@@ -18,6 +21,6 @@ const SoundboardPad = ({ name, background, audio, playSound }: Props) => {
       <span className="drop-shadow-lg">{name}</span>
     </button>
   );
-}
+})
 
 export default SoundboardPad;
