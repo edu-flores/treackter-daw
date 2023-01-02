@@ -1,28 +1,11 @@
 type Props = {
   name: string,
   background: string,
-  context: AudioContext,
   audio: AudioBuffer,
-  masterVolume: number
+  playSound: Function
 }
 
-const SoundboardPad = ({ name, background, context, audio, masterVolume }: Props) => {
-
-  // Start a sound
-  const playSound = (audioBuffer: AudioBuffer, delay: number) => {
-    const source = context.createBufferSource();
-    source.buffer = audioBuffer;
-
-    // Volume & Panning
-    const vol = context.createGain();
-    vol.gain.value = masterVolume;
-    const pan = new StereoPannerNode(context, { pan: 0 });
-    source.connect(vol).connect(pan).connect(context.destination);
-
-    // Play
-    source.start(delay);
-  }
-
+const SoundboardPad = ({ name, background, audio, playSound }: Props) => {
   return (
     <button
       id={name}
@@ -30,7 +13,7 @@ const SoundboardPad = ({ name, background, context, audio, masterVolume }: Props
       transition-all duration-75 hover:cursor-pointer active:scale-95 focus:outline-none"
       style={{backgroundColor: `${background}`}}
       type="button"
-      onMouseDownCapture={() => playSound(audio, 0)}
+      onMouseDownCapture={() => playSound(audio)}
     >
       <span className="drop-shadow-lg">{name}</span>
     </button>
