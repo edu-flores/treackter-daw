@@ -213,7 +213,7 @@ const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
               initial={0.25}
               min={0}
               max={0.5}
-              step={0.005}
+              step={0.0025}
             />
             {/* Panning */}
             <Knob
