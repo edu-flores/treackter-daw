@@ -17,11 +17,10 @@ type Kit = Pad[];
 type Props = {
   kits: Kit[],
   playSound: Function,
-  BPM: number,
-  masterVolume: number
+  BPM: number
 }
 
-const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
+const Timeline = ({ kits, playSound, BPM }: Props) => {
 
   // Timeline sequence on/off
   const [active, setActive] = useState(false);
@@ -98,17 +97,6 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [active, BPM]);
 
-  // Get all three sounds from each kit for its corresponding track
-  const getSounds = (name: string) => {
-    let sounds: any = [];
-    kits.forEach(kit => {
-      kit.forEach(sound => {
-        if (sound.type === name) sounds.push(sound);
-      })
-    })
-    return sounds;
-  }
-
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
       <div id="timeline" className="h-64 overflow-y-auto" onScroll={() => handleScroll()}>
@@ -178,7 +166,7 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
             <Track
               key={track.name}
               self={track}
-              soundsData={getSounds(track.name)}
+              soundsData={kits.map(kit => kit.find(sound => sound.type === track.name)!)}
               playSound={playSound}
               tracks={tracks}
               setTracks={setTracks}

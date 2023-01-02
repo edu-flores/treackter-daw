@@ -1,5 +1,14 @@
 import { useState } from "react";
 
+type Pad = {
+  id: number,
+  type: string,
+  path: string,
+  color: string,
+  name: string,
+  audio: AudioBuffer | null
+}
+
 type Props = {
   padProperties: {
     kit: null | number,
@@ -10,14 +19,7 @@ type Props = {
     volume: number,
     panning: number
   }
-  soundsData: {
-    id: number,
-    type: string,
-    path: string,
-    color: string,
-    name: string,
-    audio: AudioBuffer | null
-  }[],
+  soundsData: Pad[],
   playSound: Function
 }
 

@@ -2,6 +2,15 @@ import TimelinePad  from "./TimelinePad";
 import TrackUtility from "./TrackUtility";
 import Knob from "./Knob";
 
+type Pad = {
+  id: number,
+  type: string,
+  path: string,
+  color: string,
+  name: string,
+  audio: AudioBuffer | null
+}
+
 type AudioTrack = {
   name: string,
   pads: {
@@ -22,14 +31,7 @@ type AudioTrack = {
 
 type Props = {
   self: AudioTrack,
-  soundsData: {
-    id: number,
-    type: string,
-    path: string,
-    color: string,
-    name: string,
-    audio: AudioBuffer | null
-  }[],
+  soundsData: Pad[],
   playSound: Function,
   tracks: AudioTrack[],
   setTracks: Function

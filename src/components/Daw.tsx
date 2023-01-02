@@ -104,7 +104,6 @@ const DAW = ({ audioContext }: Props) => {
         kits={kits}
         playSound={playSound}
         BPM={BPM}
-        masterVolume={masterVolume}
       />
     </div>
   );
