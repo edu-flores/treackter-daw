@@ -46,9 +46,9 @@ const Timeline = ({ BPM, masterVolume }: Props) => {
       if (currPad.kit  && (track.state.solo || (!track.state.ignored && !track.state.muted))) {  // Play sound
         const soundboardPad = document.getElementById(`${track.name} ${currPad.kit}`);
         soundboardPad?.dispatchEvent(new Event('mousedown'));
-        soundboardPad?.classList.add('scale-95');
+        soundboardPad?.classList.add('scale-90');
         setTimeout(() => {
-          soundboardPad?.classList.remove('scale-95');
+          soundboardPad?.classList.remove('scale-90');
         }, 100);
       }
     })

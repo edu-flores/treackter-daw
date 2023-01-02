@@ -63,14 +63,14 @@ const Soundboard = ({ kits, playSound, masterVolume }: Props) => {
       const name = keyToSound.get(event.code)!;
       const pad = document.getElementById(name);
       pad?.dispatchEvent(new Event('mousedown'));
-      pad?.classList.add('scale-95');
+      pad?.classList.add('scale-90');
     }
   }, []);
   const handleKeyUp = useCallback((event: KeyboardEvent) => {
     if (keyToSound.has(event.code)) {
       const name = keyToSound.get(event.code)!;
       const pad = document.getElementById(name);
-      pad?.classList.remove('scale-95');
+      pad?.classList.remove('scale-90');
     }
   }, []);
 
