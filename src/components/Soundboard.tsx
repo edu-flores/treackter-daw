@@ -38,14 +38,24 @@ const keyToSound = new Map([
   ['Slash', 'Adlib 3']
 ]);
 
+type Pad = {
+  id: number,
+  type: string,
+  path: string,
+  color: string,
+  name: string,
+  audio: AudioBuffer | null
+}
+
+type Kit = Pad[];
+
 type Props = {
-  loading: boolean,
-  kits: any,
+  kits: Kit[],
   playSound: Function,
   masterVolume: number
 }
 
-const Soundboard = ({ loading, kits, playSound, masterVolume }: Props) => {
+const Soundboard = ({ kits, playSound, masterVolume }: Props) => {
 
   // Event handler functions
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
@@ -75,6 +85,15 @@ const Soundboard = ({ loading, kits, playSound, masterVolume }: Props) => {
     }
   }, [handleKeyDown, handleKeyUp]);
 
+  // Check if all soundboard pads contain their respective audio
+  const isLoading = () => {
+    const containsNull = (element: Pad) => !element.audio;
+    return (kits[0].some(containsNull)
+      && kits[1].some(containsNull)
+      && kits[2].some(containsNull)
+    );
+  }
+
   return (
     <div className="flex items-center h-96 bg-secondary">
       {/* Keyboard Icon */}
@@ -85,7 +104,7 @@ const Soundboard = ({ loading, kits, playSound, masterVolume }: Props) => {
       </div>
       {/* Effects */}
       <div className="m-auto overflow-x-auto">
-      {!loading ? (
+      {!isLoading() ? (
         <div>
           {/* First Row */}
           <div className="flex gap-1 mb-1">
@@ -130,7 +149,7 @@ const Soundboard = ({ loading, kits, playSound, masterVolume }: Props) => {
           </div>
         </div>
       ) : (
-        <span className="text-lg text-primary">Loading ...</span>
+        <span className="text-xl text-primary"><b>Loading ...</b></span>
       )}
       </div>
       {/* Mouse Icon */}

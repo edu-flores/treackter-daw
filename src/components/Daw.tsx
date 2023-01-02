@@ -7,14 +7,16 @@ import kit1 from '../json/kit1.json';
 import kit2 from '../json/kit2.json';
 import kit3 from '../json/kit3.json';
 
-type Kit = {
+type Pad = {
   id: number,
   type: string,
   path: string,
   color: string,
   name: string,
   audio: AudioBuffer | null
-}[]
+}
+
+type Kit = Pad[];
 
 type Props = {
   audioContext: any
@@ -63,9 +65,8 @@ const Daw = ({ audioContext }: Props) => {
     source.start(0);
   }
 
-  // Determine if all audio buffers have been loaded on their respective kit
-  let loads = 0;
-  const [loading, setLoading] = useState(true);
+  // State for re-rendering the component after all kits are loaded
+  const [loaded, setLoaded] = useState(false);
 
   // Load all kits
   const kits: Kit[] = [kit1, kit2, kit3];
@@ -76,11 +77,7 @@ const Daw = ({ audioContext }: Props) => {
         response.forEach((audio, index) => {
           kit[index].audio = audio;
         });
-
-        // Increment loads until all kits are loaded
-        loads++;
-        if (loads === kits.length)
-          setLoading(false);
+        setLoaded(loaded => !loaded);
       });
     });
 
@@ -98,7 +95,6 @@ const Daw = ({ audioContext }: Props) => {
       />
       {/* Sound Effects */}
       <Soundboard
-        loading={loading}
         kits={[kit1, kit2, kit3]}
         playSound={playSound}
         masterVolume={masterVolume}
