@@ -22,7 +22,7 @@ type Props = {
   audioContext: AudioContext
 }
 
-const Daw = ({ audioContext }: Props) => {
+const DAW = ({ audioContext }: Props) => {
 
   // Beats per minute
   const [BPM, setBPM] = useState(120);
@@ -51,14 +51,13 @@ const Daw = ({ audioContext }: Props) => {
   }
 
   // Start a sound
-  const playSound = (audioBuffer: AudioBuffer, volume=masterVolume, panning=0) => {
-
+  const playSound = (audioBuffer: AudioBuffer, volume=1, panning=0) => {
     const source = audioContext.createBufferSource();
     source.buffer = audioBuffer;
 
     // Volume & Panning
     const vol = audioContext.createGain();
-    vol.gain.value = volume;
+    vol.gain.value = masterVolume * volume;
     const pan = new StereoPannerNode(audioContext, { pan: panning });
     source.connect(vol).connect(pan).connect(audioContext.destination);
 
@@ -72,6 +71,7 @@ const Daw = ({ audioContext }: Props) => {
   // Load all kits
   const kits: Kit[] = [kit1, kit2, kit3];
   useEffect(() => {
+    // TODO: Fix fetch loading
     kits.forEach(kit => {
       const paths = kit.map(sound => sound.path);
       loadSounds(paths).then(response => {
@@ -110,4 +110,4 @@ const Daw = ({ audioContext }: Props) => {
   );
 }
 
-export default Daw;
+export default DAW;

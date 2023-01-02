@@ -210,10 +210,10 @@ const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
                 newTracks.find(track => track.name === self.name)!.audio.volume = value;
                 setTracks(newTracks);
               }}
-              initial={0.25}
+              initial={0.5}
               min={0}
-              max={0.5}
-              step={0.0025}
+              max={1}
+              step={0.005}
             />
             {/* Panning */}
             <Knob

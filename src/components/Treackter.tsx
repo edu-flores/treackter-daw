@@ -1,4 +1,4 @@
-import Daw from './Daw';
+import DAW from './DAW';
 import About from './About';
 
 const Treackter = () => {
@@ -14,7 +14,7 @@ const Treackter = () => {
       </div>
       {/* DAW */}
       <div className="w-[90%]">
-        <Daw
+        <DAW
           audioContext={audioContext}
         />
       </div>

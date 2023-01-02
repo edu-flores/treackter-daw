@@ -25,7 +25,7 @@
       "ignored": false
     },
     "audio": {
-      "volume": 0.25,
+      "volume": 0.5,
       "panning": 0
     }
   },
@@ -55,7 +55,7 @@
       "ignored": false
     },
     "audio": {
-      "volume": 0.25,
+      "volume": 0.5,
       "panning": 0
     }
   },
@@ -85,7 +85,7 @@
       "ignored": false
     },
     "audio": {
-      "volume": 0.25,
+      "volume": 0.5,
       "panning": 0
     }
   },
@@ -115,7 +115,7 @@
       "ignored": false
     },
     "audio": {
-      "volume": 0.25,
+      "volume": 0.5,
       "panning": 0
     }
   },
@@ -145,7 +145,7 @@
       "ignored": false
     },
     "audio": {
-      "volume": 0.25,
+      "volume": 0.5,
       "panning": 0
     }
   },
@@ -175,7 +175,7 @@
       "ignored": false
     },
     "audio": {
-      "volume": 0.25,
+      "volume": 0.5,
       "panning": 0
     }
   },
@@ -205,7 +205,7 @@
       "ignored": false
     },
     "audio": {
-      "volume": 0.25,
+      "volume": 0.5,
       "panning": 0
     }
   },
@@ -235,7 +235,7 @@
       "ignored": false
     },
     "audio": {
-      "volume": 0.25,
+      "volume": 0.5,
       "panning": 0
     }
   },
@@ -265,7 +265,7 @@
       "ignored": false
     },
     "audio": {
-      "volume": 0.25,
+      "volume": 0.5,
       "panning": 0
     }
   },
@@ -295,7 +295,7 @@
       "ignored": false
     },
     "audio": {
-      "volume": 0.25,
+      "volume": 0.5,
       "panning": 0
     }
   }
