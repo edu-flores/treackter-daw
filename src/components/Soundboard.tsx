@@ -43,10 +43,10 @@ const keyToSound = new Map([
 ]);
 
 type Props = {
-  volume: number
+  masterVolume: number
 }
 
-const Soundboard = ({ volume }: Props) => {
+const Soundboard = ({ masterVolume }: Props) => {
 
   // Event handler functions
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
@@ -126,7 +126,7 @@ const Soundboard = ({ volume }: Props) => {
               background={kit[soundIndex].color}
               context={audioContext}
               audio={sound}
-              volume={volume}
+              masterVolume={masterVolume}
             />
           );
         }));

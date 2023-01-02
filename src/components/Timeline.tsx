@@ -8,11 +8,11 @@ import kit2 from '../json/kit2.json';
 import kit3 from '../json/kit3.json';
 
 type Props = {
-  bpm: number,
-  volume: number
+  BPM: number,
+  masterVolume: number
 }
 
-const Timeline = ({ bpm, volume }: Props) => {
+const Timeline = ({ BPM, masterVolume }: Props) => {
 
   // Timeline sequence on/off
   const [isPlaying, setIsPlaying] = useState(false);
@@ -53,7 +53,7 @@ const Timeline = ({ bpm, volume }: Props) => {
       }
     })
     setTracks(tracksCopy);
-    await new Promise(r => setTimeout(r, 60_000 / bpm));
+    await new Promise(r => setTimeout(r, 60_000 / BPM));
   }
 
   // Media Buttons SVGs and functions
@@ -90,7 +90,7 @@ const Timeline = ({ bpm, volume }: Props) => {
     }
 
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [isPlaying, bpm]);
+  }, [isPlaying, BPM]);
 
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">

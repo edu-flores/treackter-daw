@@ -5,29 +5,29 @@ import Timeline from './Timeline';
 
 const Daw = () => {
 
-  // BPM
-  const [bpm, setBpm] = useState(120);
+  // Beats per minute
+  const [BPM, setBPM] = useState(120);
 
-  // Volume
-  const [volume, setVolume] = useState(0.5);
+  // Master volume
+  const [masterVolume, setMasterVolume] = useState(0.5);
 
   return (
     <div className="max-w-6xl m-auto">
       {/* Upper Bar Controls */}
       <TopControls
-        bpm={bpm}
-        setBpm={setBpm}
-        volume={volume}
-        setVolume={setVolume}
+        BPM={BPM}
+        setBPM={setBPM}
+        masterVolume={masterVolume}
+        setMasterVolume={setMasterVolume}
       />
       {/* Sound Effects */}
       <Soundboard
-        volume={volume}
+        masterVolume={masterVolume}
       />
       {/* Timeline */}
       <Timeline
-        bpm={bpm}
-        volume={volume}
+        BPM={BPM}
+        masterVolume={masterVolume}
       />
     </div>
   );
