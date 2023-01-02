@@ -66,7 +66,7 @@ const Daw = ({ audioContext }: Props) => {
   }
 
   // State for re-rendering the component after all kits are loaded
-  const [loaded, setLoaded] = useState(false);
+  const setLoaded = useState(false)[1];
 
   // Load all kits
   const kits: Kit[] = [kit1, kit2, kit3];
