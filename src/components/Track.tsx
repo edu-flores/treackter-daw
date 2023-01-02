@@ -22,7 +22,14 @@ type AudioTrack = {
 
 type Props = {
   self: AudioTrack,
-  soundsData: { id: number, type: string, path: string, color: string, name: string, audio: AudioBuffer | null }[],
+  soundsData: {
+    id: number,
+    type: string,
+    path: string,
+    color: string,
+    name: string,
+    audio: AudioBuffer | null
+  }[],
   playSound: Function,
   tracks: AudioTrack[],
   setTracks: Function
@@ -80,107 +87,51 @@ const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
         <div className="w-[90%] flex gap-8 text-sm text-center">
           {/* First Bar */}
           <div className="w-[20%] flex justify-center gap-4">
-            <TimelinePad
-              padProperties={pads[0]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
-            <TimelinePad 
-              padProperties={pads[1]} 
-              audioProperties={self.audio} 
-              soundsData={soundsData} 
-              playSound={playSound}
-             />
-            <TimelinePad
-              padProperties={pads[2]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
-            <TimelinePad
-              padProperties={pads[3]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
+            {pads.slice(0, 4).map((pad, index) =>
+              <TimelinePad
+                key={index}
+                padProperties={pad}
+                audioProperties={self.audio}
+                soundsData={soundsData}
+                playSound={playSound}
+              />
+            )}
           </div>
           {/* Second Bar */}
           <div className="w-[20%] flex justify-center gap-4">
-            <TimelinePad
-              padProperties={pads[4]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
-            <TimelinePad
-              padProperties={pads[5]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
-            <TimelinePad
-              padProperties={pads[6]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
-            <TimelinePad
-              padProperties={pads[7]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
+            {pads.slice(4, 8).map((pad, index) =>
+              <TimelinePad
+                key={index}
+                padProperties={pad}
+                audioProperties={self.audio}
+                soundsData={soundsData}
+                playSound={playSound}
+              />
+            )}
           </div>
           {/* Third Bar */}
           <div className="w-[20%] flex justify-center gap-4">
-            <TimelinePad
-              padProperties={pads[8]}
-              audioProperties={self.audio}
-              soundsData={soundsData} playSound={playSound}
-            />
-            <TimelinePad
-              padProperties={pads[9]}
-              audioProperties={self.audio}
-              soundsData={soundsData} playSound={playSound}
-            />
-            <TimelinePad
-              padProperties={pads[10]}
-              audioProperties={self.audio}
-              soundsData={soundsData} playSound={playSound}
-            />
-            <TimelinePad
-              padProperties={pads[11]}
-              audioProperties={self.audio}
-              soundsData={soundsData} playSound={playSound}
-            />
+            {pads.slice(8, 12).map((pad, index) =>
+              <TimelinePad
+                key={index}
+                padProperties={pad}
+                audioProperties={self.audio}
+                soundsData={soundsData}
+                playSound={playSound}
+              />
+            )}
           </div>
           {/* Fourth Bar */}
           <div className="w-[20%] flex justify-center gap-4">
-            <TimelinePad
-              padProperties={pads[12]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
-            <TimelinePad
-              padProperties={pads[13]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
-            <TimelinePad
-              padProperties={pads[14]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
-            <TimelinePad
-              padProperties={pads[15]}
-              audioProperties={self.audio}
-              soundsData={soundsData}
-              playSound={playSound}
-            />
+            {pads.slice(12, 16).map((pad, index) =>
+              <TimelinePad
+                key={index}
+                padProperties={pad}
+                audioProperties={self.audio}
+                soundsData={soundsData}
+                playSound={playSound}
+              />
+            )}
           </div>
           {/* Audio Manipulation */}
           <div className="w-[20%] flex gap-5 justify-end items-center">
