@@ -15,7 +15,7 @@ type Props = {
 const Timeline = ({ BPM, masterVolume }: Props) => {
 
   // Timeline sequence on/off
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [active, setActive] = useState(false);
 
   // Ten tracks, one for each instrument
   const [tracks, setTracks] = useState(tracksData);
@@ -40,10 +40,10 @@ const Timeline = ({ BPM, masterVolume }: Props) => {
     tracksCopy.forEach(track => {
       const prevColumn = (column - 1 < 0) ? (tracksCopy[0].pads.length - 1) : (column - 1);
       const prevPad = track.pads[prevColumn];
-      prevPad.active = false;
+      prevPad.playing = false;
       const currPad = track.pads[column];
-      currPad.active = true;
-      if (currPad.armed  && (track.state.solo || (!track.state.ignored && !track.state.muted))) {  // Play sound
+      currPad.playing = true;
+      if (currPad.kit  && (track.state.solo || (!track.state.ignored && !track.state.muted))) {  // Play sound
         const soundboardPad = document.getElementById(`${track.name} ${currPad.kit}`);
         soundboardPad?.dispatchEvent(new Event('mousedown'));
         soundboardPad?.classList.add('scale-95');
@@ -58,15 +58,15 @@ const Timeline = ({ BPM, masterVolume }: Props) => {
 
   // Media Buttons SVGs and functions
   const playPath = <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />;
-  const startTimeline = () => setIsPlaying(true);
+  const startTimeline = () => setActive(true);
   const stopPath = <path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />;
-  const stopTimeline = () => setIsPlaying(false);
+  const stopTimeline = () => setActive(false);
 
   // Timeline manager (starting & stopping)
   useEffect(() => {
     // Activate columns one by one
     let valid: boolean;
-    if (isPlaying) {
+    if (active) {
       valid = true;
       const play = async () => {
         await new Promise(r => setTimeout(r, 100));  // Slight delay
@@ -83,14 +83,14 @@ const Timeline = ({ BPM, masterVolume }: Props) => {
       const newTracks = [...tracks];
       newTracks.forEach(track => {
         track.pads.forEach(pad => {
-          pad.active = false;
+          pad.playing = false;
         });
       });
       setTracks(newTracks);
     }
 
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [isPlaying, BPM]);
+  }, [active, BPM]);
 
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
@@ -104,14 +104,14 @@ const Timeline = ({ BPM, masterVolume }: Props) => {
                 svgPath={playPath}
                 color={'#66c187'}
                 role={startTimeline}
-                disabled={isPlaying}
+                disabled={active}
               />
               {/* Stop */}
               <MediaButton
                 svgPath={stopPath}
                 color={'#f08937'}
                 role={stopTimeline}
-                disabled={!isPlaying}
+                disabled={!active}
               />
             </div>
           </div>

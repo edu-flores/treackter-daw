@@ -4,7 +4,7 @@ import Knob from "./Knob";
 
 type AudioTrack = {
   name: string,
-  pads: { armed: boolean, active: boolean, kit: number | null }[],
+  pads: { kit: number | null, playing: boolean }[],
   state: { solo: boolean, muted: boolean, ignored: boolean },
   audio: { volume: number, panning: number }
 }

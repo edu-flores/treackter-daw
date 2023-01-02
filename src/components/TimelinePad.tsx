@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 type Props = {
-  padProperties: { armed: boolean, active: boolean, kit: null | number },
+  padProperties: { kit: null | number, playing: boolean },
   soundboardData: { id: number, type: string, path: string, color: string, name: string }[]
 }
 
@@ -16,7 +16,6 @@ const TimelinePad = ({ padProperties, soundboardData }: Props) => {
   const alterPad = (event: React.MouseEvent<HTMLElement>) => {
     // Deactivate
     if (event.shiftKey) {
-      padProperties.armed = false;
       padProperties.kit = null;
       setBgColor('');
       setClicks(0);
@@ -24,7 +23,6 @@ const TimelinePad = ({ padProperties, soundboardData }: Props) => {
     // Activate
     else {
       kitIndex = clicks % soundboardData.length;
-      padProperties.armed = true;
       padProperties.kit = kitIndex + 1;
       setClicks(clicks => clicks + 1);
       setBgColor((soundboardData[kitIndex]).color);
@@ -37,8 +35,8 @@ const TimelinePad = ({ padProperties, soundboardData }: Props) => {
       className="relative border-solid border-2 border-white rounded-lg bg-primary w-7 h-7 cursor-pointer shadow-lg active:scale-90"
       style={{
         backgroundColor: bgColor,
-        borderColor: padProperties.active ? '#87b3e0' : '',
-        transform: padProperties.active ? 'scale(1.3)' : ''
+        borderColor: padProperties.playing ? '#87b3e0' : '',
+        transform: padProperties.playing ? 'scale(1.3)' : ''
       }}
       onClick={event => alterPad(event)}
     >
