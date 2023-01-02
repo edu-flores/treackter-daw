@@ -1,9 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import SoundboardPad from './SoundboardPad';
-
-import kit1 from '../json/kit1.json';
-import kit2 from '../json/kit2.json';
-import kit3 from '../json/kit3.json';
 
 // Hashmap for key presses
 const keyToSound = new Map([
@@ -42,11 +38,23 @@ const keyToSound = new Map([
   ['Slash', 'Adlib 3']
 ]);
 
-type Props = {
-  volume: number
+type Pad = {
+  id: number,
+  type: string,
+  path: string,
+  color: string,
+  name: string,
+  audio: AudioBuffer | null
 }
 
-const Soundboard = ({ volume }: Props) => {
+type Kit = Pad[];
+
+type Props = {
+  kits: Kit[],
+  playSound: Function
+}
+
+const Soundboard = ({ kits, playSound }: Props) => {
 
   // Event handler functions
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
@@ -54,14 +62,14 @@ const Soundboard = ({ volume }: Props) => {
       const name = keyToSound.get(event.code)!;
       const pad = document.getElementById(name);
       pad?.dispatchEvent(new Event('mousedown'));
-      pad?.classList.add('scale-95');
+      pad?.classList.add('scale-90');
     }
   }, []);
   const handleKeyUp = useCallback((event: KeyboardEvent) => {
     if (keyToSound.has(event.code)) {
       const name = keyToSound.get(event.code)!;
       const pad = document.getElementById(name);
-      pad?.classList.remove('scale-95');
+      pad?.classList.remove('scale-90');
     }
   }, []);
 
@@ -76,70 +84,14 @@ const Soundboard = ({ volume }: Props) => {
     }
   }, [handleKeyDown, handleKeyUp]);
 
-  // Web Audio API setup
-  const audioContext = new AudioContext();
-
-  // Get sample from public folder
-  const getSample = async (path: string) => {
-    const response = await fetch(path);
-    const arrayBuffer = await response.arrayBuffer();
-    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-    return audioBuffer;
+  // Check if all soundboard pads contain their respective audio
+  const isLoading = () => {
+    const containsNull = (element: Pad) => !element.audio;
+    return (kits[0].some(containsNull)
+      && kits[1].some(containsNull)
+      && kits[2].some(containsNull)
+    );
   }
-
-  // Set them up on audio buffers
-  const loadSounds = async (paths: string[]) => {
-    const audioBuffers = [];
-
-    for (const path of paths) {
-      const sample = await getSample(path);
-      audioBuffers.push(sample);
-    }
-
-    return audioBuffers;
-  }
-
-  // Render pads only after loading
-  let loads = 0;
-  const [loading, setLoading] = useState(true);
-
-  // Create each row after each kit
-  const [firstRow, setFirstRow] = useState<JSX.Element[]>();
-  const [secondRow, setSecondRow] = useState<JSX.Element[]>();
-  const [thirdRow, setThirdRow] = useState<JSX.Element[]>();
-
-  // Load all kits
-  const kits = [kit1, kit2, kit3];
-  const setters = [setFirstRow, setSecondRow, setThirdRow];
-  useEffect(() => {
-    kits.forEach((kit, kitIndex) => {
-      const paths = kit.map(sound => sound.path);
-      loadSounds(paths).then(response => {
-  
-        // Fill row with pads
-        const setter = setters[kitIndex];
-        setter(response.map((sound: AudioBuffer, soundIndex) => {
-          return (
-            <SoundboardPad
-              key={kit[soundIndex].id}
-              name={kit[soundIndex].name}
-              background={kit[soundIndex].color}
-              context={audioContext}
-              audio={sound}
-              volume={volume}
-            />
-          );
-        }));
-  
-        // Increment loads until all kits are loaded
-        loads++;
-        if (loads === kits.length)
-          setLoading(false);
-      });
-    });
-
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, []);
 
   return (
     <div className="flex items-center h-96 bg-secondary">
@@ -151,24 +103,49 @@ const Soundboard = ({ volume }: Props) => {
       </div>
       {/* Effects */}
       <div className="m-auto overflow-x-auto">
-      {!loading ? (
+      {!isLoading() ? (
         <div>
+          {/* First Row */}
           <div className="flex gap-1 mb-1">
-            {firstRow}
+            {kits[0]?.map((sound: Pad) =>
+              <SoundboardPad
+                key={sound.id}
+                name={sound.name}
+                background={sound.color}
+                audio={sound.audio!}
+                playSound={playSound}
+              />
+            )}
             <div className="w-4"></div>
           </div>
           <div className="flex gap-1 mb-1">
             <div className="w-2"></div>
-            {secondRow}
+            {kits[1]?.map((sound: Pad) =>
+              <SoundboardPad
+                key={sound.id}
+                name={sound.name}
+                background={sound.color}
+                audio={sound.audio!}
+                playSound={playSound}
+              />
+            )}
             <div className="w-2"></div>
           </div>
           <div className="flex gap-1">
             <div className="w-4"></div>
-            {thirdRow}
+            {kits[2]?.map((sound: Pad) =>
+              <SoundboardPad
+                key={sound.id}
+                name={sound.name}
+                background={sound.color}
+                audio={sound.audio!}
+                playSound={playSound}
+              />
+            )}
           </div>
         </div>
       ) : (
-        <span className="text-lg text-primary">Loading ...</span>
+        <span className="text-xl text-primary"><b>Loading ...</b></span>
       )}
       </div>
       {/* Mouse Icon */}

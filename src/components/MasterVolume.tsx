@@ -1,17 +1,17 @@
 import Knob from './Knob';
 
 type Props = {
-  volume: number,
-  setVolume: Function
+  masterVolume: number,
+  setMasterVolume: Function
 }
 
-const MasterVolume = ({ volume, setVolume }: Props) => {
+const MasterVolume = ({ masterVolume, setMasterVolume }: Props) => {
   return (
     <div className="flex gap-3 items-center">
       <span className="text-sm text-light-gray font-semibold">MASTER VOL</span>
       <Knob
-        value={volume}
-        setter={setVolume}
+        value={masterVolume}
+        setter={setMasterVolume}
         initial={0.5}
         min={0}
         max={1}

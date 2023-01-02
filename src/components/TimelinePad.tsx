@@ -1,11 +1,29 @@
 import { useState } from "react";
 
-type Props = {
-  padProperties: { armed: boolean, active: boolean, kit: null | number },
-  soundboardData: { id: number, type: string, path: string, color: string, name: string }[]
+type Pad = {
+  id: number,
+  type: string,
+  path: string,
+  color: string,
+  name: string,
+  audio: AudioBuffer | null
 }
 
-const TimelinePad = ({ padProperties, soundboardData }: Props) => {
+type Props = {
+  padProperties: {
+    kit: null | number,
+    sound: AudioBuffer | null,
+    playing: boolean
+  },
+  audioProperties: {
+    volume: number,
+    panning: number
+  }
+  soundsData: Pad[],
+  playSound: Function
+}
+
+const TimelinePad = ({ padProperties, audioProperties, soundsData, playSound }: Props) => {
 
   // Background color
   const [bgColor, setBgColor] = useState('');
@@ -16,29 +34,29 @@ const TimelinePad = ({ padProperties, soundboardData }: Props) => {
   const alterPad = (event: React.MouseEvent<HTMLElement>) => {
     // Deactivate
     if (event.shiftKey) {
-      padProperties.armed = false;
       padProperties.kit = null;
+      padProperties.sound = null;
       setBgColor('');
       setClicks(0);
     }
     // Activate
     else {
-      kitIndex = clicks % soundboardData.length;
-      padProperties.armed = true;
+      kitIndex = clicks % soundsData.length;
       padProperties.kit = kitIndex + 1;
+      padProperties.sound = soundsData[kitIndex].audio;
       setClicks(clicks => clicks + 1);
-      setBgColor((soundboardData[kitIndex]).color);
-      document.getElementById(soundboardData[kitIndex].name)?.dispatchEvent(new Event('mousedown'));
+      setBgColor((soundsData[kitIndex]).color);
+      playSound(padProperties.sound, audioProperties.volume, audioProperties.panning);
     }
   }
 
   return (
-    <div 
+    <div
       className="relative border-solid border-2 border-white rounded-lg bg-primary w-7 h-7 cursor-pointer shadow-lg active:scale-90"
       style={{
         backgroundColor: bgColor,
-        borderColor: padProperties.active ? '#87b3e0' : '',
-        transform: padProperties.active ? 'scale(1.3)' : ''
+        borderColor: padProperties.playing ? '#87b3e0' : '',
+        transform: padProperties.playing ? 'scale(1.3)' : ''
       }}
       onClick={event => alterPad(event)}
     >
