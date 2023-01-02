@@ -1,23 +1,32 @@
 import { useState, useEffect } from 'react';
 import TopControls from './TopControls';
 import Soundboard from './Soundboard';
-import SoundboardPad from './SoundboardPad';
 import Timeline from './Timeline';
 
 import kit1 from '../json/kit1.json';
 import kit2 from '../json/kit2.json';
 import kit3 from '../json/kit3.json';
 
-const Daw = () => {
+type Kit = {
+  id: number,
+  type: string,
+  path: string,
+  color: string,
+  name: string,
+  audio: AudioBuffer | null
+}[]
+
+type Props = {
+  audioContext: any
+}
+
+const Daw = ({ audioContext }: Props) => {
 
   // Beats per minute
   const [BPM, setBPM] = useState(120);
 
   // Master volume
   const [masterVolume, setMasterVolume] = useState(0.5);
-
-  // Web Audio API setup
-  const audioContext = new AudioContext();
 
   // Get sample from public folder
   const getSample = async (path: string) => {
@@ -54,32 +63,24 @@ const Daw = () => {
     source.start(0);
   }
 
-  // Create each row after each kit
-  const [firstRow, setFirstRow] = useState<JSX.Element[]>();
-  const [secondRow, setSecondRow] = useState<JSX.Element[]>();
-  const [thirdRow, setThirdRow] = useState<JSX.Element[]>();
+  // Determine if all audio buffers have been loaded on their respective kit
+  let loads = 0;
+  const [loading, setLoading] = useState(true);
 
   // Load all kits
-  const kits = [kit1, kit2, kit3];
-  const setters = [setFirstRow, setSecondRow, setThirdRow];
+  const kits: Kit[] = [kit1, kit2, kit3];
   useEffect(() => {
-    kits.forEach((kit, kitIndex) => {
+    kits.forEach(kit => {
       const paths = kit.map(sound => sound.path);
       loadSounds(paths).then(response => {
-  
-        // Fill row with pads
-        const setter = setters[kitIndex];
-        setter(response.map((sound: AudioBuffer, soundIndex) => {
-          return (
-            <SoundboardPad
-              key={kit[soundIndex].id}
-              name={kit[soundIndex].name}
-              background={kit[soundIndex].color}
-              audio={sound}
-              playSound={playSound}
-            />
-          );
-        }));
+        response.forEach((audio, index) => {
+          kit[index].audio = audio;
+        });
+
+        // Increment loads until all kits are loaded
+        loads++;
+        if (loads === kits.length)
+          setLoading(false);
       });
     });
 
@@ -97,7 +98,10 @@ const Daw = () => {
       />
       {/* Sound Effects */}
       <Soundboard
-        pads={[firstRow, secondRow, thirdRow]}
+        loading={loading}
+        kits={[kit1, kit2, kit3]}
+        playSound={playSound}
+        masterVolume={masterVolume}
       />
       {/* Timeline */}
       <Timeline

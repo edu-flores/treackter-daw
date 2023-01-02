@@ -1,4 +1,5 @@
 import { useEffect, useCallback } from 'react';
+import SoundboardPad from './SoundboardPad';
 
 // Hashmap for key presses
 const keyToSound = new Map([
@@ -38,10 +39,13 @@ const keyToSound = new Map([
 ]);
 
 type Props = {
-  pads: (JSX.Element[] | undefined)[]
+  loading: boolean,
+  kits: any,
+  playSound: Function,
+  masterVolume: number
 }
 
-const Soundboard = ({ pads }: Props) => {
+const Soundboard = ({ loading, kits, playSound, masterVolume }: Props) => {
 
   // Event handler functions
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
@@ -81,21 +85,48 @@ const Soundboard = ({ pads }: Props) => {
       </div>
       {/* Effects */}
       <div className="m-auto overflow-x-auto">
-      {(pads[0] && pads[1] && pads[2]) ? (
+      {!loading ? (
         <div>
           {/* First Row */}
           <div className="flex gap-1 mb-1">
-            {pads[0]}
+            {kits[0]?.map((sound: any) =>
+              <SoundboardPad
+                key={sound.id}
+                name={sound.name}
+                background={sound.color}
+                audio={sound.audio}
+                playSound={playSound}
+                masterVolume={masterVolume}
+              />
+            )}
             <div className="w-4"></div>
           </div>
           <div className="flex gap-1 mb-1">
             <div className="w-2"></div>
-            {pads[1]}
+            {kits[1]?.map((sound: any) =>
+              <SoundboardPad
+                key={sound.id}
+                name={sound.name}
+                background={sound.color}
+                audio={sound.audio}
+                playSound={playSound}
+                masterVolume={masterVolume}
+              />
+            )}
             <div className="w-2"></div>
           </div>
           <div className="flex gap-1">
             <div className="w-4"></div>
-            {pads[2]}
+            {kits[2]?.map((sound: any) =>
+              <SoundboardPad
+                key={sound.id}
+                name={sound.name}
+                background={sound.color}
+                audio={sound.audio}
+                playSound={playSound}
+                masterVolume={masterVolume}
+              />
+            )}
           </div>
         </div>
       ) : (

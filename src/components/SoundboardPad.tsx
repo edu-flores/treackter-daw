@@ -2,10 +2,11 @@ type Props = {
   name: string,
   background: string,
   audio: AudioBuffer,
-  playSound: Function
+  playSound: Function,
+  masterVolume: number
 }
 
-const SoundboardPad = ({ name, background, audio, playSound }: Props) => {
+const SoundboardPad = ({ name, background, audio, playSound, masterVolume }: Props) => {
   return (
     <button
       id={name}
@@ -13,7 +14,7 @@ const SoundboardPad = ({ name, background, audio, playSound }: Props) => {
       transition-all duration-75 hover:cursor-pointer active:scale-95 focus:outline-none"
       style={{backgroundColor: `${background}`}}
       type="button"
-      onMouseDownCapture={() => playSound(audio)}
+      onMouseDownCapture={() => playSound(audio, masterVolume)}
     >
       <span className="drop-shadow-lg">{name}</span>
     </button>

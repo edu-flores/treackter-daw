@@ -2,6 +2,10 @@ import Daw from './Daw';
 import About from './About';
 
 const Treackter = () => {
+
+  // Web Audio API setup
+  const audioContext = new AudioContext();
+
   return (
     <div className="flex h-screen items-center">
       {/* Header */}
@@ -10,7 +14,9 @@ const Treackter = () => {
       </div>
       {/* DAW */}
       <div className="w-[90%]">
-        <Daw />
+        <Daw
+          audioContext={audioContext}
+        />
       </div>
       {/* About Section */}
       <div className="w-[5%]">
