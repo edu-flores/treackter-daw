@@ -14,9 +14,7 @@ const Treackter = () => {
       </div>
       {/* DAW */}
       <div className="w-[90%]">
-        <DAW
-          audioContext={audioContext}
-        />
+        <DAW audioContext={audioContext} />
       </div>
       {/* About Section */}
       <div className="w-[5%]">
