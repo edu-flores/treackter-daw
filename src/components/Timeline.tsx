@@ -115,9 +115,9 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
 
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
-      <div ref={timelineSpace} className="h-64 overflow-y-auto" onScroll={() => handleScroll()}>
+      <div ref={timelineSpace} className="w-6xl h-64 overflow-auto" onScroll={() => handleScroll()}>
         {/* Top */}
-        <div className="flex sticky top-0 bg-primary z-10 px-8 py-3 text-light-gray font-semibold shadow-lg">
+        <div className="flex sticky top-0 bg-primary z-10 px-8 py-3 min-w-fit text-light-gray font-semibold shadow-lg">
           <div className="w-[10%]">
             <div className="flex gap-5 justify-center">
               {/* Play */}
@@ -166,7 +166,9 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
               <span className="w-7">4.4</span>
             </div>
             {/* Audio Manipulation */}
-            <div className="w-[20%] flex gap-5 justify-end">
+            <div className="w-[20%] flex gap-5 justify-end items-center">
+              <div className="w-[10px]">&nbsp;</div>
+              <div className="w-[10px]">&nbsp;</div>
               <div>
                 <span>VOL</span>
               </div>
@@ -177,7 +179,7 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
           </div>
         </div>
         {/* Tracks */}
-        <div className="px-8 pt-3">
+        <div className="px-8 pt-3 min-w-fit">
           {timeline.tracks.map(track =>
             <Track
               key={track.name}

@@ -26,6 +26,13 @@ input[type=number] {
 }
 
 /* Hide scrollbar */
+.overflow-auto::-webkit-scrollbar {
+  display: none;
+}
+.overflow-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 .overflow-y-auto::-webkit-scrollbar {
   display: none;
 }
