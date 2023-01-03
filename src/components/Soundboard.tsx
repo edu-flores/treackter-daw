@@ -102,7 +102,7 @@ const Soundboard = ({ kits, playSound }: Props) => {
   }
 
   return (
-    <div className="flex items-center h-96 bg-secondary">
+    <div className="lg:flex hidden flex items-center h-96 bg-secondary">
       {/* Keyboard Icon */}
       <div className="w-[5%] flex justify-center pl-3">
         <svg className="fill-primary w-[28px] drop-shadow-lg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
