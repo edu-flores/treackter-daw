@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MediaButton from './MediaButton';
 import tracksData from '../json/tracks.json';
 import Track from './Track';
@@ -29,10 +29,12 @@ const Timeline = ({ kits, playSound, BPM }: Props) => {
   const [tracks, setTracks] = useState(tracksData);
 
   // Display or hide down arrow
+  const timelineSpace = useRef<HTMLDivElement>(null);
+  const downArrow = useRef<SVGSVGElement>(null);
   const handleScroll = () => {
-    const timeline = document.getElementById('timeline')!;
-    const arrow = document.getElementById('down-arrow')!;
-    if (timeline.scrollTop === 0) {  // Top
+    const timeline = timelineSpace.current!;
+    const arrow = downArrow.current!;
+    if (timeline?.scrollTop === 0) {  // Top
       arrow.style.opacity = '1';
     } else {
       arrow.style.opacity = '0';
@@ -99,7 +101,7 @@ const Timeline = ({ kits, playSound, BPM }: Props) => {
 
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
-      <div id="timeline" className="h-64 overflow-y-auto" onScroll={() => handleScroll()}>
+      <div ref={timelineSpace} className="h-64 overflow-y-auto" onScroll={() => handleScroll()}>
         {/* Top */}
         <div className="flex sticky top-0 bg-primary z-10 px-8 py-3 text-light-gray font-semibold shadow-lg">
           <div className="w-[10%]">
@@ -176,7 +178,7 @@ const Timeline = ({ kits, playSound, BPM }: Props) => {
       </div>
       {/* Down Arrow */}
       <div className="py-1">
-        <svg id="down-arrow" className="fill-white w-[18px] m-auto transition-opacity" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <svg ref={downArrow} className="fill-white w-[18px] m-auto transition-opacity" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
         </svg>
       </div>

@@ -7,13 +7,13 @@ const Treackter = () => {
   const audioContext = new AudioContext();
 
   return (
-    <div className="flex h-screen items-center">
+    <div className="flex h-screen">
       {/* Header */}
-      <div className="w-[5%]">
+      <div className="w-[5%] self-center">
         <h1 className="text-2xl text-secondary font-bold tracking-widest -rotate-90 drop-shadow-lg">Treackter</h1>
       </div>
       {/* DAW */}
-      <div className="w-[90%]">
+      <div className="w-[90%] self-center">
         <DAW audioContext={audioContext} />
       </div>
       {/* About Section */}

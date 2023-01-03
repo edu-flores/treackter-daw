@@ -1,41 +1,41 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useMemo } from 'react';
 import SoundboardPad from './SoundboardPad';
 
 // Hashmap for key presses
 const keyToSound = new Map([
   // Kit1
-  ['KeyQ', 'Kick 1'],
-  ['KeyW', 'Snare 1'],
-  ['KeyE', 'Closed 1'],
-  ['KeyR', 'Open 1'],
-  ['KeyT', 'Key 1'],
-  ['KeyY', 'Guitar 1'],
-  ['KeyU', 'Bass 1'],
-  ['KeyI', 'Tom 1'],
-  ['KeyO', 'Clap 1'],
-  ['KeyP', 'Adlib 1'],
+  ['KeyQ', 1],
+  ['KeyW', 2],
+  ['KeyE', 3],
+  ['KeyR', 4],
+  ['KeyT', 5],
+  ['KeyY', 6],
+  ['KeyU', 7],
+  ['KeyI', 8],
+  ['KeyO', 9],
+  ['KeyP', 10],
   // Kit2
-  ['KeyA', 'Kick 2'],
-  ['KeyS', 'Snare 2'],
-  ['KeyD', 'Closed 2'],
-  ['KeyF', 'Open 2'],
-  ['KeyG', 'Key 2'],
-  ['KeyH', 'Guitar 2'],
-  ['KeyJ', 'Bass 2'],
-  ['KeyK', 'Tom 2'],
-  ['KeyL', 'Clap 2'],
-  ['Semicolon', 'Adlib 2'],
+  ['KeyA', 11],
+  ['KeyS', 12],
+  ['KeyD', 13],
+  ['KeyF', 14],
+  ['KeyG', 15],
+  ['KeyH', 16],
+  ['KeyJ', 17],
+  ['KeyK', 18],
+  ['KeyL', 19],
+  ['Semicolon', 20],
   // Kit3
-  ['KeyZ', 'Kick 3'],
-  ['KeyX', 'Snare 3'],
-  ['KeyC', 'Closed 3'],
-  ['KeyV', 'Open 3'],
-  ['KeyB', 'Key 3'],
-  ['KeyN', 'Guitar 3'],
-  ['KeyM', 'Bass 3'],
-  ['Comma', 'Tom 3'],
-  ['Period', 'Clap 3'],
-  ['Slash', 'Adlib 3']
+  ['KeyZ', 21],
+  ['KeyX', 22],
+  ['KeyC', 23],
+  ['KeyV', 24],
+  ['KeyB', 25],
+  ['KeyN', 26],
+  ['KeyM', 27],
+  ['Comma', 28],
+  ['Period', 29],
+  ['Slash', 30]
 ]);
 
 type Pad = {
@@ -54,24 +54,31 @@ type Props = {
   playSound: Function
 }
 
+type RefsObject = {
+  [key: number]: HTMLButtonElement
+}
+
 const Soundboard = ({ kits, playSound }: Props) => {
 
+  // Object containing all refs of the soundboard pads
+  const padsRefs: RefsObject = useMemo(() => {
+    return {};
+  }, []);
+  
   // Event handler functions
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
     if (keyToSound.has(event.code) && !event.repeat) {
-      const name = keyToSound.get(event.code)!;
-      const pad = document.getElementById(name);
+      const pad = padsRefs[keyToSound.get(event.code)!];
       pad?.dispatchEvent(new Event('mousedown'));
       pad?.classList.add('scale-90');
     }
-  }, []);
+  }, [padsRefs])
   const handleKeyUp = useCallback((event: KeyboardEvent) => {
     if (keyToSound.has(event.code)) {
-      const name = keyToSound.get(event.code)!;
-      const pad = document.getElementById(name);
+      const pad = padsRefs[keyToSound.get(event.code)!];
       pad?.classList.remove('scale-90');
     }
-  }, []);
+  }, [padsRefs])
 
   useEffect(() => {
     // Listen for key presses
@@ -82,6 +89,7 @@ const Soundboard = ({ kits, playSound }: Props) => {
       window.removeEventListener('keypress', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     }
+
   }, [handleKeyDown, handleKeyUp]);
 
   // Check if all soundboard pads contain their respective audio
@@ -110,6 +118,7 @@ const Soundboard = ({ kits, playSound }: Props) => {
             {kits[0]?.map((sound: Pad) =>
               <SoundboardPad
                 key={sound.id}
+                ref={(ref: HTMLButtonElement) => padsRefs[sound.id] = ref}
                 name={sound.name}
                 background={sound.color}
                 audio={sound.audio!}
@@ -123,6 +132,7 @@ const Soundboard = ({ kits, playSound }: Props) => {
             {kits[1]?.map((sound: Pad) =>
               <SoundboardPad
                 key={sound.id}
+                ref={(ref: HTMLButtonElement) => padsRefs[sound.id] = ref}
                 name={sound.name}
                 background={sound.color}
                 audio={sound.audio!}
@@ -136,6 +146,7 @@ const Soundboard = ({ kits, playSound }: Props) => {
             {kits[2]?.map((sound: Pad) =>
               <SoundboardPad
                 key={sound.id}
+                ref={(ref: HTMLButtonElement) => padsRefs[sound.id] = ref}
                 name={sound.name}
                 background={sound.color}
                 audio={sound.audio!}
