@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import MediaButton from './MediaButton';
-import tracksData from '../json/tracks.json';
 import Track from './Track';
+import timelineJSON from '../json/timeline.json';
 
 type Pad = {
   id: number,
@@ -17,16 +17,17 @@ type Kit = Pad[];
 type Props = {
   kits: Kit[],
   playSound: Function,
-  BPM: number
+  BPM: number,
+  masterVolume: number
 }
 
-const Timeline = ({ kits, playSound, BPM }: Props) => {
+const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
 
   // Timeline sequence on/off
   const [active, setActive] = useState(false);
 
-  // Ten tracks, one for each instrument
-  const [tracks, setTracks] = useState(tracksData);
+  // Timeline settings and track data
+  const [timeline, setTimeline] = useState(timelineJSON);
 
   // Display or hide down arrow
   const timelineSpace = useRef<HTMLDivElement>(null);
@@ -43,24 +44,29 @@ const Timeline = ({ kits, playSound, BPM }: Props) => {
 
   // Play all armed timeline pads on a column
   const playColumn = async (column: number) => {
-    const tracksCopy = [...tracks];
-    tracksCopy.forEach(track => {
-      const prevColumn = (column - 1 < 0) ? (tracksCopy[0].pads.length - 1) : (column - 1);
+    const newTimeline = {...timeline};
+    newTimeline.tracks.forEach(track => {
+      // Deactivate previous column pads, and activate current column pads
+      const prevColumn = (column - 1 < 0) ? (track.pads.length - 1) : (column - 1);
       const prevPad = track.pads[prevColumn];
       prevPad.playing = false;
       const currPad = track.pads[column];
       currPad.playing = true;
-      if (currPad.kit  && (track.state.solo || (!track.state.ignored && !track.state.muted))) {  // Play sound
+
+      // Play sound
+      if (currPad.kit  && (track.state.solo || (!track.state.ignored && !track.state.muted))) {
+        playSound(currPad.sound, track.audio.panning, track.audio.volume, newTimeline.settings.masterVolume);
+
+        // Set soundboard pad animation
         const soundboardPad = document.getElementById(`${track.name} ${currPad.kit}`);
-        playSound(currPad.sound, track.audio.volume, track.audio.panning);
         soundboardPad?.classList.add('scale-90');
         setTimeout(() => {
           soundboardPad?.classList.remove('scale-90');
         }, 100);
       }
     });
-    setTracks(tracksCopy);
-    await new Promise(r => setTimeout(r, 60_000 / BPM));
+    setTimeline(newTimeline);
+    await new Promise(r => setTimeout(r, 60_000 / timeline.settings.BPM));
   }
 
   // Media Buttons SVGs and functions
@@ -68,6 +74,15 @@ const Timeline = ({ kits, playSound, BPM }: Props) => {
   const startTimeline = () => setActive(true);
   const stopPath = <path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />;
   const stopTimeline = () => setActive(false);
+
+  // Update BPM and master volume after a change
+  useEffect(() => {
+    const newTimeline = {...timeline}
+    newTimeline.settings.BPM = BPM;
+    newTimeline.settings.masterVolume = masterVolume;
+
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  }, [BPM, masterVolume])
 
   // Timeline manager (starting & stopping)
   useEffect(() => {
@@ -78,7 +93,7 @@ const Timeline = ({ kits, playSound, BPM }: Props) => {
       const play = async () => {
         await new Promise(r => setTimeout(r, 100));  // Slight delay
         while (valid)
-          for (let column = 0; column < tracks[0].pads.length && valid; column++)
+          for (let column = 0; column < timeline.tracks[0].pads.length && valid; column++)
             await playColumn(column);
       }
       play();
@@ -87,17 +102,17 @@ const Timeline = ({ kits, playSound, BPM }: Props) => {
     // Cleanup
     return () => {
       valid = false;
-      const newTracks = [...tracks];
-      newTracks.forEach(track => {
+      const newTimeline = {...timeline};
+      newTimeline.tracks.forEach(track => {
         track.pads.forEach(pad => {
           pad.playing = false;
         });
       });
-      setTracks(newTracks);
+      setTimeline(newTimeline);
     }
 
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [active, BPM]);
+  }, [active]);
 
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
@@ -164,14 +179,14 @@ const Timeline = ({ kits, playSound, BPM }: Props) => {
         </div>
         {/* Tracks */}
         <div className="px-8 pt-3">
-          {tracks.map(track =>
+          {timeline.tracks.map(track =>
             <Track
               key={track.name}
               self={track}
               soundsData={kits.map(kit => kit.find(sound => sound.type === track.name)!)}
               playSound={playSound}
-              tracks={tracks}
-              setTracks={setTracks}
+              timeline={timeline}
+              setTimeline={setTimeline}
             />
           )}
         </div>

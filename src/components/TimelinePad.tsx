@@ -15,6 +15,11 @@ type Props = {
     sound: AudioBuffer | null,
     playing: boolean
   },
+  stateProperties: {
+    solo: boolean,
+    muted: boolean,
+    ignored: boolean
+  },
   audioProperties: {
     volume: number,
     panning: number
@@ -23,7 +28,7 @@ type Props = {
   playSound: Function
 }
 
-const TimelinePad = ({ padProperties, audioProperties, soundsData, playSound }: Props) => {
+const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsData, playSound }: Props) => {
 
   // Background color
   const [bgColor, setBgColor] = useState('');
@@ -46,7 +51,10 @@ const TimelinePad = ({ padProperties, audioProperties, soundsData, playSound }: 
       padProperties.sound = soundsData[kitIndex].audio;
       setClicks(clicks => clicks + 1);
       setBgColor((soundsData[kitIndex]).color);
-      playSound(padProperties.sound, audioProperties.volume, audioProperties.panning);
+
+      // Play corresponding sound effect with audio and state properties
+      if (stateProperties.solo || (!stateProperties.ignored && !stateProperties.muted))
+        playSound(padProperties.sound, audioProperties.panning, audioProperties.volume);
     }
   }
 

@@ -29,25 +29,34 @@ type AudioTrack = {
   }
 }
 
+type Timeline = {
+  settings: { 
+    BPM: number,
+    masterVolume: number
+  },
+  tracks: AudioTrack[]
+}
+
 type Props = {
   self: AudioTrack,
   soundsData: Pad[],
   playSound: Function,
-  tracks: AudioTrack[],
-  setTracks: Function
+  timeline: Timeline,
+  setTimeline: Function
 }
 
-const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
+const Track = ({ self, soundsData, playSound, timeline, setTimeline }: Props) => {
 
   // Properties of all 16 pads on the corresponding track
-  const pads = tracks.find(track => track.name === self.name)!.pads;
+  const pads = timeline.tracks.find(track => track.name === self.name)!.pads;
 
   // Solo selected track, mute all others
   const soloTrack = () => {
-    const newTracks = [...tracks];
+    const newTimeline = {...timeline};
+    const tracks = newTimeline.tracks;
 
     // Remove solo from all other tracks, and ignore them
-    newTracks.forEach(track => {
+    tracks.forEach(track => {
       if (track.name !== self.name) {
         track.state.solo = false;
       }
@@ -55,29 +64,30 @@ const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
     });
 
     // Solo self track
-    const index = newTracks.findIndex(track => track.name === self.name);
-    newTracks[index].state.solo = !newTracks[index].state.solo;
+    const index = tracks.findIndex(track => track.name === self.name);
+    tracks[index].state.solo = !tracks[index].state.solo;
 
     // No soloed tracks, remove ignored state
-    const soloCount = newTracks.filter(track => track.state.solo === true).length;
+    const soloCount = tracks.filter(track => track.state.solo === true).length;
     if (soloCount === 0) {
-      newTracks.forEach(track => {
+      tracks.forEach(track => {
         track.state.ignored = false;
       });
     }
 
-    setTracks(newTracks);
+    setTimeline(newTimeline);
   };
 
   // Don't play any media from selected track
   const muteTrack = () => {
-    const newTracks = [...tracks];
+    const newTimeline = {...timeline};
+    const tracks = newTimeline.tracks;
 
     // Mute self track
-    const index = newTracks.findIndex(track => track.name === self.name);
-    newTracks[index].state.muted = !newTracks[index].state.muted;
+    const index = tracks.findIndex(track => track.name === self.name);
+    tracks[index].state.muted = !tracks[index].state.muted;
     
-    setTracks(newTracks);
+    setTimeline(newTimeline);
   };
 
   return (
@@ -93,6 +103,7 @@ const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
               <TimelinePad
                 key={index}
                 padProperties={pad}
+                stateProperties={self.state}
                 audioProperties={self.audio}
                 soundsData={soundsData}
                 playSound={playSound}
@@ -105,6 +116,7 @@ const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
               <TimelinePad
                 key={index}
                 padProperties={pad}
+                stateProperties={self.state}
                 audioProperties={self.audio}
                 soundsData={soundsData}
                 playSound={playSound}
@@ -117,6 +129,7 @@ const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
               <TimelinePad
                 key={index}
                 padProperties={pad}
+                stateProperties={self.state}
                 audioProperties={self.audio}
                 soundsData={soundsData}
                 playSound={playSound}
@@ -129,6 +142,7 @@ const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
               <TimelinePad
                 key={index}
                 padProperties={pad}
+                stateProperties={self.state}
                 audioProperties={self.audio}
                 soundsData={soundsData}
                 playSound={playSound}
@@ -159,9 +173,9 @@ const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
             <Knob
               value={self.audio.volume}
               setter={(value: number) => {
-                const newTracks = [...tracks];
-                newTracks.find(track => track.name === self.name)!.audio.volume = value;
-                setTracks(newTracks);
+                const newTimeline = {...timeline};
+                newTimeline.tracks.find(track => track.name === self.name)!.audio.volume = value;
+                setTimeline(newTimeline);
               }}
               initial={0.5}
               min={0}
@@ -172,9 +186,9 @@ const Track = ({ self, soundsData, playSound, tracks, setTracks }: Props) => {
             <Knob
               value={self.audio.panning}
               setter={(value: number) => {
-                const newTracks = [...tracks];
-                newTracks.find(track => track.name === self.name)!.audio.panning = value;
-                setTracks(newTracks);
+                const newTimeline = {...timeline};
+                newTimeline.tracks.find(track => track.name === self.name)!.audio.panning = value;
+                setTimeline(newTimeline);
               }}
               initial={0}
               min={-1}

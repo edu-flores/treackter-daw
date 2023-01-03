@@ -51,14 +51,14 @@ const DAW = ({ audioContext }: Props) => {
   }
 
   // Start a sound
-  const playSound = (audioBuffer: AudioBuffer, volume=1, panning=0) => {
+  const playSound = (audioBuffer: AudioBuffer, panning=0, selfVol=1, masterVol=masterVolume) => {
     const source = audioContext.createBufferSource();
     source.buffer = audioBuffer;
 
-    // Volume & Panning
-    const vol = audioContext.createGain();
-    vol.gain.value = masterVolume * volume;
+    // Panning & volume
     const pan = new StereoPannerNode(audioContext, { pan: panning });
+    const vol = audioContext.createGain();
+    vol.gain.value = selfVol * masterVol;
     source.connect(vol).connect(pan).connect(audioContext.destination);
 
     // Play
@@ -104,6 +104,7 @@ const DAW = ({ audioContext }: Props) => {
         kits={kits}
         playSound={playSound}
         BPM={BPM}
+        masterVolume={masterVolume}
       />
     </div>
   );
