@@ -192,8 +192,8 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
       </div>
       {/* Down Arrow */}
       <div className="py-1">
-        <svg ref={downArrow} className="fill-white w-[18px] m-auto transition-opacity" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
+        <svg ref={downArrow} className="fill-light-gray w-[14px] m-auto transition-opacity" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+          <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
         </svg>
       </div>
     </div>
