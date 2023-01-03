@@ -91,7 +91,6 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
     if (active) {
       valid = true;
       const play = async () => {
-        await new Promise(r => setTimeout(r, 100));  // Slight delay
         while (valid)
           for (let column = 0; column < timeline.tracks[0].pads.length && valid; column++)
             await playColumn(column);
