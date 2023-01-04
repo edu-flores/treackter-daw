@@ -93,7 +93,7 @@ const Track = ({ self, soundsData, playSound, timeline, setTimeline }: Props) =>
   return (
     <div className="py-2">
       <div className="flex">
-        <div className="w-[10%] text-center text-lg text-light-gray">
+        <div className="w-[10%] text-lg text-light-gray">
           <span><b>{self.name}</b></span>
         </div>
         <div className="w-[90%] flex gap-8 text-sm text-center">
@@ -180,7 +180,7 @@ const Track = ({ self, soundsData, playSound, timeline, setTimeline }: Props) =>
               initial={0.5}
               min={0}
               max={1}
-              step={0.005}
+              step={0.02}
             />
             {/* Panning */}
             <Knob
@@ -193,7 +193,7 @@ const Track = ({ self, soundsData, playSound, timeline, setTimeline }: Props) =>
               initial={0}
               min={-1}
               max={1}
-              step={0.01}
+              step={0.04}
             />
           </div>
         </div>

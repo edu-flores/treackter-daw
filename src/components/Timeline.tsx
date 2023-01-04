@@ -119,7 +119,7 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
         {/* Top */}
         <div className="flex sticky top-0 bg-primary z-10 px-8 py-3 min-w-fit text-light-gray font-semibold shadow-lg">
           <div className="w-[10%]">
-            <div className="flex gap-5 justify-center">
+            <div className="flex gap-5 justify-start">
               {/* Play */}
               <MediaButton
                 svgPath={playPath}

@@ -18,18 +18,18 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
 
   // Slide knob up & down
   let prevY = 0;
-  const scrollKnob = (event: MouseEvent) => {
-    if (event.pageY < prevY) {  // Up
+  const scrollKnob = (event: MouseEvent | React.WheelEvent) => {
+    if (event.pageY < prevY || (event as React.WheelEvent).deltaY < 0) {  // Up
       if (valueCopy + step <= max) {
-        setRotation(rotation => rotation + 1.2);
+        setRotation(rotation => rotation + 4.8);
         valueCopy += step;
       } else {
         setRotation(120);
         valueCopy = max;
       }
-    } else if (event.pageY > prevY) {  // Down
+    } else if (event.pageY > prevY || (event as React.WheelEvent).deltaY > 0) {  // Down
       if (valueCopy - step >= min) {
-        setRotation(rotation => rotation - 1.2);
+        setRotation(rotation => rotation - 4.8);
         valueCopy -= step;
       } else {
         setRotation(-120);
@@ -57,6 +57,7 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
       className="bg-secondary rounded-full w-[28px] h-[28px] drop-shadow-lg"
       style={{transform: `rotate(${rotation}deg)`}}
       onMouseDown={() => listenMovement()}
+      onWheel={event => scrollKnob(event)}
       onClick={event => {
         if (event.detail > 1) {
           setter(initial);

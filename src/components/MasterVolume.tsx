@@ -15,7 +15,7 @@ const MasterVolume = ({ masterVolume, setMasterVolume }: Props) => {
         initial={0.5}
         min={0}
         max={1}
-        step={0.005}
+        step={0.02}
       />
     </div>
   );
