@@ -114,7 +114,7 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   }, [active]);
 
   return (
-    <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
+    <div className="bg-primary rounded-b-xl relative shadow-lg">
       <div className="px-8 pt-3">
         <div ref={timelineSpace} className="w-6xl h-64 overflow-auto" onScroll={() => handleScroll()}>
           {/* Top */}
