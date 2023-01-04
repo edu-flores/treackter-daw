@@ -76,7 +76,7 @@ const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsDa
           padProperties.sound = null;
           setBgColor('');
           setClicks(0);
-        }, 750);
+        }, 1000);
       }}
       onTouchEnd={() => {
         if (timer) clearTimeout(timer);
