@@ -30,6 +30,9 @@ type Props = {
 
 const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsData, playSound }: Props) => {
 
+  // Timer for listening touch holds
+  let timer: ReturnType<typeof setTimeout>;
+
   // Background color
   const [bgColor, setBgColor] = useState('');
   const [clicks, setClicks] = useState(0);
@@ -67,6 +70,17 @@ const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsDa
         transform: padProperties.playing ? 'scale(1.3)' : ''
       }}
       onClick={event => alterPad(event)}
+      onTouchStart={() => {
+        timer = setTimeout(() => {
+          padProperties.kit = null;
+          padProperties.sound = null;
+          setBgColor('');
+          setClicks(0);
+        }, 500);
+      }}
+      onTouchEnd={() => {
+        if (timer) clearTimeout(timer);
+      }}
     >
     </div>
   ); 

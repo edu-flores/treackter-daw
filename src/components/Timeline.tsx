@@ -29,17 +29,27 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   // Timeline settings and track data
   const [timeline, setTimeline] = useState(timelineJSON);
 
-  // Display or hide down arrow
+  // Refs for timeline html utilities
   const timelineSpace = useRef<HTMLDivElement>(null);
   const downArrow = useRef<SVGSVGElement>(null);
+
+  // Display or hide down arrow
   const handleScroll = () => {
     const timeline = timelineSpace.current!;
     const arrow = downArrow.current!;
     if (timeline?.scrollTop === 0) {  // Top
+      arrow.style.visibility = 'visible';
       arrow.style.opacity = '1';
     } else {
       arrow.style.opacity = '0';
+      arrow.style.visibility = 'hidden';
     }
+  }
+
+  // Scroll to the bottom of the timelinespace
+  const scrollToBottom = () => {
+    const timeline = timelineSpace.current!;
+    timeline.scrollTop = 1_000_000;
   }
 
   // Play all armed timeline pads on a column
@@ -114,86 +124,90 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   }, [active]);
 
   return (
-    <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
-      <div ref={timelineSpace} className="h-64 overflow-y-auto" onScroll={() => handleScroll()}>
-        {/* Top */}
-        <div className="flex sticky top-0 bg-primary z-10 px-8 py-3 text-light-gray font-semibold shadow-lg">
-          <div className="w-[10%]">
-            <div className="flex gap-5 justify-center">
-              {/* Play */}
-              <MediaButton
-                svgPath={playPath}
-                color={'#66c187'}
-                role={startTimeline}
-                disabled={active}
-              />
-              {/* Stop */}
-              <MediaButton
-                svgPath={stopPath}
-                color={'#f08937'}
-                role={stopTimeline}
-                disabled={!active}
-              />
-            </div>
-          </div>
-          <div className="w-[90%] flex items-center gap-8 text-sm text-center">
-            {/* First Bar */}
-            <div className="w-[20%] flex justify-center gap-4">
-              <span className="w-7">1</span>
-              <span className="w-7">1.2</span>
-              <span className="w-7">1.3</span>
-              <span className="w-7">1.4</span>
-            </div>
-            {/* Second Bar */}
-            <div className="w-[20%] flex justify-center gap-4">
-              <span className="w-7">2</span>
-              <span className="w-7">2.2</span>
-              <span className="w-7">2.3</span>
-              <span className="w-7">2.4</span>
-            </div>
-            {/* Third Bar */}
-            <div className="w-[20%] flex justify-center gap-4">
-              <span className="w-7">3</span>
-              <span className="w-7">3.2</span>
-              <span className="w-7">3.3</span>
-              <span className="w-7">3.4</span>
-            </div>
-            {/* Fourth Bar */}
-            <div className="w-[20%] flex justify-center gap-4">
-              <span className="w-7">4</span>
-              <span className="w-7">4.2</span>
-              <span className="w-7">4.3</span>
-              <span className="w-7">4.4</span>
-            </div>
-            {/* Audio Manipulation */}
-            <div className="w-[20%] flex gap-5 justify-end">
-              <div>
-                <span>VOL</span>
-              </div>
-              <div>
-                <span>PAN</span>
+    <div className="bg-primary rounded-b-xl relative shadow-lg">
+      <div className="px-8 pt-3">
+        <div ref={timelineSpace} className="w-6xl h-64 overflow-auto scroll-smooth" onScroll={() => handleScroll()}>
+          {/* Top */}
+          <div className="flex sticky top-0 left-0 right-0 bg-primary z-10 min-w-fit overflow-auto pb-3 text-light-gray font-semibold shadow-lg">
+            <div className="w-[10%]">
+              <div className="flex gap-5 justify-start">
+                {/* Play */}
+                <MediaButton
+                  svgPath={playPath}
+                  color={'#66c187'}
+                  role={startTimeline}
+                  disabled={active}
+                />
+                {/* Stop */}
+                <MediaButton
+                  svgPath={stopPath}
+                  color={'#f08937'}
+                  role={stopTimeline}
+                  disabled={!active}
+                />
               </div>
             </div>
+            <div className="w-[90%] flex gap-8 text-sm text-center">
+              {/* First Bar */}
+              <div className="w-[20%] flex justify-center gap-4">
+                <span className="w-7">1</span>
+                <span className="w-7">1.2</span>
+                <span className="w-7">1.3</span>
+                <span className="w-7">1.4</span>
+              </div>
+              {/* Second Bar */}
+              <div className="w-[20%] flex justify-center gap-4">
+                <span className="w-7">2</span>
+                <span className="w-7">2.2</span>
+                <span className="w-7">2.3</span>
+                <span className="w-7">2.4</span>
+              </div>
+              {/* Third Bar */}
+              <div className="w-[20%] flex justify-center gap-4">
+                <span className="w-7">3</span>
+                <span className="w-7">3.2</span>
+                <span className="w-7">3.3</span>
+                <span className="w-7">3.4</span>
+              </div>
+              {/* Fourth Bar */}
+              <div className="w-[20%] flex justify-center gap-4">
+                <span className="w-7">4</span>
+                <span className="w-7">4.2</span>
+                <span className="w-7">4.3</span>
+                <span className="w-7">4.4</span>
+              </div>
+              {/* Audio Manipulation */}
+              <div className="w-[20%] flex gap-5 justify-end items-center">
+                <div className="w-[10px]">&nbsp;</div>
+                <div className="w-[10px]">&nbsp;</div>
+                <div>
+                  <span>VOL</span>
+                </div>
+                <div>
+                  <span>PAN</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        {/* Tracks */}
-        <div className="px-8 pt-3">
-          {timeline.tracks.map(track =>
-            <Track
-              key={track.name}
-              self={track}
-              soundsData={kits.map(kit => kit.find(sound => sound.type === track.name)!)}
-              playSound={playSound}
-              timeline={timeline}
-              setTimeline={setTimeline}
-            />
-          )}
+          {/* Tracks */}
+          <div className="min-w-fit">
+            {timeline.tracks.map(track =>
+              <Track
+                key={track.name}
+                self={track}
+                soundsData={kits.map(kit => kit.find(sound => sound.type === track.name)!)}
+                playSound={playSound}
+                timeline={timeline}
+                setTimeline={setTimeline}
+              />
+            )}
+          </div>
         </div>
       </div>
       {/* Down Arrow */}
       <div className="py-1">
-        <svg ref={downArrow} className="fill-white w-[18px] m-auto transition-opacity" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
+        <svg ref={downArrow} onClick={() => scrollToBottom()} className="fill-light-gray w-[14px] m-auto transition-opacity cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+          <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
         </svg>
       </div>
     </div>
