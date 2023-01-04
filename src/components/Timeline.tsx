@@ -225,35 +225,35 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
             </div>
             <div className="w-[90%] flex gap-8 text-sm text-center">
               {/* First Bar */}
-              <div className="w-[20%] flex justify-center gap-4">
-                <span className="w-7">1</span>
-                <span className="w-7">1.2</span>
-                <span className="w-7">1.3</span>
-                <span className="w-7">1.4</span>
+              <div className="w-1/5 flex justify-center gap-4">
+                <span className="w-8">1</span>
+                <span className="w-8">1.2</span>
+                <span className="w-8">1.3</span>
+                <span className="w-8">1.4</span>
               </div>
               {/* Second Bar */}
-              <div className="w-[20%] flex justify-center gap-4">
-                <span className="w-7">2</span>
-                <span className="w-7">2.2</span>
-                <span className="w-7">2.3</span>
-                <span className="w-7">2.4</span>
+              <div className="w-1/5 flex justify-center gap-4">
+                <span className="w-8">2</span>
+                <span className="w-8">2.2</span>
+                <span className="w-8">2.3</span>
+                <span className="w-8">2.4</span>
               </div>
               {/* Third Bar */}
-              <div className="w-[20%] flex justify-center gap-4">
-                <span className="w-7">3</span>
-                <span className="w-7">3.2</span>
-                <span className="w-7">3.3</span>
-                <span className="w-7">3.4</span>
+              <div className="w-1/5 flex justify-center gap-4">
+                <span className="w-8">3</span>
+                <span className="w-8">3.2</span>
+                <span className="w-8">3.3</span>
+                <span className="w-8">3.4</span>
               </div>
               {/* Fourth Bar */}
-              <div className="w-[20%] flex justify-center gap-4">
-                <span className="w-7">4</span>
-                <span className="w-7">4.2</span>
-                <span className="w-7">4.3</span>
-                <span className="w-7">4.4</span>
+              <div className="w-1/5 flex justify-center gap-4">
+                <span className="w-8">4</span>
+                <span className="w-8">4.2</span>
+                <span className="w-8">4.3</span>
+                <span className="w-8">4.4</span>
               </div>
               {/* Audio Manipulation */}
-              <div className="w-[20%] flex gap-5 justify-end items-center">
+              <div className="w-1/5 flex gap-5 justify-end items-center">
                 <div className="w-[10px]">&nbsp;</div>
                 <div className="w-[10px]">&nbsp;</div>
                 <div>
