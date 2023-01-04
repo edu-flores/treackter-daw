@@ -1,24 +1,19 @@
 type Props = {
-  svgPath: JSX.Element,
+  text: string,
   color: string,
-  role: Function,
-  disabled: boolean
+  role: Function
 }
 
-const MediaButton = ({ svgPath, color, role, disabled }: Props) => {
+const TimelineButton = ({ text, color, role }: Props) => {
   return (
-    <button disabled={disabled} onClick={() => role()}>
-      <svg
-        className={`w-[18px] drop-shadow-lg ${disabled ? '' : 'active:fill-secondary'}`}
-        style={{cursor: disabled ? '' : 'pointer', filter: disabled ? 'brightness(0.5)' : ''}}
-        fill={color}
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 384 512"
-      >
-        {svgPath}
-      </svg>
+    <button
+      className="drop-shadow-lg active:!text-secondary"
+      style={{ color: color }}
+      onClick={() => role()}
+    >
+      <span className="text-sm font-semibold tracking-widest brightness-90">{text}</span>
     </button>
   );
 }
   
-export default MediaButton;
+export default TimelineButton;

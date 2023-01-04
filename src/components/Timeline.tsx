@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import Modal from './Modal';
+// import Modal from './Modal';
+import MediaButton from './MediaButton';
 import TimelineButton from './TimelineButton';
 import Track from './Track';
 import timelineJSON from '../json/timeline.json';
@@ -110,9 +111,7 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   const stopPath = <path d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />;
   const stopTimeline = () => setActive(false);
 
-  // Timeline bottom buttons (clear, shuffle, export & import) SVGs and functions
   // Clear all tiles
-  const clearPath = <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />;
   const clearTimeline = () => {
     const newTimeline = {...timeline};
     newTimeline.tracks.forEach(track => {
@@ -126,7 +125,6 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   }
 
   // Shuffle all tiles
-  const shufflePath = <path d="M403.8 34.4c12-5 25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6V160H352c-10.1 0-19.6 4.7-25.6 12.8L284 229.3 244 176l31.2-41.6C293.3 110.2 321.8 96 352 96h32V64c0-12.9 7.8-24.6 19.8-29.6zM164 282.7L204 336l-31.2 41.6C154.7 401.8 126.2 416 96 416H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H96c10.1 0 19.6-4.7 25.6-12.8L164 282.7zm274.6 188c-9.2 9.2-22.9 11.9-34.9 6.9s-19.8-16.6-19.8-29.6V416H352c-30.2 0-58.7-14.2-76.8-38.4L121.6 172.8c-6-8.1-15.5-12.8-25.6-12.8H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H96c30.2 0 58.7 14.2 76.8 38.4L326.4 339.2c6 8.1 15.5 12.8 25.6 12.8h32V320c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64z" />;
   const shuffleTimeline = () => {
     clearTimeline();
     const newTimeline = {...timeline};
@@ -145,7 +143,6 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   }
 
   // Export timeline
-  const exportPath = <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 416c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z" />;
   const exportTimeline = () => {
     const saveFile = JSON.stringify(timelineJSON);
     const blob = new Blob([saveFile], { type: 'text/plain' });
@@ -157,7 +154,6 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   }
 
   // Import timeline
-  const importPath = <path d="M128 64c0-35.3 28.7-64 64-64H352V128c0 17.7 14.3 32 32 32H512V448c0 35.3-28.7 64-64 64H192c-35.3 0-64-28.7-64-64V336H302.1l-39 39c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l39 39H128V64zm0 224v48H24c-13.3 0-24-10.7-24-24s10.7-24 24-24H128zM512 128H384V0L512 128z" />;
   const importTimeline = () => {}
 
   // Update BPM and master volume after a change
@@ -208,14 +204,14 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
             <div className="w-[10%]">
               <div className="flex gap-5 justify-start">
                 {/* Play */}
-                <TimelineButton
+                <MediaButton
                   svgPath={playPath}
                   color={'#66c187'}
                   role={startTimeline}
                   disabled={active}
                 />
                 {/* Stop */}
-                <TimelineButton
+                <MediaButton
                   svgPath={stopPath}
                   color={'#f08937'}
                   role={stopTimeline}
@@ -279,34 +275,30 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
             )}
           </div>
           {/* Timeline main utilities */}
-          <div className="flex gap-10">
+          <div className="flex gap-10 pt-3 w-1/2 m-auto justify-center">
             {/* Clear */}
             <TimelineButton
-              svgPath={clearPath}
+              text={'CLEAR'}
               color={'#fa685b'}
               role={clearTimeline}
-              disabled={false}
             />
             {/* Shuffle */}
             <TimelineButton
-              svgPath={shufflePath}
+              text={'SHUFFLE'}
               color={'#008ef6'}
               role={shuffleTimeline}
-              disabled={false}
             />
             {/* Export */}
             <TimelineButton
-              svgPath={exportPath}
+              text={'SAVE'}
               color={'#24d048'}
               role={exportTimeline}
-              disabled={false}
             />
             {/* Import */}
             <TimelineButton
-              svgPath={importPath}
+              text={'LOAD'}
               color={'#f9c33b'}
               role={importTimeline}
-              disabled={false}
             />
           </div>
         </div>

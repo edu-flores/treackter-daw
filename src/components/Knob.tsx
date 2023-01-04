@@ -70,7 +70,7 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
     <div
       ref={knob}
       className="bg-secondary rounded-full w-[28px] h-[28px] drop-shadow-lg"
-      style={{transform: `rotate(${rotation}deg)`}}
+      style={{ transform: `rotate(${rotation}deg)` }}
       onMouseDown={() => listenMovement()}
       onDoubleClick={() => {
         setter(initial);
