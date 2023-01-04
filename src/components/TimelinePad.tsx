@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Pad = {
   id: number,
@@ -44,7 +44,6 @@ const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsDa
     if (event.shiftKey) {
       padProperties.kit = null;
       padProperties.sound = null;
-      setBgColor('');
       setClicks(0);
     }
     // Activate
@@ -53,7 +52,6 @@ const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsDa
       padProperties.kit = kitIndex + 1;
       padProperties.sound = soundsData[kitIndex].audio;
       setClicks(clicks => clicks + 1);
-      setBgColor((soundsData[kitIndex]).color);
 
       // Play corresponding sound effect with audio and state properties
       if (stateProperties.solo || (!stateProperties.ignored && !stateProperties.muted))
@@ -61,11 +59,16 @@ const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsDa
     }
   }
 
+  // Cycle background color of the pad
+  useEffect(() => {
+    setBgColor(padProperties.kit ? soundsData[padProperties.kit-1].color : '');
+  }, [padProperties.kit, soundsData])
+
   return (
     <div
       className="relative border-solid border-2 border-white rounded-lg bg-primary w-7 h-7 cursor-pointer shadow-lg active:scale-90"
       style={{
-        backgroundColor: padProperties.kit ? bgColor : '',
+        backgroundColor: bgColor,
         borderColor: padProperties.playing ? '#87b3e0' : '',
         transform: padProperties.playing ? 'scale(1.3)' : ''
       }}
@@ -74,7 +77,6 @@ const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsDa
         timer = setTimeout(() => {
           padProperties.kit = null;
           padProperties.sound = null;
-          setBgColor('');
           setClicks(0);
         }, 500);
       }}
