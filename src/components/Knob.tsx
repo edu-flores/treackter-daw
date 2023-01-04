@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type Props = {
   value: number,
@@ -18,8 +18,9 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
 
   // Slide knob up & down
   let prevY = 0;
-  const scrollKnob = (event: MouseEvent | React.WheelEvent) => {
-    if (event.pageY < prevY || (event as React.WheelEvent).deltaY < 0) {  // Up
+  const scrollKnob = (event: MouseEvent | WheelEvent) => {
+    (event as WheelEvent).preventDefault();
+    if (event.pageY < prevY || (event as WheelEvent).deltaY < 0) {  // Up
       if (valueCopy + step <= max) {
         setRotation(rotation => rotation + 4.8);
         valueCopy += step;
@@ -27,7 +28,7 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
         setRotation(120);
         valueCopy = max;
       }
-    } else if (event.pageY > prevY || (event as React.WheelEvent).deltaY > 0) {  // Down
+    } else if (event.pageY > prevY || (event as WheelEvent).deltaY > 0) {  // Down
       if (valueCopy - step >= min) {
         setRotation(rotation => rotation - 4.8);
         valueCopy -= step;
@@ -39,6 +40,19 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
     prevY = event.pageY;
     setter(valueCopy);
   }
+
+  // Get knob and append wheel event listener to prevent page scrolling
+  const knob = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const currentKnob = knob.current;
+    currentKnob?.addEventListener('wheel', scrollKnob);
+
+    return () => {
+      currentKnob?.removeEventListener('wheel', scrollKnob);
+    }
+
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  }, []);
 
   // Detect mouse movement and the release of a click
   const listenMovement = () => {
@@ -53,11 +67,11 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
   }
 
   return (
-    <div 
+    <div
+      ref={knob}
       className="bg-secondary rounded-full w-[28px] h-[28px] drop-shadow-lg"
       style={{transform: `rotate(${rotation}deg)`}}
       onMouseDown={() => listenMovement()}
-      onWheel={event => scrollKnob(event)}
       onClick={event => {
         if (event.detail > 1) {
           setter(initial);
