@@ -43,7 +43,7 @@ const About = () => {
             <div className="w-[100%] px-5 self-center">
               <h2 className="text-xl text-center font-bold tracking-wider mt-1 mb-3">About</h2>
               <p className="mb-3"><i><b>Treackter</b></i> is an online digital audio workstation (DAW) for creating beats. </p>
-              <p className="mb-3">Cycle a pad sound on the timeline by clicking it multiple times. To clear it use <b>Shift</b> + <b>Click</b>.</p>
+              <p className="mb-3">Cycle a pad sound on the timeline by clicking it multiple times. To clear it use <b>Shift</b> + <b>Click</b> or <b>Hold</b> in mobile.</p>
               <p className="mb-3">You can also solo, mute and adjust the volume and panning of each instrument.</p>
               <p className="text-sm text-center">Made with {heart} <br /> by <a className="font-bold" href="https://edu-flores.github.io/" target="_blank" rel="noreferrer">Eduardo Flores {link}</a>.</p>
             </div>

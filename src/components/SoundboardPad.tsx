@@ -16,7 +16,7 @@ const SoundboardPad = forwardRef<HTMLButtonElement, Props>(({ name, background, 
       transition-all duration-75 hover:cursor-pointer active:scale-90 focus:outline-none"
       style={{backgroundColor: `${background}`}}
       type="button"
-      onMouseDownCapture={() => playSound(audio)}
+      onMouseDown={() => playSound(audio)}
     >
       <span className="drop-shadow-lg font-bold">{name}</span>
     </button>

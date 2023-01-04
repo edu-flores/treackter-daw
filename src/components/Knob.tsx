@@ -72,11 +72,9 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
       className="bg-secondary rounded-full w-[28px] h-[28px] drop-shadow-lg"
       style={{transform: `rotate(${rotation}deg)`}}
       onMouseDown={() => listenMovement()}
-      onClick={event => {
-        if (event.detail > 1) {
-          setter(initial);
-          setRotation(0);
-        }
+      onDoubleClick={() => {
+        setter(initial);
+        setRotation(0);
       }}
     >
       <div className="bg-primary rounded-full w-[3px] h-[5px] m-auto mt-[3px]"></div>
