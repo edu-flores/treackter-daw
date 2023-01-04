@@ -116,81 +116,83 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   return (
     <div className="bg-primary rounded-br-3xl rounded-bl-3xl relative shadow-lg">
       <div className="px-8 pt-3">
-        <div ref={timelineSpace} className="w-6xl h-64 overflow-auto" onScroll={() => handleScroll()}>
-          {/* Top */}
-          <div className="flex sticky top-0 bg-primary z-10 min-w-fit pb-3 text-light-gray font-semibold shadow-lg">
-            <div className="w-[10%]">
-              <div className="flex gap-5 justify-start">
-                {/* Play */}
-                <MediaButton
-                  svgPath={playPath}
-                  color={'#66c187'}
-                  role={startTimeline}
-                  disabled={active}
-                />
-                {/* Stop */}
-                <MediaButton
-                  svgPath={stopPath}
-                  color={'#f08937'}
-                  role={stopTimeline}
-                  disabled={!active}
-                />
-              </div>
-            </div>
-            <div className="w-[90%] flex items-center gap-8 text-sm text-center">
-              {/* First Bar */}
-              <div className="w-[20%] flex justify-center gap-4">
-                <span className="w-7">1</span>
-                <span className="w-7">1.2</span>
-                <span className="w-7">1.3</span>
-                <span className="w-7">1.4</span>
-              </div>
-              {/* Second Bar */}
-              <div className="w-[20%] flex justify-center gap-4">
-                <span className="w-7">2</span>
-                <span className="w-7">2.2</span>
-                <span className="w-7">2.3</span>
-                <span className="w-7">2.4</span>
-              </div>
-              {/* Third Bar */}
-              <div className="w-[20%] flex justify-center gap-4">
-                <span className="w-7">3</span>
-                <span className="w-7">3.2</span>
-                <span className="w-7">3.3</span>
-                <span className="w-7">3.4</span>
-              </div>
-              {/* Fourth Bar */}
-              <div className="w-[20%] flex justify-center gap-4">
-                <span className="w-7">4</span>
-                <span className="w-7">4.2</span>
-                <span className="w-7">4.3</span>
-                <span className="w-7">4.4</span>
-              </div>
-              {/* Audio Manipulation */}
-              <div className="w-[20%] flex gap-5 justify-end items-center">
-                <div className="w-[10px]">&nbsp;</div>
-                <div className="w-[10px]">&nbsp;</div>
-                <div>
-                  <span>VOL</span>
-                </div>
-                <div>
-                  <span>PAN</span>
+        <div className="h-64 overflow-auto">
+          <div ref={timelineSpace} onScroll={() => handleScroll()}>
+            {/* Top */}
+            <div className="flex sticky top-0 left-0 right-0 bg-primary z-10 min-w-fit pb-3 text-light-gray font-semibold shadow-lg">
+              <div className="w-[10%]">
+                <div className="flex gap-5 justify-start">
+                  {/* Play */}
+                  <MediaButton
+                    svgPath={playPath}
+                    color={'#66c187'}
+                    role={startTimeline}
+                    disabled={active}
+                  />
+                  {/* Stop */}
+                  <MediaButton
+                    svgPath={stopPath}
+                    color={'#f08937'}
+                    role={stopTimeline}
+                    disabled={!active}
+                  />
                 </div>
               </div>
+              <div className="w-[90%] flex items-center gap-8 text-sm text-center">
+                {/* First Bar */}
+                <div className="w-[20%] flex justify-center gap-4">
+                  <span className="w-7">1</span>
+                  <span className="w-7">1.2</span>
+                  <span className="w-7">1.3</span>
+                  <span className="w-7">1.4</span>
+                </div>
+                {/* Second Bar */}
+                <div className="w-[20%] flex justify-center gap-4">
+                  <span className="w-7">2</span>
+                  <span className="w-7">2.2</span>
+                  <span className="w-7">2.3</span>
+                  <span className="w-7">2.4</span>
+                </div>
+                {/* Third Bar */}
+                <div className="w-[20%] flex justify-center gap-4">
+                  <span className="w-7">3</span>
+                  <span className="w-7">3.2</span>
+                  <span className="w-7">3.3</span>
+                  <span className="w-7">3.4</span>
+                </div>
+                {/* Fourth Bar */}
+                <div className="w-[20%] flex justify-center gap-4">
+                  <span className="w-7">4</span>
+                  <span className="w-7">4.2</span>
+                  <span className="w-7">4.3</span>
+                  <span className="w-7">4.4</span>
+                </div>
+                {/* Audio Manipulation */}
+                <div className="w-[20%] flex gap-5 justify-end items-center">
+                  <div className="w-[10px]">&nbsp;</div>
+                  <div className="w-[10px]">&nbsp;</div>
+                  <div>
+                    <span>VOL</span>
+                  </div>
+                  <div>
+                    <span>PAN</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          {/* Tracks */}
-          <div className="min-w-fit">
-            {timeline.tracks.map(track =>
-              <Track
-                key={track.name}
-                self={track}
-                soundsData={kits.map(kit => kit.find(sound => sound.type === track.name)!)}
-                playSound={playSound}
-                timeline={timeline}
-                setTimeline={setTimeline}
-              />
-            )}
+            {/* Tracks */}
+            <div className="min-w-fit">
+              {timeline.tracks.map(track =>
+                <Track
+                  key={track.name}
+                  self={track}
+                  soundsData={kits.map(kit => kit.find(sound => sound.type === track.name)!)}
+                  playSound={playSound}
+                  timeline={timeline}
+                  setTimeline={setTimeline}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
