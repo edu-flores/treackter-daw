@@ -29,17 +29,27 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   // Timeline settings and track data
   const [timeline, setTimeline] = useState(timelineJSON);
 
-  // Display or hide down arrow
+  // Refs for timeline html utilities
   const timelineSpace = useRef<HTMLDivElement>(null);
   const downArrow = useRef<SVGSVGElement>(null);
+
+  // Display or hide down arrow
   const handleScroll = () => {
     const timeline = timelineSpace.current!;
     const arrow = downArrow.current!;
     if (timeline?.scrollTop === 0) {  // Top
+      arrow.style.visibility = 'visible';
       arrow.style.opacity = '1';
     } else {
       arrow.style.opacity = '0';
+      arrow.style.visibility = 'hidden';
     }
+  }
+
+  // Scroll to the bottom of the timelinespace
+  const scrollToBottom = () => {
+    const timeline = timelineSpace.current!;
+    timeline.scrollTop = 1_000_000;
   }
 
   // Play all armed timeline pads on a column
@@ -116,7 +126,7 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   return (
     <div className="bg-primary rounded-b-xl relative shadow-lg">
       <div className="px-8 pt-3">
-        <div ref={timelineSpace} className="w-6xl h-64 overflow-auto" onScroll={() => handleScroll()}>
+        <div ref={timelineSpace} className="w-6xl h-64 overflow-auto scroll-smooth" onScroll={() => handleScroll()}>
           {/* Top */}
           <div className="flex sticky top-0 left-0 right-0 bg-primary z-10 min-w-fit overflow-auto pb-3 text-light-gray font-semibold shadow-lg">
             <div className="w-[10%]">
@@ -196,7 +206,7 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
       </div>
       {/* Down Arrow */}
       <div className="py-1">
-        <svg ref={downArrow} className="fill-light-gray w-[14px] m-auto transition-opacity" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+        <svg ref={downArrow} onClick={() => scrollToBottom()} className="fill-light-gray w-[14px] m-auto transition-opacity cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
           <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
         </svg>
       </div>
