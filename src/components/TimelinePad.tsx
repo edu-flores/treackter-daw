@@ -65,7 +65,7 @@ const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsDa
     <div
       className="relative border-solid border-2 border-white rounded-lg bg-primary w-7 h-7 cursor-pointer shadow-lg active:scale-90"
       style={{
-        backgroundColor: bgColor,
+        backgroundColor: padProperties.kit ? bgColor : '',
         borderColor: padProperties.playing ? '#87b3e0' : '',
         transform: padProperties.playing ? 'scale(1.3)' : ''
       }}
