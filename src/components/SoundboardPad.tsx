@@ -18,7 +18,7 @@ const SoundboardPad = forwardRef<HTMLButtonElement, Props>(({ name, background, 
       type="button"
       onMouseDownCapture={() => playSound(audio)}
     >
-      <span className="drop-shadow-lg">{name}</span>
+      <span className="drop-shadow-lg font-bold">{name}</span>
     </button>
   );
 })

@@ -11,7 +11,7 @@
     "id": 2,
     "type": "Snare",
     "path": "./sounds/kit1/snare1.wav",
-    "color": "#141169",
+    "color": "#e4572e",
     "name": "Snare 1",
     "audio": null
   },
@@ -67,7 +67,7 @@
     "id": 9,
     "type": "Clap",
     "path": "./sounds/kit1/clap1.wav",
-    "color": "#067bc2",
+    "color": "#87bcde",
     "name": "Clap 1",
     "audio": null
   },
