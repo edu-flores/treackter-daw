@@ -148,7 +148,7 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
     const blob = new Blob([saveFile], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement('a');
-    anchor.download = `${'timeline'}.json`;
+    anchor.download = `${'MyBeat'}.json`;
     anchor.href = url;
     anchor.click();
   }
@@ -156,14 +156,15 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   // Import timeline
   const importTimeline = () => {}
 
-  // Modal contents
+  // Everything modal 
   const [modalContent, setModalContent] = useState(<div></div>);
   const [modalVisibility, setModalVisibility] = useState(false);
+  const [ignoreModal, setIgnoreModal] = useState(false);
   const clearModalContent = (
     <div>
       <h3 className="text-xl font-bold text-center text-secondary mb-5">Are you sure?</h3>
       <p className="text-lg text-secondary mb-5">This will clear all tiles from the current timeline</p>
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-5">
         <button
           className="bg-secondary w-24 rounded-lg py-2 text-primary font-bold shadow-lg"
           onClick={() => setModalVisibility(false)}
@@ -179,6 +180,37 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
         >
           Yes
         </button>
+      </div>
+      <div className="flex justify-center items-center">
+        <input id="ignore" name="ignore" type="checkbox" onChange={event => setIgnoreModal(event.target.checked)} />
+        <label className="ml-2 text-sm text-secondary" htmlFor="ignore">Don't show warnings again</label>
+      </div>
+    </div>
+  );
+  const shuffleModalContent = (
+    <div>
+      <h3 className="text-xl font-bold text-center text-secondary mb-5">Are you sure?</h3>
+      <p className="text-lg text-secondary mb-5">This will randomize all tiles from the current timeline</p>
+      <div className="flex justify-between mb-5">
+        <button
+          className="bg-secondary w-24 rounded-lg py-2 text-primary font-bold shadow-lg"
+          onClick={() => setModalVisibility(false)}
+        >
+          No
+        </button>
+        <button
+          className="bg-[#008ef6] w-24 rounded-lg py-2 text-primary font-bold shadow-lg"
+          onClick={() => {
+            shuffleTimeline();
+            setModalVisibility(false);
+          }}
+        >
+          Yes
+        </button>
+      </div>
+      <div className="flex justify-center items-center">
+        <input id="ignore" name="ignore" type="checkbox" onChange={event => setIgnoreModal(event.target.checked)} />
+        <label className="ml-2 text-sm text-secondary" htmlFor="ignore">Don't show warnings again</label>
       </div>
     </div>
   );
@@ -302,21 +334,28 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
             )}
           </div>
           {/* Timeline main utilities */}
-          <div className="flex gap-10 pt-3 w-1/2 m-auto justify-center">
+          <div className="flex gap-10 pt-5 w-1/2 m-auto justify-center">
             {/* Clear */}
             <TimelineButton
               text={'CLEAR'}
               color={'#fa685b'}
               role={() => {
-                setModalVisibility(true);
-                setModalContent(clearModalContent)
+                if (!ignoreModal) {
+                  setModalVisibility(true);
+                  setModalContent(clearModalContent)
+                } else clearTimeline();
               }}
             />
             {/* Shuffle */}
             <TimelineButton
               text={'SHUFFLE'}
               color={'#008ef6'}
-              role={shuffleTimeline}
+              role={() => {
+                if (!ignoreModal) {
+                  setModalVisibility(true);
+                  setModalContent(shuffleModalContent)
+                } else shuffleTimeline();
+              }}
             />
             {/* Export */}
             <TimelineButton
