@@ -177,13 +177,13 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
       <p className="text-lg text-secondary mb-5">This will clear all tiles from the current timeline</p>
       <div className="flex justify-between mb-5">
         <button
-          className="bg-secondary w-24 rounded-lg py-2 text-primary font-bold shadow-lg"
+          className="bg-secondary w-24 rounded-lg py-2 text-primary font-bold hover:brightness-75 shadow-lg"
           onClick={() => setModalVisibility(false)}
         >
           No
         </button>
         <button
-          className="bg-[#fa685b] w-24 rounded-lg py-2 text-primary font-bold shadow-lg"
+          className="bg-[#fa685b] w-24 rounded-lg py-2 text-primary font-bold hover:brightness-75 shadow-lg"
           onClick={() => {
             clearTimeline();
             setModalVisibility(false);
@@ -349,7 +349,6 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
             {/* Clear */}
             <TimelineButton
               text={'CLEAR'}
-              color={'#fa685b'}
               role={() => {
                 if (!ignoreModal) {
                   setModalVisibility(true);
@@ -360,7 +359,6 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
             {/* Shuffle */}
             <TimelineButton
               text={'SHUFFLE'}
-              color={'#008ef6'}
               role={() => {
                 if (!ignoreModal) {
                   setModalVisibility(true);
@@ -371,13 +369,11 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
             {/* Export */}
             <TimelineButton
               text={'SAVE'}
-              color={'#24d048'}
               role={exportTimeline}
             />
             {/* Import */}
             <TimelineButton
               text={'LOAD'}
-              color={'#f9c33b'}
               role={importTimeline}
             />
           </div>

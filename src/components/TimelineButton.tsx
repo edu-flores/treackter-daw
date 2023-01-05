@@ -1,17 +1,15 @@
 type Props = {
   text: string,
-  color: string,
   role: Function
 }
 
-const TimelineButton = ({ text, color, role }: Props) => {
+const TimelineButton = ({ text, role }: Props) => {
   return (
     <button
-      className="drop-shadow-lg active:!text-secondary"
-      style={{ color: color }}
+      className="drop-shadow-lg text-light-gray hover:!text-secondary"
       onClick={() => role()}
     >
-      <span className="text-sm font-semibold tracking-widest brightness-90">{text}</span>
+      <span className="text-sm font-semibold tracking-widest">{text}</span>
     </button>
   );
 }
