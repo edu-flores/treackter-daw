@@ -6,10 +6,11 @@ type Props = {
   initial: number,
   min: number,
   max: number,
-  step: number
+  step: number,
+  getRotation: Function
 }
 
-const Knob = ({ value, setter, initial, min, max, step }: Props) => {
+const Knob = ({ value, setter, initial, min, max, step, getRotation }: Props) => {
 
   let valueCopy = value;
 
@@ -22,24 +23,25 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
     (event as WheelEvent).preventDefault();
     if (event.pageY < prevY || (event as WheelEvent).deltaY < 0) {  // Up
       if (valueCopy + step <= max) {
-        setRotation(rotation => rotation + 4.8);
         valueCopy += step;
       } else {
-        setRotation(120);
         valueCopy = max;
       }
     } else if (event.pageY > prevY || (event as WheelEvent).deltaY > 0) {  // Down
       if (valueCopy - step >= min) {
-        setRotation(rotation => rotation - 4.8);
         valueCopy -= step;
       } else {
-        setRotation(-120);
         valueCopy = min;
       }
     }
     prevY = event.pageY;
     setter(valueCopy);
   }
+
+  // Update rotation position when value changes
+  useEffect(() => {
+    setRotation(getRotation(valueCopy));
+  }, [valueCopy, getRotation]);
 
   // Get knob and append wheel event listener to prevent page scrolling
   const knob = useRef<HTMLDivElement>(null);
@@ -72,10 +74,7 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
       className="bg-secondary rounded-full w-[28px] h-[28px] drop-shadow-lg"
       style={{ transform: `rotate(${rotation}deg)` }}
       onMouseDown={() => listenMovement()}
-      onDoubleClick={() => {
-        setter(initial);
-        setRotation(0);
-      }}
+      onDoubleClick={() => setter(initial)}
     >
       <div className="bg-primary rounded-full w-[3px] h-[5px] m-auto mt-[3px]"></div>
     </div>

@@ -16,6 +16,7 @@ const MasterVolume = ({ masterVolume, setMasterVolume }: Props) => {
         min={0}
         max={1}
         step={0.02}
+        getRotation={(val: number) => 250 * (val - 0.5)}
       />
     </div>
   );

@@ -181,6 +181,7 @@ const Track = ({ self, soundsData, playSound, timeline, setTimeline }: Props) =>
               min={0}
               max={1}
               step={0.02}
+              getRotation={(val: number) => 250 * (val - 0.5)}
             />
             {/* Panning */}
             <Knob
@@ -194,6 +195,7 @@ const Track = ({ self, soundsData, playSound, timeline, setTimeline }: Props) =>
               min={-1}
               max={1}
               step={0.04}
+              getRotation={(val: number) => 120 * val}
             />
           </div>
         </div>
