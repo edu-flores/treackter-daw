@@ -59,10 +59,11 @@ const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsDa
     }
   }
 
-  // Cycle background color of the pad
+  // Handle audio and background for each pad
   useEffect(() => {
+    padProperties.sound = padProperties.kit ? soundsData[padProperties.kit-1].audio : null;
     setBgColor(padProperties.kit ? soundsData[padProperties.kit-1].color : '');
-  }, [padProperties.kit, soundsData])
+  }, [padProperties, padProperties.kit, padProperties.sound, soundsData]);
 
   return (
     <div

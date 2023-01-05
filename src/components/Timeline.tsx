@@ -154,7 +154,21 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   }
 
   // Import timeline
-  const importTimeline = () => {}
+  const importTimeline = () => {
+    setActive(false);
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.click();
+    input.addEventListener('change', readFile);
+  }
+  const readFile = (event: any) => {
+    const fr = new FileReader();
+    fr.onload = (e: any) => {
+      setTimeline(JSON.parse(e.target.result));
+    }
+    fr.readAsText(event.target.files.item(0));
+  }
 
   // Everything modal 
   const [modalContent, setModalContent] = useState(<div></div>);
@@ -222,7 +236,7 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
     newTimeline.settings.masterVolume = masterVolume;
 
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [BPM, masterVolume])
+  }, [BPM, masterVolume]);
 
   // Timeline manager (starting & stopping)
   useEffect(() => {
