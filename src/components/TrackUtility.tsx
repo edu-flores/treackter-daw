@@ -20,7 +20,7 @@ const TrackUtility = ({ symbol, activeColor, role, property, canBeIgnored, ignor
   return (
     <div
       className="cursor-pointer font-bold text-secondary"
-      style={{color: defineColor()}}
+      style={{ color: defineColor() }}
       onClick={() => role()}
     >
       <span>{symbol}</span>

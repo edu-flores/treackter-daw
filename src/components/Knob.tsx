@@ -6,10 +6,11 @@ type Props = {
   initial: number,
   min: number,
   max: number,
-  step: number
+  step: number,
+  getRotation: Function
 }
 
-const Knob = ({ value, setter, initial, min, max, step }: Props) => {
+const Knob = ({ value, setter, initial, min, max, step, getRotation }: Props) => {
 
   let valueCopy = value;
 
@@ -18,28 +19,30 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
 
   // Slide knob up & down
   let prevY = 0;
-  const scrollKnob = (event: MouseEvent | WheelEvent) => {
+  let currY = 0;
+  const scrollKnob = (event: MouseEvent | WheelEvent | TouchEvent) => {
+    // Prevent scrolling
     (event as WheelEvent).preventDefault();
-    if (event.pageY < prevY || (event as WheelEvent).deltaY < 0) {  // Up
-      if (valueCopy + step <= max) {
-        setRotation(rotation => rotation + 4.8);
-        valueCopy += step;
-      } else {
-        setRotation(120);
-        valueCopy = max;
-      }
-    } else if (event.pageY > prevY || (event as WheelEvent).deltaY > 0) {  // Down
-      if (valueCopy - step >= min) {
-        setRotation(rotation => rotation - 4.8);
-        valueCopy -= step;
-      } else {
-        setRotation(-120);
-        valueCopy = min;
-      }
+
+    // Get current position
+    currY = (event as MouseEvent).pageY || (event as TouchEvent).touches[0].clientY;
+
+    // Scroll knob depending on prevY and currY
+    if (currY < prevY || (event as WheelEvent).deltaY < 0) {  // Up
+      valueCopy = (valueCopy + step <= max) ? (valueCopy + step) : max;
+    } else if (currY > prevY || (event as WheelEvent).deltaY > 0) {  // Down
+      valueCopy = (valueCopy - step >= min) ? (valueCopy - step) : min;
     }
-    prevY = event.pageY;
+
+    // Set new values
+    prevY = currY;
     setter(valueCopy);
   }
+
+  // Update rotation position when value changes
+  useEffect(() => {
+    setRotation(getRotation(valueCopy));
+  }, [valueCopy, getRotation]);
 
   // Get knob and append wheel event listener to prevent page scrolling
   const knob = useRef<HTMLDivElement>(null);
@@ -57,27 +60,29 @@ const Knob = ({ value, setter, initial, min, max, step }: Props) => {
   // Detect mouse movement and the release of a click
   const listenMovement = () => {
     window.addEventListener('mousemove', scrollKnob);
+    window.addEventListener('touchmove', scrollKnob);
     window.addEventListener('mouseup', clearEvents);
+    window.addEventListener('touchend', clearEvents);
   }
 
   // Remove events from window
   const clearEvents = () => {
     window.removeEventListener('mousemove', scrollKnob);
+    window.removeEventListener('touchmove', scrollKnob);
     window.removeEventListener('mouseup', clearEvents);
+    window.removeEventListener('touchend', clearEvents);
   }
 
   return (
     <div
       ref={knob}
-      className="bg-secondary rounded-full w-[28px] h-[28px] drop-shadow-lg"
-      style={{transform: `rotate(${rotation}deg)`}}
+      className="bg-secondary rounded-full w-[28px] h-[28px] drop-shadow-lg touch-none"
+      style={{ transform: `rotate(${rotation}deg)` }}
       onMouseDown={() => listenMovement()}
-      onDoubleClick={() => {
-        setter(initial);
-        setRotation(0);
-      }}
+      onTouchStart={() => listenMovement()}
+      onDoubleClick={() => setter(initial)}
     >
-      <div className="bg-primary rounded-full w-[3px] h-[5px] m-auto mt-[3px]"></div>
+      <div className="bg-light-gray rounded-full w-[3px] h-[5px] m-auto mt-[3px]"></div>
     </div>
   );
 }
