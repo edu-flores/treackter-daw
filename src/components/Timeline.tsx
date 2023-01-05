@@ -144,11 +144,11 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
 
   // Export timeline
   const exportTimeline = () => {
-    const saveFile = JSON.stringify(timelineJSON);
+    const saveFile = JSON.stringify(timeline);
     const blob = new Blob([saveFile], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement('a');
-    anchor.download = `${'MyBeat'}.json`;
+    anchor.download = `${'MyBeat'}.beat`;
     anchor.href = url;
     anchor.click();
   }
@@ -158,16 +158,13 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
     setActive(false);
     const input = document.createElement('input');
     input.type = 'file';
-    input.accept = '.json';
+    input.accept = '.beat';
     input.click();
-    input.addEventListener('change', readFile);
-  }
-  const readFile = (event: any) => {
-    const fr = new FileReader();
-    fr.onload = (e: any) => {
-      setTimeline(JSON.parse(e.target.result));
-    }
-    fr.readAsText(event.target.files.item(0));
+    input.addEventListener('change', (event: any) => {
+      const fr = new FileReader();
+      fr.onload = (e: any) => setTimeline(JSON.parse(e.target.result));
+      fr.readAsText(event.target.files.item(0));
+    });
   }
 
   // Everything modal 
