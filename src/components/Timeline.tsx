@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-// import Modal from './Modal';
 import MediaButton from './MediaButton';
 import TimelineButton from './TimelineButton';
 import Track from './Track';
+import Modal from './Modal';
 import timelineJSON from '../json/timeline.json';
 
 type TimelineJSON = {
@@ -156,6 +156,33 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
   // Import timeline
   const importTimeline = () => {}
 
+  // Modal contents
+  const [modalContent, setModalContent] = useState(<div></div>);
+  const [modalVisibility, setModalVisibility] = useState(false);
+  const clearModalContent = (
+    <div>
+      <h3 className="text-xl font-bold text-center text-secondary mb-5">Are you sure?</h3>
+      <p className="text-lg text-secondary mb-5">This will clear all tiles from the current timeline</p>
+      <div className="flex justify-between">
+        <button
+          className="bg-secondary w-24 rounded-lg py-2 text-primary font-bold shadow-lg"
+          onClick={() => setModalVisibility(false)}
+        >
+          No
+        </button>
+        <button
+          className="bg-[#fa685b] w-24 rounded-lg py-2 text-primary font-bold shadow-lg"
+          onClick={() => {
+            clearTimeline();
+            setModalVisibility(false);
+          }}
+        >
+          Yes
+        </button>
+      </div>
+    </div>
+  );
+
   // Update BPM and master volume after a change
   useEffect(() => {
     const newTimeline = {...timeline}
@@ -280,7 +307,10 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
             <TimelineButton
               text={'CLEAR'}
               color={'#fa685b'}
-              role={clearTimeline}
+              role={() => {
+                setModalVisibility(true);
+                setModalContent(clearModalContent)
+              }}
             />
             {/* Shuffle */}
             <TimelineButton
@@ -309,6 +339,10 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
           <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
         </svg>
       </div>
+      {/* Timeline Buttons Modal */}
+      <Modal visible={modalVisibility}>
+        {modalContent}
+      </Modal>
     </div>
   );
 }

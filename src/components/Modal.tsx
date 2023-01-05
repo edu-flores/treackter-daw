@@ -1,14 +1,13 @@
 type Props = {
-  title: string,
-  content: JSX.Element
+  visible: boolean
+  children: React.ReactNode
 }
 
-const Modal = ({ title, content }: Props) => {
+const Modal = ({ visible, children }: Props) => {
   return (
-    <div className="w-screen h-screen">
-      <div className="">
-        <h3 className="text-2xl text-center">{title}</h3>
-        {content}
+    <div className="top-0 fixed left-0 z-20 w-screen h-screen backdrop-blur" style={{ visibility: visible ? 'visible' : 'hidden' }}>
+      <div className="bg-[#1a1a1a] rounded-xl fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-56 px-14 py-7">
+        {children}
       </div>
     </div>
   );
