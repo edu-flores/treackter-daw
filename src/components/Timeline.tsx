@@ -44,10 +44,12 @@ type Props = {
   kits: Kit[],
   playSound: Function,
   BPM: number,
-  masterVolume: number
+  setBPM: Function,
+  masterVolume: number,
+  setMasterVolume: Function
 }
 
-const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
+const Timeline = ({ kits, playSound, BPM, setBPM, masterVolume, setMasterVolume }: Props) => {
 
   // Timeline sequence on/off
   const [active, setActive] = useState(false);
@@ -162,7 +164,11 @@ const Timeline = ({ kits, playSound, BPM, masterVolume }: Props) => {
     input.click();
     input.addEventListener('change', (event: any) => {
       const fr = new FileReader();
-      fr.onload = (e: any) => setTimeline(JSON.parse(e.target.result));
+      fr.onload = (e: any) => {
+        setBPM(JSON.parse(e.target.result).settings.BPM);
+        setMasterVolume(JSON.parse(e.target.result).settings.masterVolume);
+        setTimeline(JSON.parse(e.target.result))
+      };
       fr.readAsText(event.target.files.item(0));
     });
   }
