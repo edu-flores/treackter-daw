@@ -16,4 +16,4 @@ To customize your beat, you can select a **BPM** that best suits your current id
 
 Finally, you can name and save your project. This will generate a `.beat` file that can later be uploaded in the same page.
 
-![Treackter Demo](./src/assets/demo.gif)
+![Treackter Demo](./src/assets/Demo.gif)
