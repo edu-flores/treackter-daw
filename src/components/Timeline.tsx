@@ -232,6 +232,21 @@ const Timeline = ({ kits, playSound, BPM, setBPM, masterVolume, setMasterVolume 
     </div>
   );
 
+  // Keyboard events in timeline (pausing & playing, hiding modal)
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      event.preventDefault();
+      if (event.code === 'Space' && !event.repeat) setActive(active => !active);
+      else if (event.code === 'Escape' && !event.repeat) setModalVisibility(false);
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, []);
+
   // Update BPM and master volume after a change
   useEffect(() => {
     const newTimeline = {...timeline}
