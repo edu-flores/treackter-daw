@@ -79,7 +79,7 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
       const pad = padsRefs[keyToSound.get(event.code)!];
       pad?.classList.remove('scale-90');
     }
-  }, [padsRefs])
+  }, [padsRefs]);
 
   useEffect(() => {
     // Listen for key presses

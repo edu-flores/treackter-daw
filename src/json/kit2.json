@@ -17,66 +17,66 @@
   },
   {
     "id": 13,
-    "type": "Closed",
-    "path": "./sounds/kit2/closed2.wav",
+    "type": "Hi-hat",
+    "path": "./sounds/kit2/hihat2.wav",
     "color": "#084c61",
-    "name": "Closed 2",
+    "name": "Hi-hat 2",
     "audio": null
   },
   {
     "id": 14,
-    "type": "Open",
-    "path": "./sounds/kit2/open2.wav",
-    "color": "#218380",
-    "name": "Open 2",
-    "audio": null
-  },
-  {
-    "id": 15,
-    "type": "Key",
-    "path": "./sounds/kit2/key2.wav",
-    "color": "#5b2a86",
-    "name": "Key 2",
-    "audio": null
-  },
-  {
-    "id": 16,
-    "type": "Guitar",
-    "path": "./sounds/kit2/guitar2.wav",
-    "color": "#6153cc",
-    "name": "Guitar 2",
-    "audio": null
-  },
-  {
-    "id": 17,
-    "type": "Bass",
-    "path": "./sounds/kit2/bass2.wav",
-    "color": "#de0d92",
-    "name": "Bass 2",
-    "audio": null
-  },
-  {
-    "id": 18,
-    "type": "Tom",
-    "path": "./sounds/kit2/tom2.wav",
-    "color": "#037171",
-    "name": "Tom 2",
-    "audio": null
-  },
-  {
-    "id": 19,
     "type": "Clap",
     "path": "./sounds/kit2/clap2.wav",
-    "color": "#805e73",
+    "color": "#218380",
     "name": "Clap 2",
     "audio": null
   },
   {
-    "id": 20,
-    "type": "Adlib",
-    "path": "./sounds/kit2/adlib2.wav",
+    "id": 15,
+    "type": "Chord",
+    "path": "./sounds/kit2/chord2.wav",
+    "color": "#5b2a86",
+    "name": "Chord 2",
+    "audio": null
+  },
+  {
+    "id": 16,
+    "type": "808",
+    "path": "./sounds/kit2/8082.wav",
     "color": "#6153cc",
-    "name": "Adlib 2",
+    "name": "808 2",
+    "audio": null
+  },
+  {
+    "id": 17,
+    "type": "Shake",
+    "path": "./sounds/kit2/shake2.wav",
+    "color": "#de0d92",
+    "name": "Shake 2",
+    "audio": null
+  },
+  {
+    "id": 18,
+    "type": "Bass",
+    "path": "./sounds/kit2/bass2.wav",
+    "color": "#037171",
+    "name": "Bass 2",
+    "audio": null
+  },
+  {
+    "id": 19,
+    "type": "FX",
+    "path": "./sounds/kit2/fx2.wav",
+    "color": "#805e73",
+    "name": "FX 2",
+    "audio": null
+  },
+  {
+    "id": 20,
+    "type": "Vocal",
+    "path": "./sounds/kit2/vocal2.wav",
+    "color": "#6153cc",
+    "name": "Vocal 2",
     "audio": null
   }
 ]

@@ -17,66 +17,66 @@
   },
   {
     "id": 3,
-    "type": "Closed",
-    "path": "./sounds/kit1/closed1.wav",
+    "type": "Hi-hat",
+    "path": "./sounds/kit1/hihat1.wav",
     "color": "#177e89",
-    "name": "Closed 1",
+    "name": "Hi-hat 1",
     "audio": null
   },
   {
     "id": 4,
-    "type": "Open",
-    "path": "./sounds/kit1/open1.wav",
-    "color": "#d8973c",
-    "name": "Open 1",
-    "audio": null
-  },
-  {
-    "id": 5,
-    "type": "Key",
-    "path": "./sounds/kit1/key1.wav",
-    "color": "#a63446",
-    "name": "Key 1",
-    "audio": null
-  },
-  {
-    "id": 6,
-    "type": "Guitar",
-    "path": "./sounds/kit1/guitar1.wav",
-    "color": "#a60067",
-    "name": "Guitar 1",
-    "audio": null
-  },
-  {
-    "id": 7,
-    "type": "Bass",
-    "path": "./sounds/kit1/bass1.wav",
-    "color": "#ed7d3a",
-    "name": "Bass 1",
-    "audio": null
-  },
-  {
-    "id": 8,
-    "type": "Tom",
-    "path": "./sounds/kit1/tom1.wav",
-    "color": "#00b9ae",
-    "name": "Tom 1",
-    "audio": null
-  },
-  {
-    "id": 9,
     "type": "Clap",
     "path": "./sounds/kit1/clap1.wav",
-    "color": "#87bcde",
+    "color": "#d8973c",
     "name": "Clap 1",
     "audio": null
   },
   {
+    "id": 5,
+    "type": "Chord",
+    "path": "./sounds/kit1/chord1.wav",
+    "color": "#a63446",
+    "name": "Chord 1",
+    "audio": null
+  },
+  {
+    "id": 6,
+    "type": "808",
+    "path": "./sounds/kit1/8081.wav",
+    "color": "#a60067",
+    "name": "808 1",
+    "audio": null
+  },
+  {
+    "id": 7,
+    "type": "Shake",
+    "path": "./sounds/kit1/shake1.wav",
+    "color": "#ed7d3a",
+    "name": "Shake 1",
+    "audio": null
+  },
+  {
+    "id": 8,
+    "type": "Bass",
+    "path": "./sounds/kit1/bass1.wav",
+    "color": "#00b9ae",
+    "name": "Bass 1",
+    "audio": null
+  },
+  {
+    "id": 9,
+    "type": "FX",
+    "path": "./sounds/kit1/fx1.wav",
+    "color": "#87bcde",
+    "name": "FX 1",
+    "audio": null
+  },
+  {
     "id": 10,
-    "type": "Adlib",
-    "path": "./sounds/kit1/adlib1.wav",
+    "type": "Vocal",
+    "path": "./sounds/kit1/vocal1.wav",
     "color": "#00cc99",
-    "name": "Adlib 1",
+    "name": "Vocal 1",
     "audio": null
   }
 ]

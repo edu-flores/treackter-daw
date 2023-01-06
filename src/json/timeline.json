@@ -65,157 +65,7 @@
       }
     },
     {
-      "name": "Closed",
-      "pads": [
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false }
-      ],
-      "state": {
-        "solo": false,
-        "muted": false,
-        "ignored": false
-      },
-      "audio": {
-        "volume": 0.5,
-        "panning": 0
-      }
-    },
-    {
-      "name": "Open",
-      "pads": [
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false }
-      ],
-      "state": {
-        "solo": false,
-        "muted": false,
-        "ignored": false
-      },
-      "audio": {
-        "volume": 0.5,
-        "panning": 0
-      }
-    },
-    {
-      "name": "Key",
-      "pads": [
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false }
-      ],
-      "state": {
-        "solo": false,
-        "muted": false,
-        "ignored": false
-      },
-      "audio": {
-        "volume": 0.5,
-        "panning": 0
-      }
-    },
-    {
-      "name": "Guitar",
-      "pads": [
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false }
-      ],
-      "state": {
-        "solo": false,
-        "muted": false,
-        "ignored": false
-      },
-      "audio": {
-        "volume": 0.5,
-        "panning": 0
-      }
-    },
-    {
-      "name": "Bass",
-      "pads": [
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false },
-        { "kit": null, "sound": null, "playing": false }
-      ],
-      "state": {
-        "solo": false,
-        "muted": false,
-        "ignored": false
-      },
-      "audio": {
-        "volume": 0.5,
-        "panning": 0
-      }
-    },
-    {
-      "name": "Tom",
+      "name": "Hi-hat",
       "pads": [
         { "kit": null, "sound": null, "playing": false },
         { "kit": null, "sound": null, "playing": false },
@@ -275,7 +125,157 @@
       }
     },
     {
-      "name": "Adlib",
+      "name": "Chord",
+      "pads": [
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false }
+      ],
+      "state": {
+        "solo": false,
+        "muted": false,
+        "ignored": false
+      },
+      "audio": {
+        "volume": 0.5,
+        "panning": 0
+      }
+    },
+    {
+      "name": "808",
+      "pads": [
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false }
+      ],
+      "state": {
+        "solo": false,
+        "muted": false,
+        "ignored": false
+      },
+      "audio": {
+        "volume": 0.5,
+        "panning": 0
+      }
+    },
+    {
+      "name": "Shake",
+      "pads": [
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false }
+      ],
+      "state": {
+        "solo": false,
+        "muted": false,
+        "ignored": false
+      },
+      "audio": {
+        "volume": 0.5,
+        "panning": 0
+      }
+    },
+    {
+      "name": "Bass",
+      "pads": [
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false }
+      ],
+      "state": {
+        "solo": false,
+        "muted": false,
+        "ignored": false
+      },
+      "audio": {
+        "volume": 0.5,
+        "panning": 0
+      }
+    },
+    {
+      "name": "FX",
+      "pads": [
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false },
+        { "kit": null, "sound": null, "playing": false }
+      ],
+      "state": {
+        "solo": false,
+        "muted": false,
+        "ignored": false
+      },
+      "audio": {
+        "volume": 0.5,
+        "panning": 0
+      }
+    },
+    {
+      "name": "Vocal",
       "pads": [
         { "kit": null, "sound": null, "playing": false },
         { "kit": null, "sound": null, "playing": false },
