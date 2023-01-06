@@ -235,8 +235,10 @@ const Timeline = ({ kits, playSound, BPM, setBPM, masterVolume, setMasterVolume 
   // Keyboard events in timeline (pausing & playing, hiding modal)
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      event.preventDefault();
-      if (event.code === 'Space' && !event.repeat) setActive(active => !active);
+      if (event.code === 'Space' && !event.repeat) {
+        event.preventDefault();
+        setActive(active => !active);
+      }
       else if (event.code === 'Escape' && !event.repeat) setModalVisibility(false);
     }
 
