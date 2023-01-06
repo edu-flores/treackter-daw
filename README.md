@@ -1,6 +1,6 @@
 <br>
 <div align="center">
-    <img width="30" src="./public/favicon.ico" alt="Logo">
+    <img width="50" src="./public/favicon.ico" alt="Logo">
     <h1>Treackter</h1>
     <h3>Digital Audio Workstation</h3>
 </div>
