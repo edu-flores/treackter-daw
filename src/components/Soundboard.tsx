@@ -50,6 +50,7 @@ type Pad = {
 type Kit = Pad[];
 
 type Props = {
+  loaded: boolean,
   kits: Kit[],
   playSound: Function
 }
@@ -58,7 +59,7 @@ type RefsObject = {
   [key: number]: HTMLButtonElement
 }
 
-const Soundboard = ({ kits, playSound }: Props) => {
+const Soundboard = ({ loaded, kits, playSound }: Props) => {
 
   // Object containing all refs of the soundboard pads
   const padsRefs: RefsObject = useMemo(() => {
@@ -92,15 +93,6 @@ const Soundboard = ({ kits, playSound }: Props) => {
 
   }, [handleKeyDown, handleKeyUp]);
 
-  // Check if all soundboard pads contain their respective audio
-  const isLoading = () => {
-    const containsNull = (element: Pad) => !element.audio;
-    return (kits[0].some(containsNull)
-      && kits[1].some(containsNull)
-      && kits[2].some(containsNull)
-    );
-  }
-
   return (
     <div className="lg:flex hidden items-center h-96 bg-secondary">
       {/* Keyboard Icon */}
@@ -111,7 +103,7 @@ const Soundboard = ({ kits, playSound }: Props) => {
       </div>
       {/* Effects */}
       <div className="m-auto overflow-x-auto">
-      {!isLoading() ? (
+      {loaded ? (
         <div>
           {/* First Row */}
           <div className="flex gap-1 mb-1">

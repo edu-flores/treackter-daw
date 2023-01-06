@@ -66,21 +66,26 @@ const DAW = ({ audioContext }: Props) => {
   }
 
   // State for re-rendering the component after all kits are loaded
-  const setLoaded = useState(false)[1];
+  const [loaded, setLoaded] = useState(false);
 
   // Load all kits
   const kits: Kit[] = [kit1, kit2, kit3];
   useEffect(() => {
-    // TODO: Fix fetch loading
-    kits.forEach(kit => {
+    let loads = 0;
+    kits.forEach(async (kit) => {
       const paths = kit.map(sound => sound.path);
-      loadSounds(paths).then(response => {
-        response.forEach((audio, index) => {
-          kit[index].audio = audio;
+      await loadSounds(paths).then(response => {
+        response.forEach((audio, i) => {
+          kit[i].audio = audio;
+          loads++;
         });
-        setLoaded(loaded => !loaded);
       });
+      if (loads === 30) setLoaded(true);
     });
+
+    return () => {
+      loads = 0;
+    }
 
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, []);
@@ -96,6 +101,7 @@ const DAW = ({ audioContext }: Props) => {
       />
       {/* Sound Effects */}
       <Soundboard
+        loaded={loaded}
         kits={kits}
         playSound={playSound}
       />
