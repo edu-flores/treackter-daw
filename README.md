@@ -16,4 +16,6 @@ To customize your beat, you can select a **BPM** that best suits your current id
 
 Finally, you can name and save your project. This will generate a `.beat` file that can later be uploaded in the same page.
 
+Initial Figma design: [Click](https://www.figma.com/file/v2ZdeLNRHSXbcewxtYQpf4/Treackter?t=bqP9nfDK6817ZStO-1)
+
 ![Treackter Demo](./src/assets/Demo.gif)
