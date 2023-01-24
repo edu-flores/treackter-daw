@@ -18,7 +18,7 @@ Online version: [Click](https://edu-flores.github.io/projects/treackter/build/in
 
 ## 📷 Overview
 
-A react-based app for creating beats in your browser. Start with a simple idea and evolve it into something bigger on the go.
+A react-based app for creating beats in your browser. Start with a simple idea and let it evolve into something bigger on the go.
 
 <br>
 
