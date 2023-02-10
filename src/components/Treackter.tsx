@@ -4,7 +4,10 @@ import About from './About';
 const Treackter = () => {
 
   // Web Audio API setup
+  const AudioContext = window.AudioContext || (window as any).webkitAudioContext || false;
   const audioContext = new AudioContext();
+  if (!AudioContext)
+    alert('Treackter only works on modern browsers. Please, consider using Chrome or Firefox.');
 
   return (
     <div>
