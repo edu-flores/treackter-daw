@@ -1,13 +1,31 @@
+import { useState } from 'react';
 import DAW from './DAW';
 import About from './About';
+import Modal from './Modal';
 
 const Treackter = () => {
 
   // Web Audio API setup
   const AudioContext = window.AudioContext || (window as any).webkitAudioContext || false;
-  const audioContext = new AudioContext();
-  if (!AudioContext)
-    alert('Treackter only works on modern browsers. Please, consider using Chrome or Firefox.');
+  const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
+
+  // Startup modal
+  const [modalVisibility, setModalVisibility] = useState(true);
+
+  // Use user interaction to start audio
+  const initAudio = () => {
+    // Hide modal
+    setModalVisibility(false);
+
+    // No AudioContext found
+    if (!AudioContext) {
+      alert('Treackter only works on modern browsers. Please, consider using Chrome or Firefox.');
+      return;
+    }
+
+    const context = new AudioContext();
+    setAudioContext(context);
+  }
 
   return (
     <div>
@@ -32,6 +50,29 @@ const Treackter = () => {
           </span>
         </div>
       </div>
+      {/* User interaction to start audio */}
+      <Modal visible={modalVisibility}>
+        <div>
+          <h3 className="text-xl font-bold text-center text-secondary mb-5">Welcome to Treackter</h3>
+          <p className="text-lg text-secondary mb-5">
+            Start making catchy beats directly in your <b>web browser</b>!
+          </p>
+          <p className="text-lg text-secondary mb-5">
+            To find more <b>information</b> or <b>instructions</b>, look at the right side of the screen.
+          </p>
+          <p className="text-lg text-secondary mb-5">
+            Remember you can <b>import</b> and <b>export</b> projects to share it with your friends.
+          </p>
+          <div className="flex justify-center">
+            <button
+              className="bg-secondary w-24 rounded-lg py-2 text-primary font-bold hover:brightness-75 shadow-lg"
+              onClick={initAudio}
+            >
+              Let's begin
+            </button>
+          </div>
+        </div>
+      </Modal>
       {/* Main App */}
       <div className="portrait:hidden">
         <div className="flex h-screen">
@@ -41,7 +82,7 @@ const Treackter = () => {
           </div>
           {/* DAW */}
           <div className="w-[90%] self-center">
-            <DAW audioContext={audioContext} />
+            {audioContext && <DAW audioContext={audioContext} />}
           </div>
           {/* About Section */}
           <div className="w-[5%]">
