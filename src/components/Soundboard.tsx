@@ -119,6 +119,7 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
             )}
             <div className="w-4"></div>
           </div>
+          {/* Second Row */}
           <div className="flex gap-1 mb-1">
             <div className="w-2"></div>
             {kits[1]?.map((sound: Pad) =>
@@ -133,6 +134,7 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
             )}
             <div className="w-2"></div>
           </div>
+          {/* Third Row */}
           <div className="flex gap-1">
             <div className="w-4"></div>
             {kits[2]?.map((sound: Pad) =>
