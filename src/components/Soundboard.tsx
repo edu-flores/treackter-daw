@@ -103,9 +103,9 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
       </div>
       {/* Effects */}
       {loaded ? (
-        <div className="py-6 m-auto w-full">
+        <div className="py-1 m-auto w-full">
           {/* First Row */}
-          <div className="flex gap-1 w-full mb-1">
+          <div className="flex justify-center gap-1 w-full mb-1">
             {kits[0]?.map((sound: Pad) =>
               <SoundboardPad
                 key={sound.id}
@@ -119,7 +119,7 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
             <div className="w-4"></div>
           </div>
           {/* Second Row */}
-          <div className="flex gap-1 w-full mb-1">
+          <div className="flex justify-center gap-1 w-full mb-1">
             <div className="w-2"></div>
             {kits[1]?.map((sound: Pad) =>
               <SoundboardPad
@@ -134,7 +134,7 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
             <div className="w-2"></div>
           </div>
           {/* Third Row */}
-          <div className="flex gap-1 w-full">
+          <div className="flex justify-center gap-1 w-full">
             <div className="w-4"></div>
             {kits[2]?.map((sound: Pad) =>
               <SoundboardPad
@@ -149,9 +149,11 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
           </div>
         </div>
       ) : (
-        <svg className="animate-spin w-[30px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z" />
-        </svg>
+        <div className="flex justify-center py-1 m-auto w-full">
+          <svg className="animate-spin w-[30px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z" />
+          </svg>
+        </div>
       )}
       {/* Mouse Icon */}
       <div className="w-[5%] flex justify-center pr-3">
