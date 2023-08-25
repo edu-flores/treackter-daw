@@ -25,7 +25,7 @@ type Props = {
 const DAW = ({ audioContext }: Props) => {
 
   // Beats per minute
-  const [BPM, setBPM] = useState(120);
+  const [BPM, setBPM] = useState(240);
 
   // Master volume
   const [masterVolume, setMasterVolume] = useState(0.5);

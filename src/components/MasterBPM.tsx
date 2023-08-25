@@ -8,8 +8,8 @@ const MasterBPM = ({ BPM, setBPM }: Props) => {
   // Modify BPM on the DAW
   const changeBPM = (val: number) => {
     // Valid range
-    val = (val < 60) ? 60 : val;
-    val = (val > 240) ? 240 : val;
+    val = (val < 120) ? 120 : val;
+    val = (val > 360) ? 360 : val;
     setBPM(val);
   }
 
@@ -22,8 +22,8 @@ const MasterBPM = ({ BPM, setBPM }: Props) => {
           className="w-24 text-xl text-center accent-white outline-none font-bold drop-shadow-lg"
           type="range"
           step="20"
-          min="60"
-          max="240"
+          min="120"
+          max="360"
         />
       </div>
       <div className="flex gap-2">
