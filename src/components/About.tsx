@@ -34,13 +34,13 @@ const About = () => {
         </div>
       ) : (
         <div className="bg-primary shadow-lg w-80 h-96 px-3 py-3 rounded-tl-lg rounded-bl-lg fixed right-0 top-[50%] -mt-48">
-          <div className="flex h-[100%]">
+          <div className="flex h-full">
             <div className="self-center -mt-[14px]">
               <svg className="fill-white w-[14px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
               </svg>
             </div>
-            <div className="w-[100%] px-5 self-center">
+            <div className="w-full px-5 self-center">
               <h2 className="text-xl text-center font-bold tracking-wider mt-1 mb-3">About</h2>
               <p className="mb-3"><i><b>Treackter</b></i> is an online digital audio workstation (DAW) for creating beats. </p>
               <p className="mb-3">Cycle a pad sound on the timeline by clicking it multiple times. To clear it use <b>Shift</b> + <b>Click</b> or <b>Hold</b> in mobile.</p>

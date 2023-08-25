@@ -110,7 +110,7 @@ const Treackter = () => {
             <h1 className="lg:text-2xl text-xl text-secondary font-bold tracking-widest -rotate-90 drop-shadow-lg">Treackter</h1>
           </div>
           {/* DAW */}
-          <div className="w-[90%] self-center">
+          <div className="w-[90%] h-fit self-center">
             {audioContext && <DAW audioContext={audioContext} />}
           </div>
           {/* About Section */}

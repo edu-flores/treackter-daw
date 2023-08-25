@@ -94,7 +94,7 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
   }, [handleKeyDown, handleKeyUp]);
 
   return (
-    <div className="lg:flex hidden items-center h-96 bg-secondary">
+    <div className="lg:flex hidden items-center h-[45%] max-h-96 bg-secondary overflow-auto">
       {/* Keyboard Icon */}
       <div className="w-[5%] flex justify-center pl-3">
         <svg className="fill-primary w-[28px] drop-shadow-lg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -102,11 +102,10 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
         </svg>
       </div>
       {/* Effects */}
-      <div className="m-auto overflow-x-auto">
       {loaded ? (
-        <div>
+        <div className="py-6 m-auto w-full">
           {/* First Row */}
-          <div className="flex gap-1 mb-1">
+          <div className="flex gap-1 w-full mb-1">
             {kits[0]?.map((sound: Pad) =>
               <SoundboardPad
                 key={sound.id}
@@ -120,7 +119,7 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
             <div className="w-4"></div>
           </div>
           {/* Second Row */}
-          <div className="flex gap-1 mb-1">
+          <div className="flex gap-1 w-full mb-1">
             <div className="w-2"></div>
             {kits[1]?.map((sound: Pad) =>
               <SoundboardPad
@@ -135,7 +134,7 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
             <div className="w-2"></div>
           </div>
           {/* Third Row */}
-          <div className="flex gap-1">
+          <div className="flex gap-1 w-full">
             <div className="w-4"></div>
             {kits[2]?.map((sound: Pad) =>
               <SoundboardPad
@@ -154,7 +153,6 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
           <path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z" />
         </svg>
       )}
-      </div>
       {/* Mouse Icon */}
       <div className="w-[5%] flex justify-center pr-3">
         <svg className="fill-primary w-[18px] drop-shadow-lg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">

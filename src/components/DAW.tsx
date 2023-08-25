@@ -91,7 +91,7 @@ const DAW = ({ audioContext }: Props) => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center h-screen max-w-6xl mx-auto">
+    <div className="flex flex-col justify-center max-w-6xl h-[90vh] m-auto">
       {/* Upper Bar Controls */}
       <TopControls
         BPM={BPM}
