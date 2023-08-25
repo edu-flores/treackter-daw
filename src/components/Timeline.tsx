@@ -59,12 +59,18 @@ const Timeline = ({ kits, playSound, BPM, setBPM, masterVolume, setMasterVolume 
 
   // Refs for timeline html utilities
   const timelineSpace = useRef<HTMLDivElement>(null);
+  const tracksContainer = useRef<HTMLDivElement>(null);
   const downArrow = useRef<SVGSVGElement>(null);
 
-  // Display or hide down arrow
   const handleScroll = () => {
     const timeline = timelineSpace.current!;
+    const container = tracksContainer.current!;
     const arrow = downArrow.current!;
+
+    // Sync tracks container with the top of the timeline
+    container.scrollLeft = timeline.scrollLeft;
+
+    // Display or hide down arrow
     if (timeline?.scrollTop === 0) {  // Top
       arrow.style.visibility = 'visible';
       arrow.style.opacity = '1';
@@ -292,7 +298,7 @@ const Timeline = ({ kits, playSound, BPM, setBPM, masterVolume, setMasterVolume 
       <div className="h-full px-8 py-4">
         <div ref={timelineSpace} className="w-6xl h-full overflow-auto scroll-smooth" onScroll={() => handleScroll()}>
           {/* Top */}
-          <div className="flex sticky top-0 left-0 right-0 bg-primary z-10 min-w-fit overflow-auto pb-3 text-light-gray font-semibold shadow-lg">
+          <div ref={tracksContainer} className="flex sticky top-0 left-0 right-0 bg-primary z-10 min-w-fit overflow-auto pb-3 text-light-gray font-semibold shadow-lg">
             {/* Media Buttons */}
             <div className="w-[10%]">
               <div className="flex gap-5 justify-start">
