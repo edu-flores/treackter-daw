@@ -71,21 +71,24 @@ const DAW = ({ audioContext }: Props) => {
   // Load all kits
   const kits: Kit[] = [kit1, kit2, kit3];
   useEffect(() => {
-    let loads = 0;
-    kits.forEach(async (kit) => {
-      const paths = kit.map(sound => sound.path);
-      await loadSounds(paths).then(response => {
-        response.forEach((audio, i) => {
-          kit[i].audio = audio;
-          loads++;
-        });
-      });
-      if (loads === 30) setLoaded(true);
-    });
-
-    return () => {
-      loads = 0;
+    const loadKits = async () => {
+      try {
+        await Promise.all(
+          kits.map(async (kit) => {
+            const paths = kit.map(sound => sound.path);
+            const audioBuffers = await loadSounds(paths);
+            kit.forEach((sound, i) => {
+              sound.audio = audioBuffers[i];
+            });
+          })
+        );
+        setLoaded(true);
+      } catch (error) {
+        console.log("Error loading kits: ", error);
+      }
     }
+
+    loadKits();
 
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, []);
