@@ -25,7 +25,7 @@ const Knob = ({ value, setter, initial, min, max, step, getRotation }: Props) =>
     (event as WheelEvent).preventDefault();
 
     // Get current position
-    currY = (event as MouseEvent).pageY || (event as TouchEvent).touches[0].clientY;
+    currY = (event as MouseEvent).pageY ?? (event as TouchEvent).touches[0].clientY;
 
     // Scroll knob depending on prevY and currY
     if (currY < prevY || (event as WheelEvent).deltaY < 0) {  // Up
