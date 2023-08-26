@@ -63,6 +63,11 @@ const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsDa
   useEffect(() => {
     padProperties.sound = padProperties.kit ? soundsData[padProperties.kit-1].audio : null;
     setBgColor(padProperties.kit ? soundsData[padProperties.kit-1].color : '');
+
+    // Reset clicks after clearing timeline
+    if (!padProperties.kit && !padProperties.sound) {
+      setClicks(0);
+    }
   }, [padProperties, padProperties.kit, padProperties.sound, soundsData]);
 
   return (
