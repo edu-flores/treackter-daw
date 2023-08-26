@@ -295,10 +295,10 @@ const Timeline = ({ kits, playSound, BPM, setBPM, masterVolume, setMasterVolume 
 
   return (
     <div className="bg-primary h-[80%] lg:h-[45%] max-h-80 rounded-b-xl relative shadow-lg">
-      <div className="h-full px-8 py-4">
+      <div className="h-full px-8 pb-4">
         <div ref={timelineSpace} className="w-6xl h-full overflow-auto scroll-smooth" onScroll={() => handleScroll()}>
           {/* Top */}
-          <div ref={tracksContainer} className="flex sticky top-0 left-0 right-0 bg-primary z-10 min-w-fit overflow-auto pb-3 text-light-gray font-semibold shadow-lg">
+          <div ref={tracksContainer} className="flex sticky top-0 left-0 right-0 bg-primary z-10 min-w-fit overflow-auto py-4 text-light-gray font-semibold shadow-lg">
             {/* Media Buttons */}
             <div className="w-[10%]">
               <div className="flex gap-5 justify-start">
