@@ -44,6 +44,7 @@ const TimelinePad = ({ padProperties, stateProperties, audioProperties, soundsDa
     if (event.shiftKey) {
       padProperties.kit = null;
       padProperties.sound = null;
+      setBgColor('');
       setClicks(0);
     }
     // Activate

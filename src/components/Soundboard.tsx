@@ -65,7 +65,7 @@ const Soundboard = ({ loaded, kits, playSound }: Props) => {
   const padsRefs: RefsObject = useMemo(() => {
     return {};
   }, []);
-  
+
   // Event handler functions
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
     if (keyToSound.has(event.code) && !event.repeat) {
