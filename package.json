@@ -1,6 +1,7 @@
 {
   "name": "treackter-daw",
   "version": "0.1.0",
+  "homepage": "https://edu-flores.github.io/treackter-daw",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
